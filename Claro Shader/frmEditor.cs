@@ -26,7 +26,7 @@ namespace Claro_Shader
 
         private void btnCompile_Click(object sender, EventArgs e)
         {
-            rtbEdit.SaveFile(file);
+            rtbEdit.SaveFile(file, RichTextBoxStreamType.PlainText);
             this.Hide();
         }
 
