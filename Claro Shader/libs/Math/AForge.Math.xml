@@ -4,6 +4,170 @@
         <name>AForge.Math</name>
     </assembly>
     <members>
+        <member name="T:AForge.Math.Statistics">
+            <summary>
+            Set of statistics functions.
+            </summary>
+            
+            <remarks>The class represents collection of simple functions used
+            in statistics.</remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Statistics.Mean(System.Int32[])">
+            <summary>
+            Calculate mean value.
+            </summary>
+            
+            <param name="values">Histogram array.</param>
+            
+            <returns>Returns mean value.</returns>
+            
+            <remarks><para>The input array is treated as histogram, i.e. its
+            indexes are treated as values of stochastic function, but
+            array values are treated as "probabilities" (total amount of
+            hits).</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram array
+            int[] histogram = new int[] { 1, 1, 2, 3, 6, 8, 11, 12, 7, 3 };
+            // calculate mean value
+            double mean = Statistics.Mean( histogram );
+            // output it (5.759)
+            System.Diagnostics.Debug.WriteLine( "mean = " + mean.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Statistics.StdDev(System.Int32[])">
+            <summary>
+            Calculate standard deviation.
+            </summary>
+            
+            <param name="values">Histogram array.</param>
+            
+            <returns>Returns value of standard deviation.</returns>
+            
+            <remarks><para>The input array is treated as histogram, i.e. its
+            indexes are treated as values of stochastic function, but
+            array values are treated as "probabilities" (total amount of
+            hits).</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram array
+            int[] histogram = new int[] { 1, 1, 2, 3, 6, 8, 11, 12, 7, 3 };
+            // calculate standard deviation value
+            double stdDev = Statistics.StdDev( histogram );
+            // output it (1.999)
+            System.Diagnostics.Debug.WriteLine( "std.dev. = " + stdDev.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Statistics.Median(System.Int32[])">
+            <summary>
+            Calculate median value.
+            </summary>
+            
+            <param name="values">Histogram array.</param>
+            
+            <returns>Returns value of median.</returns>
+            
+            <remarks>
+            <para>The input array is treated as histogram, i.e. its
+            indexes are treated as values of stochastic function, but
+            array values are treated as "probabilities" (total amount of
+            hits).</para>
+            
+            <para><note>The median value is calculated accumulating histogram's
+            values starting from the <b>left</b> point until the sum reaches 50% of
+            histogram's sum.</note></para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram array
+            int[] histogram = new int[] { 1, 1, 2, 3, 6, 8, 11, 12, 7, 3 };
+            // calculate median value
+            int median = Statistics.Median( histogram );
+            // output it (6)
+            System.Diagnostics.Debug.WriteLine( "median = " + median );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Statistics.GetRange(System.Int32[],System.Double)">
+            <summary>
+            Get range around median containing specified percentage of values.
+            </summary>
+            
+            <param name="values">Histogram array.</param>
+            <param name="percent">Values percentage around median.</param>
+            
+            <returns>Returns the range which containes specifies percentage
+            of values.</returns>
+            
+            <remarks>
+            <para>The input array is treated as histogram, i.e. its
+            indexes are treated as values of stochastic function, but
+            array values are treated as "probabilities" (total amount of
+            hits).</para>
+            
+            <para>The method calculates range of stochastic variable, which summary probability
+            comprises the specified percentage of histogram's hits.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram array
+            int[] histogram = new int[] { 1, 1, 2, 3, 6, 8, 11, 12, 7, 3 };
+            // get 75% range around median
+            IntRange range = Statistics.GetRange( histogram, 0.75 );
+            // output it ([4, 8])
+            System.Diagnostics.Debug.WriteLine( "range = [" + range.Min + ", " + range.Max + "]" );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Statistics.Entropy(System.Int32[])">
+            <summary>
+            Calculate entropy value.
+            </summary>
+            
+            <param name="values">Histogram array.</param>
+            
+            <returns>Returns entropy value of the specified histagram array.</returns>
+            
+            <remarks><para>The input array is treated as histogram, i.e. its
+            indexes are treated as values of stochastic function, but
+            array values are treated as "probabilities" (total amount of
+            hits).</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram array with 2 values of equal probabilities
+            int[] histogram1 = new int[2] { 3, 3 };
+            // calculate entropy
+            double entropy1 = Statistics.Entropy( histogram1 );
+            // output it (1.000)
+            System.Diagnostics.Debug.WriteLine( "entropy1 = " + entropy1.ToString( "F3" ) );
+            
+            // create histogram array with 4 values of equal probabilities
+            int[] histogram2 = new int[4] { 1, 1, 1, 1 };
+            // calculate entropy
+            double entropy2 = Statistics.Entropy( histogram2 );
+            // output it (2.000)
+            System.Diagnostics.Debug.WriteLine( "entropy2 = " + entropy2.ToString( "F3" ) );
+            
+            // create histogram array with 4 values of different probabilities
+            int[] histogram3 = new int[4] { 1, 2, 3, 4 };
+            // calculate entropy
+            double entropy3 = Statistics.Entropy( histogram3 );
+            // output it (1.846)
+            System.Diagnostics.Debug.WriteLine( "entropy3 = " + entropy3.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
         <member name="T:AForge.Math.Geometry.SimpleShapeChecker">
              <summary>
              A class for checking simple geometrical shapes.
@@ -285,6 +449,1332 @@
              </remarks>
             
         </member>
+        <member name="T:AForge.Math.Geometry.ClosePointsMergingOptimizer">
+            <summary>
+            Shape optimizer, which merges points within close distance to each other.
+            </summary>
+            
+            <remarks><para>This shape optimizing algorithm checks all points of a shape
+            and merges any two points which are within <see cref="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge">specified distance</see>
+            to each other. Two close points are replaced by a single point, which has
+            mean coordinates of the removed points.</para>
+            
+            <para><note>Because of the fact that the algorithm performs points merging
+            while it goes through a shape, it may merge several points (more than 2) into a
+            single point, where distance between extreme points may be bigger
+            than the <see cref="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge">specified limit</see>. For example, suppose
+            a case with 3 points, where 1st and 2nd points are close enough to be merged, but the
+            3rd point is a little bit further. During merging of 1st and 2nd points, it may
+            happen that the new point with mean coordinates will get closer to the 3rd point,
+            so they will be merged also on next iteration of the algorithm.</note></para>
+            
+            <para>
+            For example, the below circle shape comprised of 65 points, can be optimized to 8 points
+            by setting <see cref="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge"/> to 28.<br/>
+            <img src="img/math/close_points_merging_optimizer.png" width="268" height="238"/>
+            </para>
+            </remarks>
+            
+        </member>
+        <member name="T:AForge.Math.Geometry.IShapeOptimizer">
+             <summary>
+             Interface for shape optimizing algorithms.
+             </summary>
+             
+             <remarks><para>The interface defines set of methods, which should be implemented
+             by shape optimizing algorithms. These algorithms take input shape, which is defined
+             by a set of points (corners of convex hull, etc.), and remove some insignificant points from it,
+             which has little influence on the final shape's look.</para>
+             
+             <para>The shape optimizing algorithms can be useful in conjunction with such algorithms
+             like convex hull searching, which usually may provide many hull points, where some
+             of them are insignificant and could be removed.</para>
+            
+             <para>For additional details about shape optimizing algorithms, documentation of
+             particular algorithm should be studied.</para>
+             </remarks>
+             
+        </member>
+        <member name="M:AForge.Math.Geometry.IShapeOptimizer.OptimizeShape(System.Collections.Generic.List{AForge.IntPoint})">
+            <summary>
+            Optimize specified shape.
+            </summary>
+            
+            <param name="shape">Shape to be optimized.</param>
+            
+            <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.ClosePointsMergingOptimizer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Geometry.ClosePointsMergingOptimizer"/> class.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.ClosePointsMergingOptimizer.#ctor(System.Double)">
+             <summary>
+             Initializes a new instance of the <see cref="T:AForge.Math.Geometry.ClosePointsMergingOptimizer"/> class.
+             </summary>
+             
+             <param name="maxDistanceToMerge">Maximum allowed distance between points, which are
+             merged during optimization (see <see cref="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge"/>).</param>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.ClosePointsMergingOptimizer.OptimizeShape(System.Collections.Generic.List{AForge.IntPoint})">
+            <summary>
+            Optimize specified shape.
+            </summary>
+            
+            <param name="shape">Shape to be optimized.</param>
+            
+            <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
+            
+        </member>
+        <member name="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge">
+            <summary>
+            Maximum allowed distance between points, which are merged during optimization, [0, ∞).
+            </summary>
+            
+            <remarks><para>The property sets maximum allowed distance between two points of
+            a shape, which are replaced by single point with mean coordinates.</para>
+            
+            <para>Default value is set to <b>10</b>.</para></remarks>
+            
+        </member>
+        <member name="T:AForge.Math.ContinuousHistogram">
+            <summary>
+            Histogram for continuous random values.
+            </summary>
+            
+            <remarks><para>The class wraps histogram for continuous stochastic function, which is represented
+            by integer array and range of the function. Values of the integer array are treated
+            as total amount of hits on the corresponding subranges, which are calculated by splitting the
+            specified range into required amount of consequent ranges.</para>
+            
+            <para>For example, if the integer array is equal to { 1, 2, 4, 8, 16 } and the range is set
+            to [0, 1], then the histogram consists of next subranges:
+            <list type="bullet">
+            <item>[0.0, 0.2] - 1 hit;</item>
+            <item>[0.2, 0.4] - 2 hits;</item>
+            <item>[0.4, 0.6] - 4 hits;</item>
+            <item>[0.6, 0.8] - 8 hits;</item>
+            <item>[0.8, 1.0] - 16 hits.</item>
+            </list>
+            </para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            ContinuousHistogram histogram = new ContinuousHistogram(
+                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
+            // get mean and standard deviation values
+            System.Diagnostics.Debug.WriteLine( "mean = " + histogram.Mean + ", std.dev = " + histogram.StdDev );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.ContinuousHistogram.#ctor(System.Int32[],AForge.DoubleRange)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.ContinuousHistogram"/> class.
+            </summary>
+            
+            <param name="values">Values of the histogram.</param>
+            <param name="range">Range of random values.</param>
+            
+            <remarks>Values of the integer array are treated as total amount of hits on the
+            corresponding subranges, which are calculated by splitting the specified range into
+            required amount of consequent ranges (see <see cref="T:AForge.Math.ContinuousHistogram"/> class
+            description for more information).
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.ContinuousHistogram.GetRange(System.Double)">
+            <summary>
+            Get range around median containing specified percentage of values.
+            </summary>
+            
+            <param name="percent">Values percentage around median.</param>
+            
+            <returns>Returns the range which containes specifies percentage of values.</returns>
+            
+            <remarks><para>The method calculates range of stochastic variable, which summary probability
+            comprises the specified percentage of histogram's hits.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            ContinuousHistogram histogram = new ContinuousHistogram(
+                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
+            // get 50% range
+            DoubleRange range = histogram.GetRange( 0.5 );
+            // show the range ([0.25, 0.75])
+            System.Diagnostics.Debug.WriteLine( "50% range = [" + range.Min + ", " + range.Max + "]" );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.ContinuousHistogram.Update">
+            <summary>
+            Update statistical value of the histogram.
+            </summary>
+            
+            <remarks>The method recalculates statistical values of the histogram, like mean,
+            standard deviation, etc. The method should be called only in the case if histogram
+            values were retrieved through <see cref="P:AForge.Math.ContinuousHistogram.Values"/> property and updated after that.
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.ContinuousHistogram.Values">
+            <summary>
+            Values of the histogram.
+            </summary>
+            
+        </member>
+        <member name="P:AForge.Math.ContinuousHistogram.Range">
+            <summary>
+            Range of random values.
+            </summary>
+            
+        </member>
+        <member name="P:AForge.Math.ContinuousHistogram.Mean">
+            <summary>
+            Mean value.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve mean value of the histogram.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            ContinuousHistogram histogram = new ContinuousHistogram(
+                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
+            // get mean value (= 0.505 )
+            System.Diagnostics.Debug.WriteLine( "mean = " + histogram.Mean.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.ContinuousHistogram.StdDev">
+            <summary>
+            Standard deviation.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve standard deviation value of the histogram.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            ContinuousHistogram histogram = new ContinuousHistogram(
+                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
+            // get std.dev. value (= 0.215)
+            System.Diagnostics.Debug.WriteLine( "std.dev. = " + histogram.StdDev.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.ContinuousHistogram.Median">
+            <summary>
+            Median value.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve median value of the histogram.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            ContinuousHistogram histogram = new ContinuousHistogram(
+                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
+            // get median value (= 0.500)
+            System.Diagnostics.Debug.WriteLine( "median = " + histogram.Median.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.ContinuousHistogram.Min">
+            <summary>
+            Minimum value.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve minimum value of the histogram with non zero
+            hits count.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            ContinuousHistogram histogram = new ContinuousHistogram(
+                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
+            // get min value (= 0.250)
+            System.Diagnostics.Debug.WriteLine( "min = " + histogram.Min.ToString( "F3" ) );
+            </code>
+            </remarks>
+        </member>
+        <member name="P:AForge.Math.ContinuousHistogram.Max">
+            <summary>
+            Maximum value.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve maximum value of the histogram with non zero
+            hits count.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            ContinuousHistogram histogram = new ContinuousHistogram(
+                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
+            // get max value (= 0.875)
+            System.Diagnostics.Debug.WriteLine( "max = " + histogram.Max.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="T:AForge.Math.Random.UniformOneGenerator">
+            <summary>
+            Uniform random numbers generator in the range of [0, 1).
+            </summary>
+            
+            <remarks><para>The random number generator generates uniformly
+            distributed numbers in the range of [0, 1) - greater or equal to 0.0
+            and less than 1.0.</para>
+            
+            <para><note>At this point the generator is based on the
+            internal .NET generator, but may be rewritten to
+            use faster generation algorithm.</note></para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create instance of random generator
+            IRandomNumberGenerator generator = new UniformOneGenerator( );
+            // generate random number
+            double randomNumber = generator.Next( );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="T:AForge.Math.Random.IRandomNumberGenerator">
+            <summary>
+            Interface for random numbers generators.
+            </summary>
+            
+            <remarks><para>The interface defines set of methods and properties, which should
+            be implemented by different algorithms for random numbers generatation.</para>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Random.IRandomNumberGenerator.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            
+            <returns>Returns next random number.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Random.IRandomNumberGenerator.SetSeed(System.Int32)">
+            <summary>
+            Set seed of the random numbers generator.
+            </summary>
+            
+            <param name="seed">Seed value.</param>
+            
+        </member>
+        <member name="P:AForge.Math.Random.IRandomNumberGenerator.Mean">
+            <summary>
+            Mean value of generator.
+            </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Random.IRandomNumberGenerator.Variance">
+            <summary>
+            Variance value of generator.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Math.Random.UniformOneGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.UniformOneGenerator"/> class.
+            </summary>
+            
+            <remarks>Initializes random numbers generator with zero seed.</remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Random.UniformOneGenerator.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.UniformOneGenerator"/> class.
+            </summary>
+            
+            <param name="seed">Seed value to initialize random numbers generator.</param>
+            
+        </member>
+        <member name="M:AForge.Math.Random.UniformOneGenerator.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            
+            <returns>Returns next random number.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Random.UniformOneGenerator.SetSeed(System.Int32)">
+            <summary>
+            Set seed of the random numbers generator.
+            </summary>
+            
+            <param name="seed">Seed value.</param>
+            
+            <remarks>Resets random numbers generator initializing it with
+            specified seed value.</remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Random.UniformOneGenerator.Mean">
+             <summary>
+             Mean value of the generator.
+             </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Random.UniformOneGenerator.Variance">
+             <summary>
+             Variance value of the generator.
+             </summary>
+            
+        </member>
+        <member name="T:AForge.Math.Geometry.GeometryTools">
+            <summary>
+            Collection of some gemetry tool methods.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.GeometryTools.GetAngleBetweenVectors(AForge.IntPoint,AForge.IntPoint,AForge.IntPoint)">
+            <summary>
+            Calculate angle between to vectors measured in [0, 180] degrees range.
+            </summary>
+            
+            <param name="startPoint">Starting point of both vectors.</param>
+            <param name="vector1end">Ending point of the first vector.</param>
+            <param name="vector2end">Ending point of the second vector.</param>
+            
+            <returns>Returns angle between specified vectors measured in degrees.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.GeometryTools.GetAngleBetweenLines(AForge.IntPoint,AForge.IntPoint,AForge.IntPoint,AForge.IntPoint)">
+            <summary>
+            Calculate minimum angle between two lines measured in [0, 90] degrees range.
+            </summary>
+            
+            <param name="a1">A point on the first line.</param>
+            <param name="a2">Another point on the first line.</param>
+            <param name="b1">A point on the second line.</param>
+            <param name="b2">Another point on the second line.</param>
+            
+            <returns>Returns minimum angle between two lines.</returns>
+            
+            <remarks><para><note>It is preferred to use <see cref="M:AForge.Math.Geometry.Line.GetAngleBetweenLines(AForge.Math.Geometry.Line)"/> if it is required to calculate angle
+            multiple times for one of the lines.</note></para></remarks>
+            
+            <exception cref="T:System.ArgumentException"><paramref name="a1"/> and <paramref name="a2"/> are the same,
+            -OR- <paramref name="b1"/> and <paramref name="b2"/> are the same.</exception>
+            
+        </member>
+        <member name="T:AForge.Math.Metrics.ISimilarity">
+             <summary>
+             Interface for similarity algorithms.
+             </summary>
+             
+             <remarks><para>The interface defines a set of methods implemented
+             by similarity and correlation algorithms. These algorithms typically take a set of points and return a 
+             similarity score for the two vectors.</para>
+             
+             <para>Similarity and correlation algorithms are used in many machine learning and collaborative
+             filtering algorithms.</para>
+            
+             <para>For additional details about similarity metrics, documentation of the
+             particular algorithms should be studied.</para>
+             </remarks>
+             
+        </member>
+        <member name="M:AForge.Math.Metrics.ISimilarity.GetSimilarityScore(System.Double[],System.Double[])">
+            <summary>
+            Returns similarity score for two N-dimensional double vectors. 
+            </summary>
+            
+            <param name="p">1st point vector.</param>
+            <param name="q">2nd point vector.</param>
+            
+            <returns>Returns similarity score determined by the given algorithm.</returns>
+            
+        </member>
+        <member name="T:AForge.Math.Geometry.Line">
+            <summary>
+            The class encapsulates 2D line and provides some tool methods related to lines.
+            </summary>
+            
+            <remarks><para>The class provides some methods which are related to lines:
+            angle between lines, distance to point, finding intersection point, etc.
+            </para>
+            
+            <para>Generally, the equation of the line is y = <see cref="P:AForge.Math.Geometry.Line.Slope"/> * x + 
+            <see cref="P:AForge.Math.Geometry.Line.Intercept"/>. However, when <see cref="P:AForge.Math.Geometry.Line.Slope"/> is an Infinity,
+            <paramref name="Intercept"/> would normally be meaningless, and it would be
+            impossible to distinguish the line x = 5 from the line x = -5. Therefore,
+            if <see cref="P:AForge.Math.Geometry.Line.Slope"/> is <see cref="F:System.Double.PositiveInfinity"/> or
+            <see cref="F:System.Double.NegativeInfinity"/>, the line's equation is instead 
+            x = <see cref="P:AForge.Math.Geometry.Line.Intercept"/>.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create a line
+            Line line = Line.FromPoints( new DoublePoint( 0, 0 ), new DoublePoint( 3, 4 ) );
+            // check if it is vertical or horizontal
+            if ( line.IsVertical || line.IsHorizontal )
+            {
+                // ...
+            }
+            
+            // get intersection point with another line
+            DoublePoint intersection = line.GetIntersectionWith(
+                Line.FromPoints( new DoublePoint( 3, 0 ), new DoublePoint( 0, 4 ) ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.Line.FromPoints(AForge.DoublePoint,AForge.DoublePoint)">
+            <summary>
+            Creates a <see cref="T:AForge.Math.Geometry.Line"/>  that goes through the two specified points.
+            </summary>
+            
+            <param name="point1">One point on the line.</param>
+            <param name="point2">Another point on the line.</param>
+            
+            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> representing the line between <paramref name="point1"/>
+            and <paramref name="point2"/>.</returns>
+            
+            <exception cref="T:System.ArgumentException">Thrown if the two points are the same.</exception>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.Line.FromSlopeIntercept(System.Double,System.Double)">
+            <summary>
+            Creates a <see cref="T:AForge.Math.Geometry.Line"/> with the specified slope and intercept.
+            </summary>
+            
+            <param name="slope">The slope of the line</param>
+            <param name="intercept">The Y-intercept of the line, unless the slope is an
+            infinity, in which case the line's equation is "x = intercept" instead.</param>
+            
+            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> representing the specified line.</returns>
+            
+            <remarks><para>The construction here follows the same rules as for the rest of this class.
+            Most lines are expressed as y = slope * x + intercept. Vertical lines, however, are 
+            x = intercept. This is indicated by <see cref="P:AForge.Math.Geometry.Line.IsVertical"/> being true or by 
+            <see cref="P:AForge.Math.Geometry.Line.Slope"/> returning <see cref="F:System.Double.PositiveInfinity"/> or 
+            <see cref="F:System.Double.NegativeInfinity"/>.</para></remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.Line.FromRTheta(System.Double,System.Double)">
+            <summary>
+            Constructs a <see cref="T:AForge.Math.Geometry.Line"/> from a radius and an angle (in degrees).
+            </summary>
+            
+            <param name="radius">The minimum distance from the line to the origin.</param>
+            <param name="theta">The angle of the vector from the origin to the line.</param>
+            
+            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> representing the specified line.</returns>
+            
+            <remarks><para><paramref name="radius"/> is the minimum distance from the origin
+            to the line, and <paramref name="theta"/> is the counterclockwise rotation from
+            the positive X axis to the vector through the origin and normal to the line.</para>
+            <para>This means that if <paramref name="theta"/> is in [0,180), the point on the line
+            closest to the origin is on the positive X or Y axes, or in quadrants I or II. Likewise,
+            if <paramref name="theta"/> is in [180,360), the point on the line closest to the
+            origin is on the negative X or Y axes, or in quadrants III or IV.</para></remarks>
+            
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if radius is negative.</exception>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.Line.FromPointTheta(AForge.DoublePoint,System.Double)">
+            <summary>
+            Constructs a <see cref="T:AForge.Math.Geometry.Line"/> from a point and an angle (in degrees).
+            </summary>
+            
+            <param name="point">The minimum distance from the line to the origin.</param>
+            <param name="theta">The angle of the normal vector from the origin to the line.</param>
+            
+            <remarks><para><paramref name="theta"/> is the counterclockwise rotation from
+            the positive X axis to the vector through the origin and normal to the line.</para>
+            <para>This means that if <paramref name="theta"/> is in [0,180), the point on the line
+            closest to the origin is on the positive X or Y axes, or in quadrants I or II. Likewise,
+            if <paramref name="theta"/> is in [180,360), the point on the line closest to the
+            origin is on the negative X or Y axes, or in quadrants III or IV.</para></remarks>
+            
+            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> representing the specified line.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.Line.GetAngleBetweenLines(AForge.Math.Geometry.Line)">
+            <summary>
+            Calculate minimum angle between this line and the specified line measured in [0, 90] degrees range.
+            </summary>
+            
+            <param name="secondLine">The line to find angle between.</param>
+            
+            <returns>Returns minimum angle between lines.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.Line.GetIntersectionWith(AForge.Math.Geometry.Line)">
+            <summary>
+            Finds intersection point with the specified line.
+            </summary>
+            
+            <param name="secondLine">Line to find intersection with.</param>
+            
+            <returns>Returns intersection point with the specified line, or 
+            <see langword="null"/> if the lines are parallel and distinct.</returns>
+            
+            <exception cref="T:System.InvalidOperationException">Thrown if the specified line is the same line as this line.</exception>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.Line.GetIntersectionWith(AForge.Math.Geometry.LineSegment)">
+            <summary>
+            Finds, provided it exists, the intersection point with the specified <see cref="T:AForge.Math.Geometry.LineSegment"/>.
+            </summary>
+            
+            <param name="other"><see cref="T:AForge.Math.Geometry.LineSegment"/> to find intersection with.</param>
+            
+            <returns>Returns intersection point with the specified <see cref="T:AForge.Math.Geometry.LineSegment"/>, or <see langword="null"/>,
+            if this line does not intersect with the segment.</returns>
+            
+            <remarks><para>If the line and segment do not intersect, the method returns <see langword="null"/>.
+            If the line and segment share multiple points, the method throws an <see cref="T:System.InvalidOperationException"/>.
+            </para></remarks>
+            
+            <exception cref="T:System.InvalidOperationException">Thrown if <paramref name="other"/> is a portion
+            of this line.</exception>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.Line.DistanceToPoint(AForge.DoublePoint)">
+            <summary>
+            Calculate Euclidean distance between a point and a line.
+            </summary>
+            
+            <param name="point">The point to calculate distance to.</param>
+            
+            <returns>Returns the Euclidean distance between this line and the specified point. Unlike
+            <see cref="M:AForge.Math.Geometry.LineSegment.DistanceToPoint(AForge.DoublePoint)"/>, this returns the distance from the infinite line. (0,0) is 0 units
+            from the line defined by (0,5) and (0,8), but is 5 units from the segment with those endpoints.</returns>
+            
+        </member>
+        <member name="P:AForge.Math.Geometry.Line.IsVertical">
+             <summary>
+             Checks if the line vertical or not.
+             </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Geometry.Line.IsHorizontal">
+            <summary>
+            Checks if the line horizontal or not.
+            </summary>
+        </member>
+        <member name="P:AForge.Math.Geometry.Line.Slope">
+            <summary>
+            Gets the slope of the line.
+            </summary>
+        </member>
+        <member name="P:AForge.Math.Geometry.Line.Intercept">
+            <summary>
+            If not <see cref="P:AForge.Math.Geometry.Line.IsVertical"/>, gets the Line's Y-intercept.
+            If <see cref="P:AForge.Math.Geometry.Line.IsVertical"/> gets the line's X-intercept.
+            </summary>
+        </member>
+        <member name="T:AForge.Math.Random.ExponentialGenerator">
+            <summary>
+            Exponential random numbers generator.
+            </summary>
+            
+            <remarks><para>The random number generator generates exponential
+            random numbers with specified rate value (lambda).</para>
+            
+            <para>The generator uses <see cref="T:AForge.Math.Random.UniformOneGenerator"/> generator as a base
+            to generate random numbers.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create instance of random generator
+            IRandomNumberGenerator generator = new ExponentialGenerator( 5 );
+            // generate random number
+            double randomNumber = generator.Next( );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Random.ExponentialGenerator.#ctor(System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.ExponentialGenerator"/> class.
+            </summary>
+            
+            <param name="rate">Rate value.</param>
+            
+            <exception cref="T:System.ArgumentException">Rate value should be greater than zero.</exception>
+            
+        </member>
+        <member name="M:AForge.Math.Random.ExponentialGenerator.#ctor(System.Double,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.ExponentialGenerator"/> class.
+            </summary>
+            
+            <param name="rate">Rate value (inverse mean).</param>
+            <param name="seed">Seed value to initialize random numbers generator.</param>
+            
+            <exception cref="T:System.ArgumentException">Rate value should be greater than zero.</exception>
+            
+        </member>
+        <member name="M:AForge.Math.Random.ExponentialGenerator.Next">
+            <summary>
+            Generate next random number
+            </summary>
+            
+            <returns>Returns next random number.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Random.ExponentialGenerator.SetSeed(System.Int32)">
+            <summary>
+            Set seed of the random numbers generator.
+            </summary>
+            
+            <param name="seed">Seed value.</param>
+            
+            <remarks>Resets random numbers generator initializing it with
+            specified seed value.</remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Random.ExponentialGenerator.Rate">
+            <summary>
+            Rate value (inverse mean).
+            </summary>
+            
+            <remarks>The rate value should be positive and non zero.</remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Random.ExponentialGenerator.Mean">
+            <summary>
+            Mean value of the generator.
+            </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Random.ExponentialGenerator.Variance">
+             <summary>
+             Variance value of the generator.
+             </summary>
+            
+        </member>
+        <member name="T:AForge.Math.Metrics.HammingDistance">
+            <summary>
+            Hamming distance metric. 
+            </summary>
+            
+            <remarks><para>This class represents the 
+            <a href="http://en.wikipedia.org/wiki/Hamming_Distance">Hamming distance metric</a>.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // instantiate new distance class
+            HammingDistance dist = new HammingDistance( ); 
+            // create two vectors for inputs
+            double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
+            double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
+            // get distance between the two vectors
+            double distance = dist.GetDistance( p, q );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="T:AForge.Math.Metrics.IDistance">
+             <summary>
+             Interface for distance metric algorithms.
+             </summary>
+             
+             <remarks><para>The interface defines a set of methods implemented
+             by distance metric algorithms. These algorithms typically take a set of points and return a 
+             distance measure of the x and y coordinates. In this case, the points are represented by two vectors.</para>
+             
+             <para>Distance metric algorithms are used in many machine learning algorithms e.g K-nearest neighbor
+             and K-means clustering.</para>
+            
+             <para>For additional details about distance metrics, documentation of the
+             particular algorithms should be studied.</para>
+             </remarks>
+             
+        </member>
+        <member name="M:AForge.Math.Metrics.IDistance.GetDistance(System.Double[],System.Double[])">
+            <summary>
+            Returns distance between two N-dimensional double vectors.
+            </summary>
+            
+            <param name="p">1st point vector.</param>
+            <param name="q">2nd point vector.</param>
+            
+            <returns>Returns distance measurement determined by the given algorithm.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Metrics.HammingDistance.GetDistance(System.Double[],System.Double[])">
+            <summary>
+            Returns distance between two N-dimensional double vectors.
+            </summary>
+            
+            <param name="p">1st point vector.</param>
+            <param name="q">2nd point vector.</param>
+            
+            <returns>Returns Hamming distance between two supplied vectors.</returns>
+            
+            <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
+            array have different length).</exception>
+            
+        </member>
+        <member name="T:AForge.Math.Geometry.FlatAnglesOptimizer">
+             <summary>
+             Shape optimizer, which removes obtuse angles (close to flat) from a shape.
+             </summary>
+             
+             <remarks><para>This shape optimizing algorithm checks all adjacent edges of a shape
+             and substitutes any 2 edges with a single edge if angle between them is greater than
+             <see cref="P:AForge.Math.Geometry.FlatAnglesOptimizer.MaxAngleToKeep"/>. The algorithm makes sure there are not obtuse angles in
+             a shape, which are very close to flat line.</para>
+             
+             <para>The shape optimizer does not optimize shapes to less than 3 points, so optimized
+             shape always will have at least 3 points.</para>
+            
+             <para>
+             For example, the below circle shape comprised of 65 points, can be optimized to 10 points
+             by setting <see cref="P:AForge.Math.Geometry.FlatAnglesOptimizer.MaxAngleToKeep"/> to 160.<br/>
+             <img src="img/math/flat_angles_optimizer.png" width="268" height="238"/>
+             </para>
+             </remarks>
+             
+        </member>
+        <member name="M:AForge.Math.Geometry.FlatAnglesOptimizer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Geometry.FlatAnglesOptimizer"/> class.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.FlatAnglesOptimizer.#ctor(System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Geometry.FlatAnglesOptimizer"/> class.
+            </summary>
+            
+            <param name="maxAngleToKeep">Maximum acceptable angle between two edges of a shape (see <see cref="P:AForge.Math.Geometry.FlatAnglesOptimizer.MaxAngleToKeep"/>).</param>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.FlatAnglesOptimizer.OptimizeShape(System.Collections.Generic.List{AForge.IntPoint})">
+            <summary>
+            Optimize specified shape.
+            </summary>
+            
+            <param name="shape">Shape to be optimized.</param>
+            
+            <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
+            
+        </member>
+        <member name="P:AForge.Math.Geometry.FlatAnglesOptimizer.MaxAngleToKeep">
+            <summary>
+            Maximum angle between adjacent edges to keep in a shape, [140, 180].
+            </summary>
+            
+            <remarks><para>The property sets maximum angle between adjacent edges, which is kept
+            during optimization. All edges, which have a greater angle between them, are substituted
+            by a single edge.</para>
+            
+            <para>Default value is set to <b>160</b>.</para></remarks>
+            
+        </member>
+        <member name="T:AForge.Math.Random.GaussianGenerator">
+            <summary>
+            Gaussian random numbers generator.
+            </summary>
+            
+            <remarks><para>The random number generator generates gaussian
+            random numbers with specified mean and standard deviation values.</para>
+            
+            <para>The generator uses <see cref="T:AForge.Math.Random.StandardGenerator"/> generator as base
+            to generate random numbers.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create instance of random generator
+            IRandomNumberGenerator generator = new GaussianGenerator( 5.0, 1.5 );
+            // generate random number
+            double randomNumber = generator.Next( );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Random.GaussianGenerator.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.GaussianGenerator"/> class.
+            </summary>
+            
+            <param name="mean">Mean value.</param>
+            <param name="stdDev">Standard deviation value.</param>
+            
+        </member>
+        <member name="M:AForge.Math.Random.GaussianGenerator.#ctor(System.Double,System.Double,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.GaussianGenerator"/> class.
+            </summary>
+            
+            <param name="mean">Mean value.</param>
+            <param name="stdDev">Standard deviation value.</param>
+            <param name="seed">Seed value to initialize random numbers generator.</param>
+            
+        </member>
+        <member name="M:AForge.Math.Random.GaussianGenerator.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            
+            <returns>Returns next random number.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Random.GaussianGenerator.SetSeed(System.Int32)">
+            <summary>
+            Set seed of the random numbers generator.
+            </summary>
+            
+            <param name="seed">Seed value.</param>
+            
+            <remarks>Resets random numbers generator initializing it with
+            specified seed value.</remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Random.GaussianGenerator.Mean">
+             <summary>
+             Mean value of the generator.
+             </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Random.GaussianGenerator.Variance">
+             <summary>
+             Variance value of the generator.
+             </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Random.GaussianGenerator.StdDev">
+             <summary>
+             Standard deviation value.
+             </summary>
+            
+        </member>
+        <member name="T:AForge.Math.Geometry.LineSegment">
+            <summary>
+            The class encapsulates 2D line segment and provides some tool methods related to lines.
+            </summary>
+            
+            <remarks><para>The class provides some methods which are related to line segments:
+            distance to point, finding intersection point, etc.
+            </para>
+            
+            <para>A line segment may be converted to a <see cref="T:AForge.Math.Geometry.Line"/>.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create a segment
+            LineSegment segment = new LineSegment( new DoublePoint( 0, 0 ), new DoublePoint( 3, 4 ) );
+            // get segment's length
+            double length = segment.Length;
+            
+            // get intersection point with a line
+            DoublePoint? intersection = segment.GetIntersectionWith(
+                new Line( new DoublePoint( -3, 8 ), new DoublePoint( 0, 4 ) ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.LineSegment.#ctor(AForge.DoublePoint,AForge.DoublePoint)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Geometry.LineSegment"/> class.
+            </summary>
+            
+            <param name="start">Segment's start point.</param>
+            <param name="end">Segment's end point.</param>
+            
+            <exception cref="T:System.ArgumentException">Thrown if the two points are the same.</exception>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.LineSegment.op_Explicit(AForge.Math.Geometry.LineSegment)~AForge.Math.Geometry.Line">
+            <summary>
+            Converts this <see cref="T:AForge.Math.Geometry.LineSegment"/> to a <see cref="T:AForge.Math.Geometry.Line"/> by discarding
+            its endpoints and extending it infinitely in both directions.
+            </summary>
+            
+            <param name="segment">The segment to convert to a <see cref="T:AForge.Math.Geometry.Line"/>.</param>
+            
+            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> that contains this <paramref name="segment"/>.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.LineSegment.DistanceToPoint(AForge.DoublePoint)">
+            <summary>
+            Calculate Euclidean distance between a point and a finite line segment.
+            </summary>
+            
+            <param name="point">The point to calculate the distance to.</param>
+            
+            <returns>Returns the Euclidean distance between this line segment and the specified point. Unlike
+            <see cref="M:AForge.Math.Geometry.Line.DistanceToPoint(AForge.DoublePoint)"/>, this returns the distance from the finite segment. (0,0) is 5 units
+            from the segment (0,5)-(0,8), but is 0 units from the line through those points.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.LineSegment.GetIntersectionWith(AForge.Math.Geometry.LineSegment)">
+            <summary>
+            Finds, provided it exists, the intersection point with the specified <see cref="T:AForge.Math.Geometry.LineSegment"/>.
+            </summary>
+            
+            <param name="other"><see cref="T:AForge.Math.Geometry.LineSegment"/> to find intersection with.</param>
+            
+            <returns>Returns intersection point with the specified <see cref="T:AForge.Math.Geometry.LineSegment"/>, or <see langword="null"/>, if
+            the two segments do not intersect.</returns>
+            
+            <remarks><para>If the two segments do not intersect, the method returns <see langword="null"/>. If the two
+            segments share multiple points, this throws an <see cref="T:System.InvalidOperationException"/>.
+            </para></remarks>
+            
+            <exception cref="T:System.InvalidOperationException">Thrown if the segments overlap - if they have
+            multiple points in common.</exception>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.LineSegment.GetIntersectionWith(AForge.Math.Geometry.Line)">
+            <summary>
+            Finds, provided it exists, the intersection point with the specified <see cref="T:AForge.Math.Geometry.Line"/>.
+            </summary>
+            
+            <param name="other"><see cref="T:AForge.Math.Geometry.Line"/> to find intersection with.</param>
+            
+            <returns>Returns intersection point with the specified <see cref="T:AForge.Math.Geometry.Line"/>, or <see langword="null"/>, if
+            the line does not intersect with this segment.</returns>
+            
+            <remarks><para>If the line and the segment do not intersect, the method returns <see langword="null"/>. If the line
+            and the segment share multiple points, the method throws an <see cref="T:System.InvalidOperationException"/>.
+            </para></remarks>
+            
+            <exception cref="T:System.InvalidOperationException">Thrown if this segment is a portion of
+            <paramref name="other"/> line.</exception>
+            
+        </member>
+        <member name="P:AForge.Math.Geometry.LineSegment.Start">
+            <summary>
+            Start point of the line segment.
+            </summary>
+        </member>
+        <member name="P:AForge.Math.Geometry.LineSegment.End">
+            <summary>
+            End point of the line segment.
+            </summary>
+        </member>
+        <member name="P:AForge.Math.Geometry.LineSegment.Length">
+            <summary>
+            Get segment's length - Euclidean distance between its <see cref="P:AForge.Math.Geometry.LineSegment.Start"/> and <see cref="P:AForge.Math.Geometry.LineSegment.End"/> points.
+            </summary>
+        </member>
+        <member name="T:AForge.Math.Tools">
+            <summary>
+            Set of tool functions.
+            </summary>
+            
+            <remarks>The class contains different utility functions.</remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Tools.Pow2(System.Int32)">
+            <summary>
+            Calculates power of 2.
+            </summary>
+            
+            <param name="power">Power to raise in.</param>
+            
+            <returns>Returns specified power of 2 in the case if power is in the range of
+            [0, 30]. Otherwise returns 0.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Tools.IsPowerOf2(System.Int32)">
+            <summary>
+            Checks if the specified integer is power of 2.
+            </summary>
+            
+            <param name="x">Integer number to check.</param>
+            
+            <returns>Returns <b>true</b> if the specified number is power of 2.
+            Otherwise returns <b>false</b>.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Tools.Log2(System.Int32)">
+            <summary>
+            Get base of binary logarithm.
+            </summary>
+            
+            <param name="x">Source integer number.</param>
+            
+            <returns>Power of the number (base of binary logarithm).</returns>
+            
+        </member>
+        <member name="T:AForge.Math.Random.StandardGenerator">
+            <summary>
+            Standard random numbers generator.
+            </summary>
+            
+            <remarks><para>The random number generator generates gaussian
+            random numbers with zero mean and standard deviation of one. The generator
+            implements polar form of the Box-Muller transformation.</para>
+            
+            <para>The generator uses <see cref="T:AForge.Math.Random.UniformOneGenerator"/> generator as a base
+            to generate random numbers.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create instance of random generator
+            IRandomNumberGenerator generator = new StandardGenerator( );
+            // generate random number
+            double randomNumber = generator.Next( );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Random.StandardGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.StandardGenerator"/> class.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Math.Random.StandardGenerator.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.StandardGenerator"/> class.
+            </summary>
+            
+            <param name="seed">Seed value to initialize random numbers generator.</param>
+            
+        </member>
+        <member name="M:AForge.Math.Random.StandardGenerator.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            
+            <returns>Returns next random number.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Random.StandardGenerator.SetSeed(System.Int32)">
+            <summary>
+            Set seed of the random numbers generator.
+            </summary>
+            
+            <param name="seed">Seed value.</param>
+            
+            <remarks>Resets random numbers generator initializing it with
+            specified seed value.</remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Random.StandardGenerator.Mean">
+            <summary>
+            Mean value of the generator.
+            </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Random.StandardGenerator.Variance">
+             <summary>
+             Variance value of the generator.
+             </summary>
+            
+        </member>
+        <member name="T:AForge.Math.Metrics.JaccardDistance">
+            <summary>
+            Jaccard distance metric. 
+            </summary>
+            
+            <remarks><para>This class represents the 
+            <a href="http://en.wikipedia.org/wiki/Jaccard_distance">Jaccard distance metric</a>.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // instantiate new distance class
+            JaccardDistance dist = new JaccardDistance( ); 
+            // create two vectors for inputs
+            double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
+            double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
+            // get distance between the two vectors
+            double distance = dist.GetDistance( p, q );
+            </code>   
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Metrics.JaccardDistance.GetDistance(System.Double[],System.Double[])">
+            <summary>
+            Returns distance between two N-dimensional double vectors.
+            </summary>
+            
+            <param name="p">1st point vector.</param>
+            <param name="q">2nd point vector.</param>
+            
+            <returns>Returns Jaccard distance between two supplied vectors.</returns>
+            
+            <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
+            array have different length).</exception>
+            
+        </member>
+        <member name="T:AForge.Math.Histogram">
+            <summary>
+            Histogram for discrete random values.
+            </summary>
+            
+            <remarks><para>The class wraps histogram for discrete stochastic function, which is represented
+            by integer array, where indexes of the array are treated as values of the stochastic function,
+            but array values are treated as "probabilities" (total amount of hits).
+            </para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
+            // get mean and standard deviation values
+            System.Diagnostics.Debug.WriteLine( "mean = " + histogram.Mean + ", std.dev = " + histogram.StdDev );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Histogram.#ctor(System.Int32[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Histogram"/> class.
+            </summary>
+            
+            <param name="values">Values of the histogram.</param>
+            
+            <remarks><para>Indexes of the input array are treated as values of stochastic function,
+            but array values are treated as "probabilities" (total amount of hits).
+            </para></remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Histogram.GetRange(System.Double)">
+            <summary>
+            Get range around median containing specified percentage of values.
+            </summary>
+            
+            <param name="percent">Values percentage around median.</param>
+            
+            <returns>Returns the range which containes specifies percentage of values.</returns>
+            
+            <remarks><para>The method calculates range of stochastic variable, which summary probability
+            comprises the specified percentage of histogram's hits.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
+            // get 50% range
+            IntRange range = histogram.GetRange( 0.5 );
+            // show the range ([4, 6])
+            System.Diagnostics.Debug.WriteLine( "50% range = [" + range.Min + ", " + range.Max + "]" );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Histogram.Update">
+            <summary>
+            Update statistical value of the histogram.
+            </summary>
+            
+            <remarks>The method recalculates statistical values of the histogram, like mean,
+            standard deviation, etc., in the case if histogram's values were changed directly.
+            The method should be called only in the case if histogram's values were retrieved
+            through <see cref="P:AForge.Math.Histogram.Values"/> property and updated after that.
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Histogram.Values">
+            <summary>
+            Values of the histogram.
+            </summary>
+            
+            <remarks><para>Indexes of this array are treated as values of stochastic function,
+            but array values are treated as "probabilities" (total amount of hits).
+            </para></remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Histogram.Mean">
+            <summary>
+            Mean value.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve mean value of the histogram.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
+            // get mean value (= 4.862)
+            System.Diagnostics.Debug.WriteLine( "mean = " + histogram.Mean.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Histogram.StdDev">
+            <summary>
+            Standard deviation.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve standard deviation value of the histogram.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
+            // get std.dev. value (= 1.136)
+            System.Diagnostics.Debug.WriteLine( "std.dev. = " + histogram.StdDev.ToString( "F3" ) );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Histogram.Median">
+            <summary>
+            Median value.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve median value of the histogram.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
+            // get median value (= 5)
+            System.Diagnostics.Debug.WriteLine( "median = " + histogram.Median );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Histogram.Min">
+            <summary>
+            Minimum value.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve minimum value of the histogram with non zero
+            hits count.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
+            // get min value (= 2)
+            System.Diagnostics.Debug.WriteLine( "min = " + histogram.Min );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Histogram.Max">
+            <summary>
+            Maximum value.
+            </summary>
+            
+            <remarks><para>The property allows to retrieve maximum value of the histogram with non zero
+            hits count.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // create histogram
+            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
+            // get max value (= 6)
+            System.Diagnostics.Debug.WriteLine( "max = " + histogram.Max );
+            </code>
+            </remarks>
+            
+        </member>
         <member name="T:AForge.Math.Geometry.ShapeType">
             <summary>
             Enumeration of some basic shape types.
@@ -366,128 +1856,111 @@
             Triangle with a 90 degrees angle and other two angles are equal.
             </summary>
         </member>
-        <member name="T:AForge.Math.Geometry.FlatAnglesOptimizer">
-             <summary>
-             Shape optimizer, which removes obtuse angles (close to flat) from a shape.
-             </summary>
-             
-             <remarks><para>This shape optimizing algorithm checks all adjacent edges of a shape
-             and substitutes any 2 edges with a single edge if angle between them is greater than
-             <see cref="P:AForge.Math.Geometry.FlatAnglesOptimizer.MaxAngleToKeep"/>. The algorithm makes sure there are not obtuse angles in
-             a shape, which are very close to flat line.</para>
-             
-             <para>The shape optimizer does not optimize shapes to less than 3 points, so optimized
-             shape always will have at least 3 points.</para>
-            
-             <para>
-             For example, the below circle shape comprised of 65 points, can be optimized to 10 points
-             by setting <see cref="P:AForge.Math.Geometry.FlatAnglesOptimizer.MaxAngleToKeep"/> to 160.<br/>
-             <img src="img/math/flat_angles_optimizer.png" width="268" height="238"/>
-             </para>
-             </remarks>
-             
-        </member>
-        <member name="T:AForge.Math.Geometry.IShapeOptimizer">
-             <summary>
-             Interface for shape optimizing algorithms.
-             </summary>
-             
-             <remarks><para>The interface defines set of methods, which should be implemented
-             by shape optimizing algorithms. These algorithms take input shape, which is defined
-             by a set of points (corners of convex hull, etc.), and remove some insignificant points from it,
-             which has little influence on the final shape's look.</para>
-             
-             <para>The shape optimizing algorithms can be useful in conjunction with such algorithms
-             like convex hull searching, which usually may provide many hull points, where some
-             of them are insignificant and could be removed.</para>
-            
-             <para>For additional details about shape optimizing algorithms, documentation of
-             particular algorithm should be studied.</para>
-             </remarks>
-             
-        </member>
-        <member name="M:AForge.Math.Geometry.IShapeOptimizer.OptimizeShape(System.Collections.Generic.List{AForge.IntPoint})">
+        <member name="T:AForge.Math.FourierTransform">
             <summary>
-            Optimize specified shape.
+            Fourier transformation.
             </summary>
             
-            <param name="shape">Shape to be optimized.</param>
-            
-            <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.FlatAnglesOptimizer.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Geometry.FlatAnglesOptimizer"/> class.
-            </summary>
+            <remarks>The class implements one dimensional and two dimensional
+            Discrete and Fast Fourier Transformation.</remarks>
             
         </member>
-        <member name="M:AForge.Math.Geometry.FlatAnglesOptimizer.#ctor(System.Double)">
+        <member name="M:AForge.Math.FourierTransform.DFT(AForge.Math.Complex[],AForge.Math.FourierTransform.Direction)">
             <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Geometry.FlatAnglesOptimizer"/> class.
+            One dimensional Discrete Fourier Transform.
             </summary>
             
-            <param name="maxAngleToKeep">Maximum acceptable angle between two edges of a shape (see <see cref="P:AForge.Math.Geometry.FlatAnglesOptimizer.MaxAngleToKeep"/>).</param>
+            <param name="data">Data to transform.</param>
+            <param name="direction">Transformation direction.</param>
             
         </member>
-        <member name="M:AForge.Math.Geometry.FlatAnglesOptimizer.OptimizeShape(System.Collections.Generic.List{AForge.IntPoint})">
+        <member name="M:AForge.Math.FourierTransform.DFT2(AForge.Math.Complex[0:,0:],AForge.Math.FourierTransform.Direction)">
             <summary>
-            Optimize specified shape.
+            Two dimensional Discrete Fourier Transform.
             </summary>
             
-            <param name="shape">Shape to be optimized.</param>
-            
-            <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
+            <param name="data">Data to transform.</param>
+            <param name="direction">Transformation direction.</param>
             
         </member>
-        <member name="P:AForge.Math.Geometry.FlatAnglesOptimizer.MaxAngleToKeep">
+        <member name="M:AForge.Math.FourierTransform.FFT(AForge.Math.Complex[],AForge.Math.FourierTransform.Direction)">
             <summary>
-            Maximum angle between adjacent edges to keep in a shape, [140, 180].
+            One dimensional Fast Fourier Transform.
             </summary>
             
-            <remarks><para>The property sets maximum angle between adjacent edges, which is kept
-            during optimization. All edges, which have a greater angle between them, are substituted
-            by a single edge.</para>
+            <param name="data">Data to transform.</param>
+            <param name="direction">Transformation direction.</param>
             
-            <para>Default value is set to <b>160</b>.</para></remarks>
+            <remarks><para><note>The method accepts <paramref name="data"/> array of 2<sup>n</sup> size
+            only, where <b>n</b> may vary in the [1, 14] range.</note></para></remarks>
+            
+            <exception cref="T:System.ArgumentException">Incorrect data length.</exception>
             
         </member>
-        <member name="T:AForge.Math.Random.IRandomNumberGenerator">
+        <member name="M:AForge.Math.FourierTransform.FFT2(AForge.Math.Complex[0:,0:],AForge.Math.FourierTransform.Direction)">
             <summary>
-            Interface for random numbers generators.
+            Two dimensional Fast Fourier Transform.
             </summary>
             
-            <remarks><para>The interface defines set of methods and properties, which should
-            be implemented by different algorithms for random numbers generatation.</para>
+            <param name="data">Data to transform.</param>
+            <param name="direction">Transformation direction.</param>
+            
+            <remarks><para><note>The method accepts <paramref name="data"/> array of 2<sup>n</sup> size
+            only in each dimension, where <b>n</b> may vary in the [1, 14] range. For example, 16x16 array
+            is valid, but 15x15 is not.</note></para></remarks>
+            
+            <exception cref="T:System.ArgumentException">Incorrect data length.</exception>
+            
+        </member>
+        <member name="T:AForge.Math.FourierTransform.Direction">
+            <summary>
+            Fourier transformation direction.
+            </summary>
+        </member>
+        <member name="F:AForge.Math.FourierTransform.Direction.Forward">
+            <summary>
+            Forward direction of Fourier transformation.
+            </summary>
+        </member>
+        <member name="F:AForge.Math.FourierTransform.Direction.Backward">
+            <summary>
+            Backward direction of Fourier transformation.
+            </summary>
+        </member>
+        <member name="T:AForge.Math.Metrics.EuclideanSimilarity">
+            <summary>
+            Euclidean similarity metric. 
+            </summary>
+            
+            <remarks><para>This class represents the 
+            <a href="http://en.wikipedia.org/wiki/Euclidean_distance">Euclidean Similarity metric</a>,
+            which is calculated as 1.0 / ( 1.0 + EuclideanDistance ).</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // instantiate new similarity class
+            EuclideanSimilarity sim = new EuclideanSimilarity( ); 
+            // create two vectors for inputs
+            double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
+            double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
+            // get simirarity between the two vectors
+            double similarityScore = sim.GetSimilarityScore( p, q );
+            </code>    
             </remarks>
             
         </member>
-        <member name="M:AForge.Math.Random.IRandomNumberGenerator.Next">
+        <member name="M:AForge.Math.Metrics.EuclideanSimilarity.GetSimilarityScore(System.Double[],System.Double[])">
             <summary>
-            Generate next random number.
+            Returns similarity score for two N-dimensional double vectors. 
             </summary>
             
-            <returns>Returns next random number.</returns>
+            <param name="p">1st point vector.</param>
+            <param name="q">2nd point vector.</param>
             
-        </member>
-        <member name="M:AForge.Math.Random.IRandomNumberGenerator.SetSeed(System.Int32)">
-            <summary>
-            Set seed of the random numbers generator.
-            </summary>
+            <returns>Returns Euclidean similarity between two supplied vectors.</returns>
             
-            <param name="seed">Seed value.</param>
-            
-        </member>
-        <member name="P:AForge.Math.Random.IRandomNumberGenerator.Mean">
-            <summary>
-            Mean value of generator.
-            </summary>
-            
-        </member>
-        <member name="P:AForge.Math.Random.IRandomNumberGenerator.Variance">
-            <summary>
-            Variance value of generator.
-            </summary>
+            <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
+            array have different length).</exception>
             
         </member>
         <member name="T:AForge.Math.Geometry.LineStraighteningOptimizer">
@@ -582,6 +2055,49 @@
             <param name="points">Set of points to search convex hull for.</param>
             
             <returns>Returns set of points, which form a convex hull for the given <paramref name="points"/>.</returns>
+            
+        </member>
+        <member name="T:AForge.Math.Geometry.GrahamConvexHull">
+            <summary>
+            Graham scan algorithm for finding convex hull.
+            </summary>
+            
+            <remarks><para>The class implements
+            <a href="http://en.wikipedia.org/wiki/Graham_scan">Graham scan</a> algorithm for finding convex hull
+            of a given set of points.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // generate some random points
+            Random rand = new Random( );
+            List&lt;IntPoint&gt; points = new List&lt;IntPoint&gt;( );
+            
+            for ( int i = 0; i &lt; 10; i++ )
+            {
+                points.Add( new IntPoint(
+                       rand.Next( 200 ) - 100,
+                       rand.Next( 200 ) - 100 ) );
+            }
+            
+            // find the convex hull
+            IConvexHullAlgorithm hullFinder = new GrahamConvexHull( );
+            List&lt;IntPoint&gt; hull = hullFinder.FindHull( points );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Geometry.GrahamConvexHull.FindHull(System.Collections.Generic.List{AForge.IntPoint})">
+            <summary>
+            Find convex hull for the given set of points.
+            </summary>
+            
+            <param name="points">Set of points to search convex hull for.</param>
+            
+            <returns>Returns set of points, which form a convex hull for the given <paramref name="points"/>.
+            The first point in the list is the point with lowest X coordinate (and with lowest Y if there are
+            several points with the same X value). Points are provided in counter clockwise order
+            (<a href="http://en.wikipedia.org/wiki/Cartesian_coordinate_system">Cartesian
+            coordinate system</a>).</returns>
             
         </member>
         <member name="T:AForge.Math.Complex">
@@ -1260,1078 +2776,6 @@
             Squared magnitude value of the complex number.
             </summary>
         </member>
-        <member name="T:AForge.Math.Statistics">
-            <summary>
-            Set of statistics functions.
-            </summary>
-            
-            <remarks>The class represents collection of simple functions used
-            in statistics.</remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Statistics.Mean(System.Int32[])">
-            <summary>
-            Calculate mean value.
-            </summary>
-            
-            <param name="values">Histogram array.</param>
-            
-            <returns>Returns mean value.</returns>
-            
-            <remarks><para>The input array is treated as histogram, i.e. its
-            indexes are treated as values of stochastic function, but
-            array values are treated as "probabilities" (total amount of
-            hits).</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram array
-            int[] histogram = new int[] { 1, 1, 2, 3, 6, 8, 11, 12, 7, 3 };
-            // calculate mean value
-            double mean = Statistics.Mean( histogram );
-            // output it (5.759)
-            System.Diagnostics.Debug.WriteLine( "mean = " + mean.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Statistics.StdDev(System.Int32[])">
-            <summary>
-            Calculate standard deviation.
-            </summary>
-            
-            <param name="values">Histogram array.</param>
-            
-            <returns>Returns value of standard deviation.</returns>
-            
-            <remarks><para>The input array is treated as histogram, i.e. its
-            indexes are treated as values of stochastic function, but
-            array values are treated as "probabilities" (total amount of
-            hits).</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram array
-            int[] histogram = new int[] { 1, 1, 2, 3, 6, 8, 11, 12, 7, 3 };
-            // calculate standard deviation value
-            double stdDev = Statistics.StdDev( histogram );
-            // output it (1.999)
-            System.Diagnostics.Debug.WriteLine( "std.dev. = " + stdDev.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Statistics.Median(System.Int32[])">
-            <summary>
-            Calculate median value.
-            </summary>
-            
-            <param name="values">Histogram array.</param>
-            
-            <returns>Returns value of median.</returns>
-            
-            <remarks>
-            <para>The input array is treated as histogram, i.e. its
-            indexes are treated as values of stochastic function, but
-            array values are treated as "probabilities" (total amount of
-            hits).</para>
-            
-            <para><note>The median value is calculated accumulating histogram's
-            values starting from the <b>left</b> point until the sum reaches 50% of
-            histogram's sum.</note></para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram array
-            int[] histogram = new int[] { 1, 1, 2, 3, 6, 8, 11, 12, 7, 3 };
-            // calculate median value
-            int median = Statistics.Median( histogram );
-            // output it (6)
-            System.Diagnostics.Debug.WriteLine( "median = " + median );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Statistics.GetRange(System.Int32[],System.Double)">
-            <summary>
-            Get range around median containing specified percentage of values.
-            </summary>
-            
-            <param name="values">Histogram array.</param>
-            <param name="percent">Values percentage around median.</param>
-            
-            <returns>Returns the range which containes specifies percentage
-            of values.</returns>
-            
-            <remarks>
-            <para>The input array is treated as histogram, i.e. its
-            indexes are treated as values of stochastic function, but
-            array values are treated as "probabilities" (total amount of
-            hits).</para>
-            
-            <para>The method calculates range of stochastic variable, which summary probability
-            comprises the specified percentage of histogram's hits.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram array
-            int[] histogram = new int[] { 1, 1, 2, 3, 6, 8, 11, 12, 7, 3 };
-            // get 75% range around median
-            IntRange range = Statistics.GetRange( histogram, 0.75 );
-            // output it ([4, 8])
-            System.Diagnostics.Debug.WriteLine( "range = [" + range.Min + ", " + range.Max + "]" );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Statistics.Entropy(System.Int32[])">
-            <summary>
-            Calculate entropy value.
-            </summary>
-            
-            <param name="values">Histogram array.</param>
-            
-            <returns>Returns entropy value of the specified histagram array.</returns>
-            
-            <remarks><para>The input array is treated as histogram, i.e. its
-            indexes are treated as values of stochastic function, but
-            array values are treated as "probabilities" (total amount of
-            hits).</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram array with 2 values of equal probabilities
-            int[] histogram1 = new int[2] { 3, 3 };
-            // calculate entropy
-            double entropy1 = Statistics.Entropy( histogram1 );
-            // output it (1.000)
-            System.Diagnostics.Debug.WriteLine( "entropy1 = " + entropy1.ToString( "F3" ) );
-            
-            // create histogram array with 4 values of equal probabilities
-            int[] histogram2 = new int[4] { 1, 1, 1, 1 };
-            // calculate entropy
-            double entropy2 = Statistics.Entropy( histogram2 );
-            // output it (2.000)
-            System.Diagnostics.Debug.WriteLine( "entropy2 = " + entropy2.ToString( "F3" ) );
-            
-            // create histogram array with 4 values of different probabilities
-            int[] histogram3 = new int[4] { 1, 2, 3, 4 };
-            // calculate entropy
-            double entropy3 = Statistics.Entropy( histogram3 );
-            // output it (1.846)
-            System.Diagnostics.Debug.WriteLine( "entropy3 = " + entropy3.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="T:AForge.Math.Random.UniformGenerator">
-            <summary>
-            Uniform random numbers generator.
-            </summary>
-            
-            <remarks><para>The random numbers generator generates uniformly
-            distributed numbers in the <see cref="P:AForge.Math.Random.UniformGenerator.Range">specified range</see> - values
-            are greater or equal to minimum range's value and less than maximum range's
-            value.</para>
-            
-            <para>The generator uses <see cref="T:AForge.Math.Random.UniformOneGenerator"/> generator
-            to generate random numbers.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create instance of random generator
-            IRandomNumberGenerator generator = new UniformGenerator( new DoubleRange( 50, 100 ) );
-            // generate random number
-            double randomNumber = generator.Next( );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Random.UniformGenerator.#ctor(AForge.DoubleRange)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.UniformGenerator"/> class.
-            </summary>
-            
-            <param name="range">Random numbers range.</param>
-            
-            <remarks>Initializes random numbers generator with zero seed.</remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Random.UniformGenerator.#ctor(AForge.DoubleRange,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.UniformGenerator"/> class.
-            </summary>
-            
-            <param name="range">Random numbers range.</param>
-            <param name="seed">Seed value to initialize random numbers generator.</param>
-            
-        </member>
-        <member name="M:AForge.Math.Random.UniformGenerator.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            
-            <returns>Returns next random number.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Random.UniformGenerator.SetSeed(System.Int32)">
-            <summary>
-            Set seed of the random numbers generator.
-            </summary>
-            
-            <param name="seed">Seed value.</param>
-            
-            <remarks>Resets random numbers generator initializing it with
-            specified seed value.</remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Random.UniformGenerator.Mean">
-             <summary>
-             Mean value of the generator.
-             </summary>
-            
-        </member>
-        <member name="P:AForge.Math.Random.UniformGenerator.Variance">
-             <summary>
-             Variance value of the generator.
-             </summary>
-            
-        </member>
-        <member name="P:AForge.Math.Random.UniformGenerator.Range">
-            <summary>
-            Random numbers range.
-            </summary>
-            
-            <remarks><para>Range of random numbers to generate. Generated numbers are
-            greater or equal to minimum range's value and less than maximum range's
-            value.</para>
-            </remarks>
-            
-        </member>
-        <member name="T:AForge.Math.Random.GaussianGenerator">
-            <summary>
-            Gaussian random numbers generator.
-            </summary>
-            
-            <remarks><para>The random number generator generates gaussian
-            random numbers with specified mean and standard deviation values.</para>
-            
-            <para>The generator uses <see cref="T:AForge.Math.Random.StandardGenerator"/> generator as base
-            to generate random numbers.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create instance of random generator
-            IRandomNumberGenerator generator = new GaussianGenerator( 5.0, 1.5 );
-            // generate random number
-            double randomNumber = generator.Next( );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Random.GaussianGenerator.#ctor(System.Double,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.GaussianGenerator"/> class.
-            </summary>
-            
-            <param name="mean">Mean value.</param>
-            <param name="stdDev">Standard deviation value.</param>
-            
-        </member>
-        <member name="M:AForge.Math.Random.GaussianGenerator.#ctor(System.Double,System.Double,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.GaussianGenerator"/> class.
-            </summary>
-            
-            <param name="mean">Mean value.</param>
-            <param name="stdDev">Standard deviation value.</param>
-            <param name="seed">Seed value to initialize random numbers generator.</param>
-            
-        </member>
-        <member name="M:AForge.Math.Random.GaussianGenerator.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            
-            <returns>Returns next random number.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Random.GaussianGenerator.SetSeed(System.Int32)">
-            <summary>
-            Set seed of the random numbers generator.
-            </summary>
-            
-            <param name="seed">Seed value.</param>
-            
-            <remarks>Resets random numbers generator initializing it with
-            specified seed value.</remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Random.GaussianGenerator.Mean">
-             <summary>
-             Mean value of the generator.
-             </summary>
-            
-        </member>
-        <member name="P:AForge.Math.Random.GaussianGenerator.Variance">
-             <summary>
-             Variance value of the generator.
-             </summary>
-            
-        </member>
-        <member name="P:AForge.Math.Random.GaussianGenerator.StdDev">
-             <summary>
-             Standard deviation value.
-             </summary>
-            
-        </member>
-        <member name="T:AForge.Math.Random.UniformOneGenerator">
-            <summary>
-            Uniform random numbers generator in the range of [0, 1).
-            </summary>
-            
-            <remarks><para>The random number generator generates uniformly
-            distributed numbers in the range of [0, 1) - greater or equal to 0.0
-            and less than 1.0.</para>
-            
-            <para><note>At this point the generator is based on the
-            internal .NET generator, but may be rewritten to
-            use faster generation algorithm.</note></para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create instance of random generator
-            IRandomNumberGenerator generator = new UniformOneGenerator( );
-            // generate random number
-            double randomNumber = generator.Next( );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Random.UniformOneGenerator.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.UniformOneGenerator"/> class.
-            </summary>
-            
-            <remarks>Initializes random numbers generator with zero seed.</remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Random.UniformOneGenerator.#ctor(System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.UniformOneGenerator"/> class.
-            </summary>
-            
-            <param name="seed">Seed value to initialize random numbers generator.</param>
-            
-        </member>
-        <member name="M:AForge.Math.Random.UniformOneGenerator.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            
-            <returns>Returns next random number.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Random.UniformOneGenerator.SetSeed(System.Int32)">
-            <summary>
-            Set seed of the random numbers generator.
-            </summary>
-            
-            <param name="seed">Seed value.</param>
-            
-            <remarks>Resets random numbers generator initializing it with
-            specified seed value.</remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Random.UniformOneGenerator.Mean">
-             <summary>
-             Mean value of the generator.
-             </summary>
-            
-        </member>
-        <member name="P:AForge.Math.Random.UniformOneGenerator.Variance">
-             <summary>
-             Variance value of the generator.
-             </summary>
-            
-        </member>
-        <member name="T:AForge.Math.Geometry.LineSegment">
-            <summary>
-            The class encapsulates 2D line segment and provides some tool methods related to lines.
-            </summary>
-            
-            <remarks><para>The class provides some methods which are related to line segments:
-            distance to point, finding intersection point, etc.
-            </para>
-            
-            <para>A line segment may be converted to a <see cref="T:AForge.Math.Geometry.Line"/>.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create a segment
-            LineSegment segment = new LineSegment( new DoublePoint( 0, 0 ), new DoublePoint( 3, 4 ) );
-            // get segment's length
-            double length = segment.Length;
-            
-            // get intersection point with a line
-            DoublePoint? intersection = segment.GetIntersectionWith(
-                new Line( new DoublePoint( -3, 8 ), new DoublePoint( 0, 4 ) ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.LineSegment.#ctor(AForge.DoublePoint,AForge.DoublePoint)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Geometry.LineSegment"/> class.
-            </summary>
-            
-            <param name="start">Segment's start point.</param>
-            <param name="end">Segment's end point.</param>
-            
-            <exception cref="T:System.ArgumentException">Thrown if the two points are the same.</exception>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.LineSegment.op_Explicit(AForge.Math.Geometry.LineSegment)~AForge.Math.Geometry.Line">
-            <summary>
-            Converts this <see cref="T:AForge.Math.Geometry.LineSegment"/> to a <see cref="T:AForge.Math.Geometry.Line"/> by discarding
-            its endpoints and extending it infinitely in both directions.
-            </summary>
-            
-            <param name="segment">The segment to convert to a <see cref="T:AForge.Math.Geometry.Line"/>.</param>
-            
-            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> that contains this <paramref name="segment"/>.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.LineSegment.DistanceToPoint(AForge.DoublePoint)">
-            <summary>
-            Calculate Euclidean distance between a point and a finite line segment.
-            </summary>
-            
-            <param name="point">The point to calculate the distance to.</param>
-            
-            <returns>Returns the Euclidean distance between this line segment and the specified point. Unlike
-            <see cref="M:AForge.Math.Geometry.Line.DistanceToPoint(AForge.DoublePoint)"/>, this returns the distance from the finite segment. (0,0) is 5 units
-            from the segment (0,5)-(0,8), but is 0 units from the line through those points.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.LineSegment.GetIntersectionWith(AForge.Math.Geometry.LineSegment)">
-            <summary>
-            Finds, provided it exists, the intersection point with the specified <see cref="T:AForge.Math.Geometry.LineSegment"/>.
-            </summary>
-            
-            <param name="other"><see cref="T:AForge.Math.Geometry.LineSegment"/> to find intersection with.</param>
-            
-            <returns>Returns intersection point with the specified <see cref="T:AForge.Math.Geometry.LineSegment"/>, or <see langword="null"/>, if
-            the two segments do not intersect.</returns>
-            
-            <remarks><para>If the two segments do not intersect, the method returns <see langword="null"/>. If the two
-            segments share multiple points, this throws an <see cref="T:System.InvalidOperationException"/>.
-            </para></remarks>
-            
-            <exception cref="T:System.InvalidOperationException">Thrown if the segments overlap - if they have
-            multiple points in common.</exception>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.LineSegment.GetIntersectionWith(AForge.Math.Geometry.Line)">
-            <summary>
-            Finds, provided it exists, the intersection point with the specified <see cref="T:AForge.Math.Geometry.Line"/>.
-            </summary>
-            
-            <param name="other"><see cref="T:AForge.Math.Geometry.Line"/> to find intersection with.</param>
-            
-            <returns>Returns intersection point with the specified <see cref="T:AForge.Math.Geometry.Line"/>, or <see langword="null"/>, if
-            the line does not intersect with this segment.</returns>
-            
-            <remarks><para>If the line and the segment do not intersect, the method returns <see langword="null"/>. If the line
-            and the segment share multiple points, the method throws an <see cref="T:System.InvalidOperationException"/>.
-            </para></remarks>
-            
-            <exception cref="T:System.InvalidOperationException">Thrown if this segment is a portion of
-            <paramref name="other"/> line.</exception>
-            
-        </member>
-        <member name="P:AForge.Math.Geometry.LineSegment.Start">
-            <summary>
-            Start point of the line segment.
-            </summary>
-        </member>
-        <member name="P:AForge.Math.Geometry.LineSegment.End">
-            <summary>
-            End point of the line segment.
-            </summary>
-        </member>
-        <member name="P:AForge.Math.Geometry.LineSegment.Length">
-            <summary>
-            Get segment's length - Euclidean distance between its <see cref="P:AForge.Math.Geometry.LineSegment.Start"/> and <see cref="P:AForge.Math.Geometry.LineSegment.End"/> points.
-            </summary>
-        </member>
-        <member name="T:AForge.Math.Metrics.CosineDistance">
-            <summary>
-            Cosine distance metric. 
-            </summary>
-            
-            <remarks><para>This class represents the cosine distance metric (1 - cosine similarity)
-            <a href="http://en.wikipedia.org/wiki/Cosine_similarity"></a>.
-            </para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // instantiate new distance class
-            CosineDistance dist = new CosineDistance(); 
-            // create two vectors for inputs
-            double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
-            double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
-            // get distance between the two vectors
-            double distance = dist.GetDistance( p, q );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="T:AForge.Math.Metrics.IDistance">
-             <summary>
-             Interface for distance metric algorithms.
-             </summary>
-             
-             <remarks><para>The interface defines a set of methods implemented
-             by distance metric algorithms. These algorithms typically take a set of points and return a 
-             distance measure of the x and y coordinates. In this case, the points are represented by two vectors.</para>
-             
-             <para>Distance metric algorithms are used in many machine learning algorithms e.g K-nearest neighbor
-             and K-means clustering.</para>
-            
-             <para>For additional details about distance metrics, documentation of the
-             particular algorithms should be studied.</para>
-             </remarks>
-             
-        </member>
-        <member name="M:AForge.Math.Metrics.IDistance.GetDistance(System.Double[],System.Double[])">
-            <summary>
-            Returns distance between two N-dimensional double vectors.
-            </summary>
-            
-            <param name="p">1st point vector.</param>
-            <param name="q">2nd point vector.</param>
-            
-            <returns>Returns distance measurement determined by the given algorithm.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Metrics.CosineDistance.GetDistance(System.Double[],System.Double[])">
-            <summary>
-            Returns distance between two N-dimensional double vectors.
-            </summary>
-            
-            <param name="p">1st point vector.</param>
-            <param name="q">2nd point vector.</param>
-            
-            <returns>Returns Cosine distance between two supplied vectors.</returns>
-            
-            <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
-            array have different length).</exception>
-            
-        </member>
-        <member name="T:AForge.Math.Random.StandardGenerator">
-            <summary>
-            Standard random numbers generator.
-            </summary>
-            
-            <remarks><para>The random number generator generates gaussian
-            random numbers with zero mean and standard deviation of one. The generator
-            implements polar form of the Box-Muller transformation.</para>
-            
-            <para>The generator uses <see cref="T:AForge.Math.Random.UniformOneGenerator"/> generator as a base
-            to generate random numbers.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create instance of random generator
-            IRandomNumberGenerator generator = new StandardGenerator( );
-            // generate random number
-            double randomNumber = generator.Next( );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Random.StandardGenerator.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.StandardGenerator"/> class.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Math.Random.StandardGenerator.#ctor(System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.StandardGenerator"/> class.
-            </summary>
-            
-            <param name="seed">Seed value to initialize random numbers generator.</param>
-            
-        </member>
-        <member name="M:AForge.Math.Random.StandardGenerator.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            
-            <returns>Returns next random number.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Random.StandardGenerator.SetSeed(System.Int32)">
-            <summary>
-            Set seed of the random numbers generator.
-            </summary>
-            
-            <param name="seed">Seed value.</param>
-            
-            <remarks>Resets random numbers generator initializing it with
-            specified seed value.</remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Random.StandardGenerator.Mean">
-            <summary>
-            Mean value of the generator.
-            </summary>
-            
-        </member>
-        <member name="P:AForge.Math.Random.StandardGenerator.Variance">
-             <summary>
-             Variance value of the generator.
-             </summary>
-            
-        </member>
-        <member name="T:AForge.Math.Random.ExponentialGenerator">
-            <summary>
-            Exponential random numbers generator.
-            </summary>
-            
-            <remarks><para>The random number generator generates exponential
-            random numbers with specified rate value (lambda).</para>
-            
-            <para>The generator uses <see cref="T:AForge.Math.Random.UniformOneGenerator"/> generator as a base
-            to generate random numbers.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create instance of random generator
-            IRandomNumberGenerator generator = new ExponentialGenerator( 5 );
-            // generate random number
-            double randomNumber = generator.Next( );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Random.ExponentialGenerator.#ctor(System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.ExponentialGenerator"/> class.
-            </summary>
-            
-            <param name="rate">Rate value.</param>
-            
-            <exception cref="T:System.ArgumentException">Rate value should be greater than zero.</exception>
-            
-        </member>
-        <member name="M:AForge.Math.Random.ExponentialGenerator.#ctor(System.Double,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Random.ExponentialGenerator"/> class.
-            </summary>
-            
-            <param name="rate">Rate value (inverse mean).</param>
-            <param name="seed">Seed value to initialize random numbers generator.</param>
-            
-            <exception cref="T:System.ArgumentException">Rate value should be greater than zero.</exception>
-            
-        </member>
-        <member name="M:AForge.Math.Random.ExponentialGenerator.Next">
-            <summary>
-            Generate next random number
-            </summary>
-            
-            <returns>Returns next random number.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Random.ExponentialGenerator.SetSeed(System.Int32)">
-            <summary>
-            Set seed of the random numbers generator.
-            </summary>
-            
-            <param name="seed">Seed value.</param>
-            
-            <remarks>Resets random numbers generator initializing it with
-            specified seed value.</remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Random.ExponentialGenerator.Rate">
-            <summary>
-            Rate value (inverse mean).
-            </summary>
-            
-            <remarks>The rate value should be positive and non zero.</remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Random.ExponentialGenerator.Mean">
-            <summary>
-            Mean value of the generator.
-            </summary>
-            
-        </member>
-        <member name="P:AForge.Math.Random.ExponentialGenerator.Variance">
-             <summary>
-             Variance value of the generator.
-             </summary>
-            
-        </member>
-        <member name="T:AForge.Math.Geometry.GrahamConvexHull">
-            <summary>
-            Graham scan algorithm for finding convex hull.
-            </summary>
-            
-            <remarks><para>The class implements
-            <a href="http://en.wikipedia.org/wiki/Graham_scan">Graham scan</a> algorithm for finding convex hull
-            of a given set of points.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // generate some random points
-            Random rand = new Random( );
-            List&lt;IntPoint&gt; points = new List&lt;IntPoint&gt;( );
-            
-            for ( int i = 0; i &lt; 10; i++ )
-            {
-                points.Add( new IntPoint(
-                       rand.Next( 200 ) - 100,
-                       rand.Next( 200 ) - 100 ) );
-            }
-            
-            // find the convex hull
-            IConvexHullAlgorithm hullFinder = new GrahamConvexHull( );
-            List&lt;IntPoint&gt; hull = hullFinder.FindHull( points );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.GrahamConvexHull.FindHull(System.Collections.Generic.List{AForge.IntPoint})">
-            <summary>
-            Find convex hull for the given set of points.
-            </summary>
-            
-            <param name="points">Set of points to search convex hull for.</param>
-            
-            <returns>Returns set of points, which form a convex hull for the given <paramref name="points"/>.
-            The first point in the list is the point with lowest X coordinate (and with lowest Y if there are
-            several points with the same X value). Points are provided in counter clockwise order
-            (<a href="http://en.wikipedia.org/wiki/Cartesian_coordinate_system">Cartesian
-            coordinate system</a>).</returns>
-            
-        </member>
-        <member name="T:AForge.Math.Geometry.ClosePointsMergingOptimizer">
-            <summary>
-            Shape optimizer, which merges points within close distance to each other.
-            </summary>
-            
-            <remarks><para>This shape optimizing algorithm checks all points of a shape
-            and merges any two points which are within <see cref="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge">specified distance</see>
-            to each other. Two close points are replaced by a single point, which has
-            mean coordinates of the removed points.</para>
-            
-            <para><note>Because of the fact that the algorithm performs points merging
-            while it goes through a shape, it may merge several points (more than 2) into a
-            single point, where distance between extreme points may be bigger
-            than the <see cref="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge">specified limit</see>. For example, suppose
-            a case with 3 points, where 1st and 2nd points are close enough to be merged, but the
-            3rd point is a little bit further. During merging of 1st and 2nd points, it may
-            happen that the new point with mean coordinates will get closer to the 3rd point,
-            so they will be merged also on next iteration of the algorithm.</note></para>
-            
-            <para>
-            For example, the below circle shape comprised of 65 points, can be optimized to 8 points
-            by setting <see cref="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge"/> to 28.<br/>
-            <img src="img/math/close_points_merging_optimizer.png" width="268" height="238"/>
-            </para>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.ClosePointsMergingOptimizer.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Geometry.ClosePointsMergingOptimizer"/> class.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.ClosePointsMergingOptimizer.#ctor(System.Double)">
-             <summary>
-             Initializes a new instance of the <see cref="T:AForge.Math.Geometry.ClosePointsMergingOptimizer"/> class.
-             </summary>
-             
-             <param name="maxDistanceToMerge">Maximum allowed distance between points, which are
-             merged during optimization (see <see cref="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge"/>).</param>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.ClosePointsMergingOptimizer.OptimizeShape(System.Collections.Generic.List{AForge.IntPoint})">
-            <summary>
-            Optimize specified shape.
-            </summary>
-            
-            <param name="shape">Shape to be optimized.</param>
-            
-            <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
-            
-        </member>
-        <member name="P:AForge.Math.Geometry.ClosePointsMergingOptimizer.MaxDistanceToMerge">
-            <summary>
-            Maximum allowed distance between points, which are merged during optimization, [0, ∞).
-            </summary>
-            
-            <remarks><para>The property sets maximum allowed distance between two points of
-            a shape, which are replaced by single point with mean coordinates.</para>
-            
-            <para>Default value is set to <b>10</b>.</para></remarks>
-            
-        </member>
-        <member name="T:AForge.Math.ContinuousHistogram">
-            <summary>
-            Histogram for continuous random values.
-            </summary>
-            
-            <remarks><para>The class wraps histogram for continuous stochastic function, which is represented
-            by integer array and range of the function. Values of the integer array are treated
-            as total amount of hits on the corresponding subranges, which are calculated by splitting the
-            specified range into required amount of consequent ranges.</para>
-            
-            <para>For example, if the integer array is equal to { 1, 2, 4, 8, 16 } and the range is set
-            to [0, 1], then the histogram consists of next subranges:
-            <list type="bullet">
-            <item>[0.0, 0.2] - 1 hit;</item>
-            <item>[0.2, 0.4] - 2 hits;</item>
-            <item>[0.4, 0.6] - 4 hits;</item>
-            <item>[0.6, 0.8] - 8 hits;</item>
-            <item>[0.8, 1.0] - 16 hits.</item>
-            </list>
-            </para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            ContinuousHistogram histogram = new ContinuousHistogram(
-                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
-            // get mean and standard deviation values
-            System.Diagnostics.Debug.WriteLine( "mean = " + histogram.Mean + ", std.dev = " + histogram.StdDev );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.ContinuousHistogram.#ctor(System.Int32[],AForge.DoubleRange)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.ContinuousHistogram"/> class.
-            </summary>
-            
-            <param name="values">Values of the histogram.</param>
-            <param name="range">Range of random values.</param>
-            
-            <remarks>Values of the integer array are treated as total amount of hits on the
-            corresponding subranges, which are calculated by splitting the specified range into
-            required amount of consequent ranges (see <see cref="T:AForge.Math.ContinuousHistogram"/> class
-            description for more information).
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.ContinuousHistogram.GetRange(System.Double)">
-            <summary>
-            Get range around median containing specified percentage of values.
-            </summary>
-            
-            <param name="percent">Values percentage around median.</param>
-            
-            <returns>Returns the range which containes specifies percentage of values.</returns>
-            
-            <remarks><para>The method calculates range of stochastic variable, which summary probability
-            comprises the specified percentage of histogram's hits.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            ContinuousHistogram histogram = new ContinuousHistogram(
-                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
-            // get 50% range
-            DoubleRange range = histogram.GetRange( 0.5 );
-            // show the range ([0.25, 0.75])
-            System.Diagnostics.Debug.WriteLine( "50% range = [" + range.Min + ", " + range.Max + "]" );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.ContinuousHistogram.Update">
-            <summary>
-            Update statistical value of the histogram.
-            </summary>
-            
-            <remarks>The method recalculates statistical values of the histogram, like mean,
-            standard deviation, etc. The method should be called only in the case if histogram
-            values were retrieved through <see cref="P:AForge.Math.ContinuousHistogram.Values"/> property and updated after that.
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.ContinuousHistogram.Values">
-            <summary>
-            Values of the histogram.
-            </summary>
-            
-        </member>
-        <member name="P:AForge.Math.ContinuousHistogram.Range">
-            <summary>
-            Range of random values.
-            </summary>
-            
-        </member>
-        <member name="P:AForge.Math.ContinuousHistogram.Mean">
-            <summary>
-            Mean value.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve mean value of the histogram.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            ContinuousHistogram histogram = new ContinuousHistogram(
-                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
-            // get mean value (= 0.505 )
-            System.Diagnostics.Debug.WriteLine( "mean = " + histogram.Mean.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.ContinuousHistogram.StdDev">
-            <summary>
-            Standard deviation.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve standard deviation value of the histogram.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            ContinuousHistogram histogram = new ContinuousHistogram(
-                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
-            // get std.dev. value (= 0.215)
-            System.Diagnostics.Debug.WriteLine( "std.dev. = " + histogram.StdDev.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.ContinuousHistogram.Median">
-            <summary>
-            Median value.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve median value of the histogram.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            ContinuousHistogram histogram = new ContinuousHistogram(
-                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
-            // get median value (= 0.500)
-            System.Diagnostics.Debug.WriteLine( "median = " + histogram.Median.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.ContinuousHistogram.Min">
-            <summary>
-            Minimum value.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve minimum value of the histogram with non zero
-            hits count.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            ContinuousHistogram histogram = new ContinuousHistogram(
-                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
-            // get min value (= 0.250)
-            System.Diagnostics.Debug.WriteLine( "min = " + histogram.Min.ToString( "F3" ) );
-            </code>
-            </remarks>
-        </member>
-        <member name="P:AForge.Math.ContinuousHistogram.Max">
-            <summary>
-            Maximum value.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve maximum value of the histogram with non zero
-            hits count.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            ContinuousHistogram histogram = new ContinuousHistogram(
-                new int[] { 0, 0, 8, 4, 2, 4, 7, 1, 0 }, new DoubleRange( 0.0, 1.0 ) );
-            // get max value (= 0.875)
-            System.Diagnostics.Debug.WriteLine( "max = " + histogram.Max.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="T:AForge.Math.Metrics.HammingDistance">
-            <summary>
-            Hamming distance metric. 
-            </summary>
-            
-            <remarks><para>This class represents the 
-            <a href="http://en.wikipedia.org/wiki/Hamming_Distance">Hamming distance metric</a>.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // instantiate new distance class
-            HammingDistance dist = new HammingDistance( ); 
-            // create two vectors for inputs
-            double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
-            double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
-            // get distance between the two vectors
-            double distance = dist.GetDistance( p, q );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Metrics.HammingDistance.GetDistance(System.Double[],System.Double[])">
-            <summary>
-            Returns distance between two N-dimensional double vectors.
-            </summary>
-            
-            <param name="p">1st point vector.</param>
-            <param name="q">2nd point vector.</param>
-            
-            <returns>Returns Hamming distance between two supplied vectors.</returns>
-            
-            <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
-            array have different length).</exception>
-            
-        </member>
-        <member name="T:AForge.Math.Metrics.ISimilarity">
-             <summary>
-             Interface for similarity algorithms.
-             </summary>
-             
-             <remarks><para>The interface defines a set of methods implemented
-             by similarity and correlation algorithms. These algorithms typically take a set of points and return a 
-             similarity score for the two vectors.</para>
-             
-             <para>Similarity and correlation algorithms are used in many machine learning and collaborative
-             filtering algorithms.</para>
-            
-             <para>For additional details about similarity metrics, documentation of the
-             particular algorithms should be studied.</para>
-             </remarks>
-             
-        </member>
-        <member name="M:AForge.Math.Metrics.ISimilarity.GetSimilarityScore(System.Double[],System.Double[])">
-            <summary>
-            Returns similarity score for two N-dimensional double vectors. 
-            </summary>
-            
-            <param name="p">1st point vector.</param>
-            <param name="q">2nd point vector.</param>
-            
-            <returns>Returns similarity score determined by the given algorithm.</returns>
-            
-        </member>
         <member name="T:AForge.Math.Metrics.EuclideanDistance">
             <summary>
             Euclidean distance metric.
@@ -2367,19 +2811,54 @@
             array have different length).</exception>
             
         </member>
-        <member name="T:AForge.Math.Metrics.ManhattanDistance">
+        <member name="T:AForge.Math.Metrics.PearsonCorrelation">
             <summary>
-            Manhattan distance metric. 
+            Pearson correlation metric. 
             </summary>
             
             <remarks><para>This class represents the 
-            <a href="http://en.wikipedia.org/wiki/Manhattan_distance">Manhattan distance metric</a>
-            (aka City Block and Taxi Cab distance).</para>
+            <a href="http://en.wikipedia.org/wiki/Pearson_correlation">Pearson correlation metric</a>.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // instantiate new pearson correlation class
+            PearsonCorrelation cor = new PearsonCorrelation( ); 
+            // create two vectors for inputs
+            double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
+            double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
+            // get correlation between the two vectors
+            double correlation = cor.GetSimilarityScore( p, q );
+            </code>    
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Metrics.PearsonCorrelation.GetSimilarityScore(System.Double[],System.Double[])">
+            <summary>
+            Returns the pearson correlation for two N-dimensional double vectors. 
+            </summary>
+            
+            <param name="p">1st point vector.</param>
+            <param name="q">2nd point vector.</param>
+            
+            <returns>Returns Pearson correlation between two supplied vectors.</returns>
+            
+            <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
+            array have different length).</exception>
+            
+        </member>
+        <member name="T:AForge.Math.Metrics.CosineDistance">
+            <summary>
+            Cosine distance metric. 
+            </summary>
+            
+            <remarks><para>This class represents the cosine distance metric (1 - cosine similarity)
+            <a href="http://en.wikipedia.org/wiki/Cosine_similarity"></a>.
+            </para>
             
             <para>Sample usage:</para>
             <code>
             // instantiate new distance class
-            ManhattanDistance dist = new ManhattanDistance( ); 
+            CosineDistance dist = new CosineDistance(); 
             // create two vectors for inputs
             double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
             double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
@@ -2389,7 +2868,7 @@
             </remarks>
             
         </member>
-        <member name="M:AForge.Math.Metrics.ManhattanDistance.GetDistance(System.Double[],System.Double[])">
+        <member name="M:AForge.Math.Metrics.CosineDistance.GetDistance(System.Double[],System.Double[])">
             <summary>
             Returns distance between two N-dimensional double vectors.
             </summary>
@@ -2397,265 +2876,10 @@
             <param name="p">1st point vector.</param>
             <param name="q">2nd point vector.</param>
             
-            <returns>Returns Manhattan distance between two supplied vectors.</returns>
+            <returns>Returns Cosine distance between two supplied vectors.</returns>
             
             <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
             array have different length).</exception>
-            
-        </member>
-        <member name="T:AForge.Math.Gaussian">
-            <summary>
-            Gaussian function.
-            </summary>
-            
-            <remarks><para>The class is used to calculate 1D and 2D Gaussian functions for
-            specified <see cref="P:AForge.Math.Gaussian.Sigma"/> (s) value:</para>
-            
-            <code lang="none">
-            1-D: f(x) = exp( x * x / ( -2 * s * s ) ) / ( s * sqrt( 2 * PI ) )
-            
-            2-D: f(x, y) = exp( x * x + y * y / ( -2 * s * s ) ) / ( s * s * 2 * PI )
-            </code>
-            
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Gaussian.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Gaussian"/> class.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Math.Gaussian.#ctor(System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Gaussian"/> class.
-            </summary>
-            
-            <param name="sigma">Sigma value.</param>
-            
-        </member>
-        <member name="M:AForge.Math.Gaussian.Function(System.Double)">
-            <summary>
-            1-D Gaussian function.
-            </summary>
-            
-            <param name="x">x value.</param>
-            
-            <returns>Returns function's value at point <paramref name="x"/>.</returns>
-            
-            <remarks><para>The function calculates 1-D Gaussian function:</para>
-            
-            <code lang="none">
-            f(x) = exp( x * x / ( -2 * s * s ) ) / ( s * sqrt( 2 * PI ) )
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Gaussian.Function2D(System.Double,System.Double)">
-            <summary>
-            2-D Gaussian function.
-            </summary>
-            
-            <param name="x">x value.</param>
-            <param name="y">y value.</param>
-            
-            <returns>Returns function's value at point (<paramref name="x"/>, <paramref name="y"/>).</returns>
-            
-            <remarks><para>The function calculates 2-D Gaussian function:</para>
-            
-            <code lang="none">
-            f(x, y) = exp( x * x + y * y / ( -2 * s * s ) ) / ( s * s * 2 * PI )
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Gaussian.Kernel(System.Int32)">
-            <summary>
-            1-D Gaussian kernel.
-            </summary>
-            
-            <param name="size">Kernel size (should be odd), [3, 101].</param>
-            
-            <returns>Returns 1-D Gaussian kernel of the specified size.</returns>
-            
-            <remarks><para>The function calculates 1-D Gaussian kernel, which is array
-            of Gaussian function's values in the [-r, r] range of x value, where
-            r=floor(<paramref name="size"/>/2).
-            </para></remarks>
-            
-            <exception cref="T:System.ArgumentException">Wrong kernel size.</exception>
-            
-        </member>
-        <member name="M:AForge.Math.Gaussian.Kernel2D(System.Int32)">
-            <summary>
-            2-D Gaussian kernel.
-            </summary>
-            
-            <param name="size">Kernel size (should be odd), [3, 101].</param>
-            
-            <returns>Returns 2-D Gaussian kernel of specified size.</returns>
-            
-            <remarks><para>The function calculates 2-D Gaussian kernel, which is array
-            of Gaussian function's values in the [-r, r] range of x,y values, where
-            r=floor(<paramref name="size"/>/2).
-            </para></remarks>
-            
-            <exception cref="T:System.ArgumentException">Wrong kernel size.</exception>
-            
-        </member>
-        <member name="P:AForge.Math.Gaussian.Sigma">
-            <summary>
-            Sigma value.
-            </summary>
-            
-            <remarks><para>Sigma property of Gaussian function.</para>
-            
-            <para>Default value is set to <b>1</b>. Minimum allowed value is <b>0.00000001</b>.</para>
-            </remarks>
-            
-        </member>
-        <member name="T:AForge.Math.FourierTransform">
-            <summary>
-            Fourier transformation.
-            </summary>
-            
-            <remarks>The class implements one dimensional and two dimensional
-            Discrete and Fast Fourier Transformation.</remarks>
-            
-        </member>
-        <member name="M:AForge.Math.FourierTransform.DFT(AForge.Math.Complex[],AForge.Math.FourierTransform.Direction)">
-            <summary>
-            One dimensional Discrete Fourier Transform.
-            </summary>
-            
-            <param name="data">Data to transform.</param>
-            <param name="direction">Transformation direction.</param>
-            
-        </member>
-        <member name="M:AForge.Math.FourierTransform.DFT2(AForge.Math.Complex[0:,0:],AForge.Math.FourierTransform.Direction)">
-            <summary>
-            Two dimensional Discrete Fourier Transform.
-            </summary>
-            
-            <param name="data">Data to transform.</param>
-            <param name="direction">Transformation direction.</param>
-            
-        </member>
-        <member name="M:AForge.Math.FourierTransform.FFT(AForge.Math.Complex[],AForge.Math.FourierTransform.Direction)">
-            <summary>
-            One dimensional Fast Fourier Transform.
-            </summary>
-            
-            <param name="data">Data to transform.</param>
-            <param name="direction">Transformation direction.</param>
-            
-            <remarks><para><note>The method accepts <paramref name="data"/> array of 2<sup>n</sup> size
-            only, where <b>n</b> may vary in the [1, 14] range.</note></para></remarks>
-            
-            <exception cref="T:System.ArgumentException">Incorrect data length.</exception>
-            
-        </member>
-        <member name="M:AForge.Math.FourierTransform.FFT2(AForge.Math.Complex[0:,0:],AForge.Math.FourierTransform.Direction)">
-            <summary>
-            Two dimensional Fast Fourier Transform.
-            </summary>
-            
-            <param name="data">Data to transform.</param>
-            <param name="direction">Transformation direction.</param>
-            
-            <remarks><para><note>The method accepts <paramref name="data"/> array of 2<sup>n</sup> size
-            only in each dimension, where <b>n</b> may vary in the [1, 14] range. For example, 16x16 array
-            is valid, but 15x15 is not.</note></para></remarks>
-            
-            <exception cref="T:System.ArgumentException">Incorrect data length.</exception>
-            
-        </member>
-        <member name="T:AForge.Math.FourierTransform.Direction">
-            <summary>
-            Fourier transformation direction.
-            </summary>
-        </member>
-        <member name="F:AForge.Math.FourierTransform.Direction.Forward">
-            <summary>
-            Forward direction of Fourier transformation.
-            </summary>
-        </member>
-        <member name="F:AForge.Math.FourierTransform.Direction.Backward">
-            <summary>
-            Backward direction of Fourier transformation.
-            </summary>
-        </member>
-        <member name="T:AForge.Math.Metrics.EuclideanSimilarity">
-            <summary>
-            Euclidean similarity metric. 
-            </summary>
-            
-            <remarks><para>This class represents the 
-            <a href="http://en.wikipedia.org/wiki/Euclidean_distance">Euclidean Similarity metric</a>,
-            which is calculated as 1.0 / ( 1.0 + EuclideanDistance ).</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // instantiate new similarity class
-            EuclideanSimilarity sim = new EuclideanSimilarity( ); 
-            // create two vectors for inputs
-            double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
-            double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
-            // get simirarity between the two vectors
-            double similarityScore = sim.GetSimilarityScore( p, q );
-            </code>    
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Metrics.EuclideanSimilarity.GetSimilarityScore(System.Double[],System.Double[])">
-            <summary>
-            Returns similarity score for two N-dimensional double vectors. 
-            </summary>
-            
-            <param name="p">1st point vector.</param>
-            <param name="q">2nd point vector.</param>
-            
-            <returns>Returns Euclidean similarity between two supplied vectors.</returns>
-            
-            <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
-            array have different length).</exception>
-            
-        </member>
-        <member name="T:AForge.Math.Geometry.GeometryTools">
-            <summary>
-            Collection of some gemetry tool methods.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.GeometryTools.GetAngleBetweenVectors(AForge.IntPoint,AForge.IntPoint,AForge.IntPoint)">
-            <summary>
-            Calculate angle between to vectors measured in [0, 180] degrees range.
-            </summary>
-            
-            <param name="startPoint">Starting point of both vectors.</param>
-            <param name="vector1end">Ending point of the first vector.</param>
-            <param name="vector2end">Ending point of the second vector.</param>
-            
-            <returns>Returns angle between specified vectors measured in degrees.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.GeometryTools.GetAngleBetweenLines(AForge.IntPoint,AForge.IntPoint,AForge.IntPoint,AForge.IntPoint)">
-            <summary>
-            Calculate minimum angle between two lines measured in [0, 90] degrees range.
-            </summary>
-            
-            <param name="a1">A point on the first line.</param>
-            <param name="a2">Another point on the first line.</param>
-            <param name="b1">A point on the second line.</param>
-            <param name="b2">Another point on the second line.</param>
-            
-            <returns>Returns minimum angle between two lines.</returns>
-            
-            <remarks><para><note>It is preferred to use <see cref="M:AForge.Math.Geometry.Line.GetAngleBetweenLines(AForge.Math.Geometry.Line)"/> if it is required to calculate angle
-            multiple times for one of the lines.</note></para></remarks>
-            
-            <exception cref="T:System.ArgumentException"><paramref name="a1"/> and <paramref name="a2"/> are the same,
-            -OR- <paramref name="b1"/> and <paramref name="b2"/> are the same.</exception>
             
         </member>
         <member name="T:AForge.Math.PerlinNoise">
@@ -2812,28 +3036,29 @@
             </remarks>
             
         </member>
-        <member name="T:AForge.Math.Metrics.JaccardDistance">
+        <member name="T:AForge.Math.Metrics.ManhattanDistance">
             <summary>
-            Jaccard distance metric. 
+            Manhattan distance metric. 
             </summary>
             
             <remarks><para>This class represents the 
-            <a href="http://en.wikipedia.org/wiki/Jaccard_distance">Jaccard distance metric</a>.</para>
+            <a href="http://en.wikipedia.org/wiki/Manhattan_distance">Manhattan distance metric</a>
+            (aka City Block and Taxi Cab distance).</para>
             
             <para>Sample usage:</para>
             <code>
             // instantiate new distance class
-            JaccardDistance dist = new JaccardDistance( ); 
+            ManhattanDistance dist = new ManhattanDistance( ); 
             // create two vectors for inputs
             double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
             double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
             // get distance between the two vectors
             double distance = dist.GetDistance( p, q );
-            </code>   
+            </code>
             </remarks>
             
         </member>
-        <member name="M:AForge.Math.Metrics.JaccardDistance.GetDistance(System.Double[],System.Double[])">
+        <member name="M:AForge.Math.Metrics.ManhattanDistance.GetDistance(System.Double[],System.Double[])">
             <summary>
             Returns distance between two N-dimensional double vectors.
             </summary>
@@ -2841,207 +3066,7 @@
             <param name="p">1st point vector.</param>
             <param name="q">2nd point vector.</param>
             
-            <returns>Returns Jaccard distance between two supplied vectors.</returns>
-            
-            <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
-            array have different length).</exception>
-            
-        </member>
-        <member name="T:AForge.Math.Histogram">
-            <summary>
-            Histogram for discrete random values.
-            </summary>
-            
-            <remarks><para>The class wraps histogram for discrete stochastic function, which is represented
-            by integer array, where indexes of the array are treated as values of the stochastic function,
-            but array values are treated as "probabilities" (total amount of hits).
-            </para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
-            // get mean and standard deviation values
-            System.Diagnostics.Debug.WriteLine( "mean = " + histogram.Mean + ", std.dev = " + histogram.StdDev );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Histogram.#ctor(System.Int32[])">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Math.Histogram"/> class.
-            </summary>
-            
-            <param name="values">Values of the histogram.</param>
-            
-            <remarks><para>Indexes of the input array are treated as values of stochastic function,
-            but array values are treated as "probabilities" (total amount of hits).
-            </para></remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Histogram.GetRange(System.Double)">
-            <summary>
-            Get range around median containing specified percentage of values.
-            </summary>
-            
-            <param name="percent">Values percentage around median.</param>
-            
-            <returns>Returns the range which containes specifies percentage of values.</returns>
-            
-            <remarks><para>The method calculates range of stochastic variable, which summary probability
-            comprises the specified percentage of histogram's hits.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
-            // get 50% range
-            IntRange range = histogram.GetRange( 0.5 );
-            // show the range ([4, 6])
-            System.Diagnostics.Debug.WriteLine( "50% range = [" + range.Min + ", " + range.Max + "]" );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Histogram.Update">
-            <summary>
-            Update statistical value of the histogram.
-            </summary>
-            
-            <remarks>The method recalculates statistical values of the histogram, like mean,
-            standard deviation, etc., in the case if histogram's values were changed directly.
-            The method should be called only in the case if histogram's values were retrieved
-            through <see cref="P:AForge.Math.Histogram.Values"/> property and updated after that.
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Histogram.Values">
-            <summary>
-            Values of the histogram.
-            </summary>
-            
-            <remarks><para>Indexes of this array are treated as values of stochastic function,
-            but array values are treated as "probabilities" (total amount of hits).
-            </para></remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Histogram.Mean">
-            <summary>
-            Mean value.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve mean value of the histogram.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
-            // get mean value (= 4.862)
-            System.Diagnostics.Debug.WriteLine( "mean = " + histogram.Mean.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Histogram.StdDev">
-            <summary>
-            Standard deviation.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve standard deviation value of the histogram.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
-            // get std.dev. value (= 1.136)
-            System.Diagnostics.Debug.WriteLine( "std.dev. = " + histogram.StdDev.ToString( "F3" ) );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Histogram.Median">
-            <summary>
-            Median value.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve median value of the histogram.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
-            // get median value (= 5)
-            System.Diagnostics.Debug.WriteLine( "median = " + histogram.Median );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Histogram.Min">
-            <summary>
-            Minimum value.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve minimum value of the histogram with non zero
-            hits count.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
-            // get min value (= 2)
-            System.Diagnostics.Debug.WriteLine( "min = " + histogram.Min );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Math.Histogram.Max">
-            <summary>
-            Maximum value.
-            </summary>
-            
-            <remarks><para>The property allows to retrieve maximum value of the histogram with non zero
-            hits count.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create histogram
-            Histogram histogram = new Histogram( new int[10] { 0, 0, 1, 3, 6, 8, 11, 0, 0, 0 } );
-            // get max value (= 6)
-            System.Diagnostics.Debug.WriteLine( "max = " + histogram.Max );
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="T:AForge.Math.Metrics.CosineSimilarity">
-            <summary>
-            Cosine similarity metric. 
-            </summary>
-            
-            <remarks><para>This class represents the 
-            <a href="http://en.wikipedia.org/wiki/Cosine_similarity">Cosine Similarity metric</a>.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // instantiate new similarity class
-            CosineSimilarity sim = new CosineSimilarity( ); 
-            // create two vectors for inputs
-            double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
-            double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
-            // get similarity between the two vectors
-            double similarityScore = sim.GetSimilarityScore( p, q );
-            </code>    
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Metrics.CosineSimilarity.GetSimilarityScore(System.Double[],System.Double[])">
-            <summary>
-            Returns similarity score for two N-dimensional double vectors. 
-            </summary>
-            
-            <param name="p">1st point vector.</param>
-            <param name="q">2nd point vector.</param>
-            
-            <returns>Returns Cosine similarity between two supplied vectors.</returns>
+            <returns>Returns Manhattan distance between two supplied vectors.</returns>
             
             <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
             array have different length).</exception>
@@ -3252,260 +3277,235 @@
             </remarks>
             
         </member>
-        <member name="T:AForge.Math.Metrics.PearsonCorrelation">
+        <member name="T:AForge.Math.Random.UniformGenerator">
             <summary>
-            Pearson correlation metric. 
+            Uniform random numbers generator.
             </summary>
             
-            <remarks><para>This class represents the 
-            <a href="http://en.wikipedia.org/wiki/Pearson_correlation">Pearson correlation metric</a>.</para>
+            <remarks><para>The random numbers generator generates uniformly
+            distributed numbers in the <see cref="P:AForge.Math.Random.UniformGenerator.Range">specified range</see> - values
+            are greater or equal to minimum range's value and less than maximum range's
+            value.</para>
+            
+            <para>The generator uses <see cref="T:AForge.Math.Random.UniformOneGenerator"/> generator
+            to generate random numbers.</para>
             
             <para>Sample usage:</para>
             <code>
-            // instantiate new pearson correlation class
-            PearsonCorrelation cor = new PearsonCorrelation( ); 
+            // create instance of random generator
+            IRandomNumberGenerator generator = new UniformGenerator( new DoubleRange( 50, 100 ) );
+            // generate random number
+            double randomNumber = generator.Next( );
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Random.UniformGenerator.#ctor(AForge.DoubleRange)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.UniformGenerator"/> class.
+            </summary>
+            
+            <param name="range">Random numbers range.</param>
+            
+            <remarks>Initializes random numbers generator with zero seed.</remarks>
+            
+        </member>
+        <member name="M:AForge.Math.Random.UniformGenerator.#ctor(AForge.DoubleRange,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Math.Random.UniformGenerator"/> class.
+            </summary>
+            
+            <param name="range">Random numbers range.</param>
+            <param name="seed">Seed value to initialize random numbers generator.</param>
+            
+        </member>
+        <member name="M:AForge.Math.Random.UniformGenerator.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            
+            <returns>Returns next random number.</returns>
+            
+        </member>
+        <member name="M:AForge.Math.Random.UniformGenerator.SetSeed(System.Int32)">
+            <summary>
+            Set seed of the random numbers generator.
+            </summary>
+            
+            <param name="seed">Seed value.</param>
+            
+            <remarks>Resets random numbers generator initializing it with
+            specified seed value.</remarks>
+            
+        </member>
+        <member name="P:AForge.Math.Random.UniformGenerator.Mean">
+             <summary>
+             Mean value of the generator.
+             </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Random.UniformGenerator.Variance">
+             <summary>
+             Variance value of the generator.
+             </summary>
+            
+        </member>
+        <member name="P:AForge.Math.Random.UniformGenerator.Range">
+            <summary>
+            Random numbers range.
+            </summary>
+            
+            <remarks><para>Range of random numbers to generate. Generated numbers are
+            greater or equal to minimum range's value and less than maximum range's
+            value.</para>
+            </remarks>
+            
+        </member>
+        <member name="T:AForge.Math.Metrics.CosineSimilarity">
+            <summary>
+            Cosine similarity metric. 
+            </summary>
+            
+            <remarks><para>This class represents the 
+            <a href="http://en.wikipedia.org/wiki/Cosine_similarity">Cosine Similarity metric</a>.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // instantiate new similarity class
+            CosineSimilarity sim = new CosineSimilarity( ); 
             // create two vectors for inputs
             double[] p = new double[] { 2.5, 3.5, 3.0, 3.5, 2.5, 3.0 };
             double[] q = new double[] { 3.0, 3.5, 1.5, 5.0, 3.5, 3.0 };
-            // get correlation between the two vectors
-            double correlation = cor.GetSimilarityScore( p, q );
+            // get similarity between the two vectors
+            double similarityScore = sim.GetSimilarityScore( p, q );
             </code>    
             </remarks>
             
         </member>
-        <member name="M:AForge.Math.Metrics.PearsonCorrelation.GetSimilarityScore(System.Double[],System.Double[])">
+        <member name="M:AForge.Math.Metrics.CosineSimilarity.GetSimilarityScore(System.Double[],System.Double[])">
             <summary>
-            Returns the pearson correlation for two N-dimensional double vectors. 
+            Returns similarity score for two N-dimensional double vectors. 
             </summary>
             
             <param name="p">1st point vector.</param>
             <param name="q">2nd point vector.</param>
             
-            <returns>Returns Pearson correlation between two supplied vectors.</returns>
+            <returns>Returns Cosine similarity between two supplied vectors.</returns>
             
             <exception cref="T:System.ArgumentException">Thrown if the two vectors are of different dimensions (if specified
             array have different length).</exception>
             
         </member>
-        <member name="T:AForge.Math.Tools">
+        <member name="T:AForge.Math.Gaussian">
             <summary>
-            Set of tool functions.
+            Gaussian function.
             </summary>
             
-            <remarks>The class contains different utility functions.</remarks>
+            <remarks><para>The class is used to calculate 1D and 2D Gaussian functions for
+            specified <see cref="P:AForge.Math.Gaussian.Sigma"/> (s) value:</para>
+            
+            <code lang="none">
+            1-D: f(x) = exp( x * x / ( -2 * s * s ) ) / ( s * sqrt( 2 * PI ) )
+            
+            2-D: f(x, y) = exp( x * x + y * y / ( -2 * s * s ) ) / ( s * s * 2 * PI )
+            </code>
+            
+            </remarks>
             
         </member>
-        <member name="M:AForge.Math.Tools.Pow2(System.Int32)">
+        <member name="M:AForge.Math.Gaussian.#ctor">
             <summary>
-            Calculates power of 2.
+            Initializes a new instance of the <see cref="T:AForge.Math.Gaussian"/> class.
             </summary>
-            
-            <param name="power">Power to raise in.</param>
-            
-            <returns>Returns specified power of 2 in the case if power is in the range of
-            [0, 30]. Otherwise returns 0.</returns>
             
         </member>
-        <member name="M:AForge.Math.Tools.IsPowerOf2(System.Int32)">
+        <member name="M:AForge.Math.Gaussian.#ctor(System.Double)">
             <summary>
-            Checks if the specified integer is power of 2.
+            Initializes a new instance of the <see cref="T:AForge.Math.Gaussian"/> class.
             </summary>
             
-            <param name="x">Integer number to check.</param>
-            
-            <returns>Returns <b>true</b> if the specified number is power of 2.
-            Otherwise returns <b>false</b>.</returns>
+            <param name="sigma">Sigma value.</param>
             
         </member>
-        <member name="M:AForge.Math.Tools.Log2(System.Int32)">
+        <member name="M:AForge.Math.Gaussian.Function(System.Double)">
             <summary>
-            Get base of binary logarithm.
+            1-D Gaussian function.
             </summary>
             
-            <param name="x">Source integer number.</param>
+            <param name="x">x value.</param>
             
-            <returns>Power of the number (base of binary logarithm).</returns>
+            <returns>Returns function's value at point <paramref name="x"/>.</returns>
             
-        </member>
-        <member name="T:AForge.Math.Geometry.Line">
-            <summary>
-            The class encapsulates 2D line and provides some tool methods related to lines.
-            </summary>
+            <remarks><para>The function calculates 1-D Gaussian function:</para>
             
-            <remarks><para>The class provides some methods which are related to lines:
-            angle between lines, distance to point, finding intersection point, etc.
-            </para>
-            
-            <para>Generally, the equation of the line is y = <see cref="P:AForge.Math.Geometry.Line.Slope"/> * x + 
-            <see cref="P:AForge.Math.Geometry.Line.Intercept"/>. However, when <see cref="P:AForge.Math.Geometry.Line.Slope"/> is an Infinity,
-            <paramref name="Intercept"/> would normally be meaningless, and it would be
-            impossible to distinguish the line x = 5 from the line x = -5. Therefore,
-            if <see cref="P:AForge.Math.Geometry.Line.Slope"/> is <see cref="F:System.Double.PositiveInfinity"/> or
-            <see cref="F:System.Double.NegativeInfinity"/>, the line's equation is instead 
-            x = <see cref="P:AForge.Math.Geometry.Line.Intercept"/>.</para>
-            
-            <para>Sample usage:</para>
-            <code>
-            // create a line
-            Line line = Line.FromPoints( new DoublePoint( 0, 0 ), new DoublePoint( 3, 4 ) );
-            // check if it is vertical or horizontal
-            if ( line.IsVertical || line.IsHorizontal )
-            {
-                // ...
-            }
-            
-            // get intersection point with another line
-            DoublePoint intersection = line.GetIntersectionWith(
-                Line.FromPoints( new DoublePoint( 3, 0 ), new DoublePoint( 0, 4 ) ) );
+            <code lang="none">
+            f(x) = exp( x * x / ( -2 * s * s ) ) / ( s * sqrt( 2 * PI ) )
             </code>
             </remarks>
             
         </member>
-        <member name="M:AForge.Math.Geometry.Line.FromPoints(AForge.DoublePoint,AForge.DoublePoint)">
+        <member name="M:AForge.Math.Gaussian.Function2D(System.Double,System.Double)">
             <summary>
-            Creates a <see cref="T:AForge.Math.Geometry.Line"/>  that goes through the two specified points.
+            2-D Gaussian function.
             </summary>
             
-            <param name="point1">One point on the line.</param>
-            <param name="point2">Another point on the line.</param>
+            <param name="x">x value.</param>
+            <param name="y">y value.</param>
             
-            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> representing the line between <paramref name="point1"/>
-            and <paramref name="point2"/>.</returns>
+            <returns>Returns function's value at point (<paramref name="x"/>, <paramref name="y"/>).</returns>
             
-            <exception cref="T:System.ArgumentException">Thrown if the two points are the same.</exception>
+            <remarks><para>The function calculates 2-D Gaussian function:</para>
+            
+            <code lang="none">
+            f(x, y) = exp( x * x + y * y / ( -2 * s * s ) ) / ( s * s * 2 * PI )
+            </code>
+            </remarks>
             
         </member>
-        <member name="M:AForge.Math.Geometry.Line.FromSlopeIntercept(System.Double,System.Double)">
+        <member name="M:AForge.Math.Gaussian.Kernel(System.Int32)">
             <summary>
-            Creates a <see cref="T:AForge.Math.Geometry.Line"/> with the specified slope and intercept.
+            1-D Gaussian kernel.
             </summary>
             
-            <param name="slope">The slope of the line</param>
-            <param name="intercept">The Y-intercept of the line, unless the slope is an
-            infinity, in which case the line's equation is "x = intercept" instead.</param>
+            <param name="size">Kernel size (should be odd), [3, 101].</param>
             
-            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> representing the specified line.</returns>
+            <returns>Returns 1-D Gaussian kernel of the specified size.</returns>
             
-            <remarks><para>The construction here follows the same rules as for the rest of this class.
-            Most lines are expressed as y = slope * x + intercept. Vertical lines, however, are 
-            x = intercept. This is indicated by <see cref="P:AForge.Math.Geometry.Line.IsVertical"/> being true or by 
-            <see cref="P:AForge.Math.Geometry.Line.Slope"/> returning <see cref="F:System.Double.PositiveInfinity"/> or 
-            <see cref="F:System.Double.NegativeInfinity"/>.</para></remarks>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.Line.FromRTheta(System.Double,System.Double)">
-            <summary>
-            Constructs a <see cref="T:AForge.Math.Geometry.Line"/> from a radius and an angle (in degrees).
-            </summary>
-            
-            <param name="radius">The minimum distance from the line to the origin.</param>
-            <param name="theta">The angle of the vector from the origin to the line.</param>
-            
-            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> representing the specified line.</returns>
-            
-            <remarks><para><paramref name="radius"/> is the minimum distance from the origin
-            to the line, and <paramref name="theta"/> is the counterclockwise rotation from
-            the positive X axis to the vector through the origin and normal to the line.</para>
-            <para>This means that if <paramref name="theta"/> is in [0,180), the point on the line
-            closest to the origin is on the positive X or Y axes, or in quadrants I or II. Likewise,
-            if <paramref name="theta"/> is in [180,360), the point on the line closest to the
-            origin is on the negative X or Y axes, or in quadrants III or IV.</para></remarks>
-            
-            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if radius is negative.</exception>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.Line.FromPointTheta(AForge.DoublePoint,System.Double)">
-            <summary>
-            Constructs a <see cref="T:AForge.Math.Geometry.Line"/> from a point and an angle (in degrees).
-            </summary>
-            
-            <param name="point">The minimum distance from the line to the origin.</param>
-            <param name="theta">The angle of the normal vector from the origin to the line.</param>
-            
-            <remarks><para><paramref name="theta"/> is the counterclockwise rotation from
-            the positive X axis to the vector through the origin and normal to the line.</para>
-            <para>This means that if <paramref name="theta"/> is in [0,180), the point on the line
-            closest to the origin is on the positive X or Y axes, or in quadrants I or II. Likewise,
-            if <paramref name="theta"/> is in [180,360), the point on the line closest to the
-            origin is on the negative X or Y axes, or in quadrants III or IV.</para></remarks>
-            
-            <returns>Returns a <see cref="T:AForge.Math.Geometry.Line"/> representing the specified line.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.Line.GetAngleBetweenLines(AForge.Math.Geometry.Line)">
-            <summary>
-            Calculate minimum angle between this line and the specified line measured in [0, 90] degrees range.
-            </summary>
-            
-            <param name="secondLine">The line to find angle between.</param>
-            
-            <returns>Returns minimum angle between lines.</returns>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.Line.GetIntersectionWith(AForge.Math.Geometry.Line)">
-            <summary>
-            Finds intersection point with the specified line.
-            </summary>
-            
-            <param name="secondLine">Line to find intersection with.</param>
-            
-            <returns>Returns intersection point with the specified line, or 
-            <see langword="null"/> if the lines are parallel and distinct.</returns>
-            
-            <exception cref="T:System.InvalidOperationException">Thrown if the specified line is the same line as this line.</exception>
-            
-        </member>
-        <member name="M:AForge.Math.Geometry.Line.GetIntersectionWith(AForge.Math.Geometry.LineSegment)">
-            <summary>
-            Finds, provided it exists, the intersection point with the specified <see cref="T:AForge.Math.Geometry.LineSegment"/>.
-            </summary>
-            
-            <param name="other"><see cref="T:AForge.Math.Geometry.LineSegment"/> to find intersection with.</param>
-            
-            <returns>Returns intersection point with the specified <see cref="T:AForge.Math.Geometry.LineSegment"/>, or <see langword="null"/>,
-            if this line does not intersect with the segment.</returns>
-            
-            <remarks><para>If the line and segment do not intersect, the method returns <see langword="null"/>.
-            If the line and segment share multiple points, the method throws an <see cref="T:System.InvalidOperationException"/>.
+            <remarks><para>The function calculates 1-D Gaussian kernel, which is array
+            of Gaussian function's values in the [-r, r] range of x value, where
+            r=floor(<paramref name="size"/>/2).
             </para></remarks>
             
-            <exception cref="T:System.InvalidOperationException">Thrown if <paramref name="other"/> is a portion
-            of this line.</exception>
+            <exception cref="T:System.ArgumentException">Wrong kernel size.</exception>
             
         </member>
-        <member name="M:AForge.Math.Geometry.Line.DistanceToPoint(AForge.DoublePoint)">
+        <member name="M:AForge.Math.Gaussian.Kernel2D(System.Int32)">
             <summary>
-            Calculate Euclidean distance between a point and a line.
+            2-D Gaussian kernel.
             </summary>
             
-            <param name="point">The point to calculate distance to.</param>
+            <param name="size">Kernel size (should be odd), [3, 101].</param>
             
-            <returns>Returns the Euclidean distance between this line and the specified point. Unlike
-            <see cref="M:AForge.Math.Geometry.LineSegment.DistanceToPoint(AForge.DoublePoint)"/>, this returns the distance from the infinite line. (0,0) is 0 units
-            from the line defined by (0,5) and (0,8), but is 5 units from the segment with those endpoints.</returns>
+            <returns>Returns 2-D Gaussian kernel of specified size.</returns>
+            
+            <remarks><para>The function calculates 2-D Gaussian kernel, which is array
+            of Gaussian function's values in the [-r, r] range of x,y values, where
+            r=floor(<paramref name="size"/>/2).
+            </para></remarks>
+            
+            <exception cref="T:System.ArgumentException">Wrong kernel size.</exception>
             
         </member>
-        <member name="P:AForge.Math.Geometry.Line.IsVertical">
-             <summary>
-             Checks if the line vertical or not.
-             </summary>
+        <member name="P:AForge.Math.Gaussian.Sigma">
+            <summary>
+            Sigma value.
+            </summary>
             
-        </member>
-        <member name="P:AForge.Math.Geometry.Line.IsHorizontal">
-            <summary>
-            Checks if the line horizontal or not.
-            </summary>
-        </member>
-        <member name="P:AForge.Math.Geometry.Line.Slope">
-            <summary>
-            Gets the slope of the line.
-            </summary>
-        </member>
-        <member name="P:AForge.Math.Geometry.Line.Intercept">
-            <summary>
-            If not <see cref="P:AForge.Math.Geometry.Line.IsVertical"/>, gets the Line's Y-intercept.
-            If <see cref="P:AForge.Math.Geometry.Line.IsVertical"/> gets the line's X-intercept.
-            </summary>
+            <remarks><para>Sigma property of Gaussian function.</para>
+            
+            <para>Default value is set to <b>1</b>. Minimum allowed value is <b>0.00000001</b>.</para>
+            </remarks>
+            
         </member>
     </members>
 </doc>
