@@ -101,6 +101,265 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\node\bin\node-waf" />
+    <None Include="Resources\node\bin\node_modules" />
+    <None Include="Resources\node\bin\npm" />
+    <None Include="Resources\node\bin\runnode.cmd" />
+    <None Include="Resources\node\bin\setenv.cmd" />
+    <None Include="Resources\node\bin\shell.cmd" />
+    <None Include="Resources\node\bin\sudo.cmd" />
+    <None Include="Resources\node\etc\man.conf" />
+    <None Include="Resources\node\etc\resolv.conf" />
+    <None Include="Resources\node\lib\node" />
+    <None Include="Resources\node\lib\node_modules\less\.git\config" />
+    <None Include="Resources\node\lib\node_modules\less\.git\description" />
+    <None Include="Resources\node\lib\node_modules\less\.git\HEAD" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\applypatch-msg.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\commit-msg.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\post-commit.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\post-receive.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\post-update.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\pre-applypatch.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\pre-commit.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\pre-rebase.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\hooks\update.sample" />
+    <None Include="Resources\node\lib\node_modules\less\.git\index" />
+    <None Include="Resources\node\lib\node_modules\less\.git\info\exclude" />
+    <None Include="Resources\node\lib\node_modules\less\.git\logs\HEAD" />
+    <None Include="Resources\node\lib\node_modules\less\.git\logs\refs\heads\master" />
+    <None Include="Resources\node\lib\node_modules\less\.git\objects\pack\pack-8a23beae29f36db2d876ca15eae16ce13ce39cae.idx" />
+    <None Include="Resources\node\lib\node_modules\less\.git\objects\pack\pack-8a23beae29f36db2d876ca15eae16ce13ce39cae.pack" />
+    <None Include="Resources\node\lib\node_modules\less\.git\packed-refs" />
+    <None Include="Resources\node\lib\node_modules\less\.git\refs\heads\master" />
+    <None Include="Resources\node\lib\node_modules\less\.git\refs\remotes\origin\HEAD" />
+    <None Include="Resources\node\lib\node_modules\less\benchmark\benchmark.less" />
+    <None Include="Resources\node\lib\node_modules\less\bin\lessc" />
+    <None Include="Resources\node\lib\node_modules\less\LICENSE" />
+    <None Include="Resources\node\lib\node_modules\less\Makefile" />
+    <None Include="Resources\node\lib\node_modules\less\package.json" />
+    <None Include="Resources\node\lib\node_modules\less\README.md" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\colors.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\comments.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\css-3.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\css-escapes.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\css.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\functions.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\import.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\import\import-test-a.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\import\import-test-b.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\import\import-test-c.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\javascript.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\lazy-eval.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\media.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\mixins-args.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\mixins-closure.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\mixins-nested.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\mixins-pattern.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\mixins.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\operations.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\parens.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\rulesets.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\scope.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\selectors.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\strings.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\variables.less" />
+    <None Include="Resources\node\lib\node_modules\less\test\less\whitespace.less" />
+    <None Include="Resources\node\lib\node_modules\npm\AUTHORS" />
+    <None Include="Resources\node\lib\node_modules\npm\CHANGES" />
+    <None Include="Resources\node\lib\node_modules\npm\config" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\adduser.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\author.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\bin.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\build.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\cache.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\changelog.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\coding-style.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\completion.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\config.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\deprecate.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\developers.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\docs.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\edit.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\explore.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\faq.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\find.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\folders.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\get.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\global.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\init.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\install.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\json.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\link.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\list.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\ln.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\ls.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\npm.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\outdated.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\owner.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\prefix.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\prune.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\publish.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\rebuild.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\registry.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\removing-npm.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\restart.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\rm.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\root.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\run-script.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\scripts.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\search.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\set.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\start.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\stop.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\tag.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\test.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\uninstall.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\unpublish.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\update.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\version.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\view.md" />
+    <None Include="Resources\node\lib\node_modules\npm\doc\whoami.md" />
+    <None Include="Resources\node\lib\node_modules\npm\lib\utils\completion.sh" />
+    <None Include="Resources\node\lib\node_modules\npm\LICENSE" />
+    <None Include="Resources\node\lib\node_modules\npm\Makefile" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\adduser.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\author.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\bin.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\build.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\cache.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\changelog.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\coding-style.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\completion.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\config.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\deprecate.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\developers.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\docs.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\edit.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\explore.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\faq.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\find.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\folders.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\get.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\global.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\init.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\install.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\json.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\link.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\list.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\ln.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\ls.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\npm.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\outdated.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\owner.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\prefix.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\prune.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\publish.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\rebuild.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\registry.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\removing-npm.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\restart.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\rm.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\root.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\run-script.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\scripts.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\search.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\set.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\start.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\stop.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\tag.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\test.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\uninstall.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\unpublish.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\update.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\version.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\view.1" />
+    <None Include="Resources\node\lib\node_modules\npm\man1\whoami.1" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\.bin\semver" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\abbrev\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\abbrev\README.md" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\LICENSE.md" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\README.md" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\test\benchmark-native" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\nopt\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\nopt\README.md" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\semver\bin\semver" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\semver\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\node_modules\semver\README.md" />
+    <None Include="Resources\node\lib\node_modules\npm\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\README.md" />
+    <None Include="Resources\node\lib\node_modules\npm\scripts\clean-old.sh" />
+    <None Include="Resources\node\lib\node_modules\npm\scripts\install-message.sh" />
+    <None Include="Resources\node\lib\node_modules\npm\scripts\install.sh" />
+    <None Include="Resources\node\lib\node_modules\npm\test\disabled\bundlerecurs\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\disabled\failer\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\disabled\fast\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\disabled\package-config\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\disabled\slow\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\disabled\startstop\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\packages\npm-test-blerg\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\packages\npm-test-env-reader\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\packages\npm-test-env-reader\test.sh" />
+    <None Include="Resources\node\lib\node_modules\npm\test\packages\npm-test-private\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\packages\npm-test-test-package\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\packages\npm-test-url-dep\package.json" />
+    <None Include="Resources\node\lib\node_modules\npm\test\run.sh" />
+    <None Include="Resources\node\lib\node_modules\npm\test\update-test.sh" />
+    <None Include="Resources\node\usr\etc\npmrc" />
+    <None Include="Resources\node\usr\share\man\man1\node.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-adduser.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-author.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-bin.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-build.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-cache.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-changelog.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-coding-style.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-completion.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-config.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-deprecate.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-developers.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-docs.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-edit.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-explore.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-faq.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-find.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-folders.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-get.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-global.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-init.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-install.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-json.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-link.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-list.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-ln.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-ls.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-outdated.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-owner.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-prefix.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-prune.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-publish.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-rebuild.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-registry.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-removing-npm.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-restart.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-rm.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-root.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-run-script.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-scripts.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-search.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-set.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-start.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-stop.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-tag.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-test.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-uninstall.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-unpublish.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-update.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-version.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-view.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm-whoami.1" />
+    <None Include="Resources\node\usr\share\man\man1\npm.1" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -113,373 +372,242 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\node\bin\node-waf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\bin\node_modules">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\bin\npm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\bin\runnode.cmd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\bin\setenv.cmd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\bin\shell.cmd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\bin\sudo.cmd" />
-    <None Include="Resources\node\etc\man.conf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\etc\resolv.conf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\benchmark\benchmark.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\bin\lessc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\Makefile">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\colors.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\comments.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\css-3.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\css-escapes.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\css.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\functions.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\import.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\import\import-test-a.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\import\import-test-b.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\import\import-test-c.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\javascript.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\lazy-eval.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\media.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\mixins-args.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\mixins-closure.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\mixins-nested.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\mixins-pattern.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\mixins.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\operations.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\parens.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\rulesets.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\scope.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\selectors.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\strings.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\variables.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\lib\node_modules\less\test\less\whitespace.less">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\node\usr\etc\npmrc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\compile.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\node\bin\cygcrypto-0.9.8.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\cyggcc_s-1.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\cygiconv-2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\cygintl-8.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\cygpath.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\cygssl-0.9.8.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\cygstdc++-6.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\cygwin1.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\cygz.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\env.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\gzip.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\man.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\node.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\bin\su.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\node\bin\cygcrypto-0.9.8.dll" />
+    <Content Include="Resources\node\bin\cyggcc_s-1.dll" />
+    <Content Include="Resources\node\bin\cygiconv-2.dll" />
+    <Content Include="Resources\node\bin\cygintl-8.dll" />
+    <Content Include="Resources\node\bin\cygpath.exe" />
+    <Content Include="Resources\node\bin\cygssl-0.9.8.dll" />
+    <Content Include="Resources\node\bin\cygstdc++-6.dll" />
+    <Content Include="Resources\node\bin\cygwin1.dll" />
+    <Content Include="Resources\node\bin\cygz.dll" />
+    <Content Include="Resources\node\bin\env.exe" />
+    <Content Include="Resources\node\bin\gzip.exe" />
+    <Content Include="Resources\node\bin\man.exe" />
+    <Content Include="Resources\node\bin\node.exe" />
+    <Content Include="Resources\node\bin\su.exe" />
     <Content Include="Resources\node\bin\tar.exe" />
-    <Content Include="Resources\node\lib\node_modules\less\benchmark\less-benchmark.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\build\ecma-5.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\build\header.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\build\require.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.0.44.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.0.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.0.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.1.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.1.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.2.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.2.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.3.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.3.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\browser.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\functions.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\parser.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\alpha.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\anonymous.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\call.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\color.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\comment.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\dimension.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\directive.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\element.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\expression.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\import.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\javascript.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\keyword.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\mixin.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\operation.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\quoted.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\rule.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\ruleset.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\selector.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\url.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\value.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\variable.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\colors.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\comments.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\css-3.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\css-escapes.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\css.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\functions.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\import.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\javascript.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\lazy-eval.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\media.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins-args.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins-closure.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins-nested.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins-pattern.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\operations.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\parens.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\rulesets.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\scope.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\selectors.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\strings.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\variables.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\whitespace.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\less-test.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\less\import\import-test-d.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\node\doc\addons.html" />
+    <Content Include="Resources\node\doc\all.html" />
+    <Content Include="Resources\node\doc\appendix_1.html" />
+    <Content Include="Resources\node\doc\appendix_2.html" />
+    <Content Include="Resources\node\doc\assert.html" />
+    <Content Include="Resources\node\doc\assets\sh.css" />
+    <Content Include="Resources\node\doc\assets\sh_javascript.min.js" />
+    <Content Include="Resources\node\doc\assets\sh_main.js" />
+    <Content Include="Resources\node\doc\assets\style.css" />
+    <Content Include="Resources\node\doc\buffers.html" />
+    <Content Include="Resources\node\doc\child_processes.html" />
+    <Content Include="Resources\node\doc\crypto.html" />
+    <Content Include="Resources\node\doc\debugger.html" />
+    <Content Include="Resources\node\doc\dgram.html" />
+    <Content Include="Resources\node\doc\dns.html" />
+    <Content Include="Resources\node\doc\events.html" />
+    <Content Include="Resources\node\doc\fs.html" />
+    <Content Include="Resources\node\doc\globals.html" />
+    <Content Include="Resources\node\doc\http.html" />
+    <Content Include="Resources\node\doc\https.html" />
+    <Content Include="Resources\node\doc\index.html" />
+    <Content Include="Resources\node\doc\modules.html" />
+    <Content Include="Resources\node\doc\net.html" />
+    <Content Include="Resources\node\doc\os.html" />
+    <Content Include="Resources\node\doc\path.html" />
+    <Content Include="Resources\node\doc\process.html" />
+    <Content Include="Resources\node\doc\querystring.html" />
+    <Content Include="Resources\node\doc\readline.html" />
+    <Content Include="Resources\node\doc\repl.html" />
+    <Content Include="Resources\node\doc\stdio.html" />
+    <Content Include="Resources\node\doc\streams.html" />
+    <Content Include="Resources\node\doc\string_decoder.html" />
+    <Content Include="Resources\node\doc\synopsis.html" />
+    <Content Include="Resources\node\doc\timers.html" />
+    <Content Include="Resources\node\doc\tls.html" />
+    <Content Include="Resources\node\doc\tty.html" />
+    <Content Include="Resources\node\doc\url.html" />
+    <Content Include="Resources\node\doc\util.html" />
+    <Content Include="Resources\node\doc\vm.html" />
+    <Content Include="Resources\node\doc\_toc.html" />
+    <Content Include="Resources\node\lib\node_modules\less\benchmark\less-benchmark.js" />
+    <Content Include="Resources\node\lib\node_modules\less\build\ecma-5.js" />
+    <Content Include="Resources\node\lib\node_modules\less\build\header.js" />
+    <Content Include="Resources\node\lib\node_modules\less\build\require.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.0.44.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.0.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.0.min.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.1.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.1.min.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.2.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.2.min.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.3.js" />
+    <Content Include="Resources\node\lib\node_modules\less\dist\less-1.1.3.min.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\browser.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\functions.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\index.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\parser.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\alpha.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\anonymous.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\call.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\color.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\comment.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\dimension.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\directive.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\element.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\expression.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\import.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\javascript.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\keyword.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\mixin.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\operation.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\quoted.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\rule.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\ruleset.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\selector.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\url.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\value.js" />
+    <Content Include="Resources\node\lib\node_modules\less\lib\less\tree\variable.js" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\colors.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\comments.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\css-3.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\css-escapes.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\css.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\functions.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\import.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\javascript.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\lazy-eval.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\media.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins-args.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins-closure.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins-nested.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins-pattern.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\mixins.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\operations.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\parens.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\rulesets.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\scope.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\selectors.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\strings.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\variables.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\css\whitespace.css" />
+    <Content Include="Resources\node\lib\node_modules\less\test\less-test.js" />
+    <Content Include="Resources\node\lib\node_modules\less\test\less\import\import-test-d.css" />
+    <Content Include="Resources\node\lib\node_modules\npm\.gitignore" />
+    <Content Include="Resources\node\lib\node_modules\npm\.gitmodules" />
+    <Content Include="Resources\node\lib\node_modules\npm\bin\npm-get-uid-gid.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\bin\npm.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\bin\read-package-json.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\cli.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\favicon.ico" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\index.html" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\npm-16.png" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\npm-256-square.png" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\npm-256w.png" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\npm-64-square.png" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\npm-fin.png" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\npm-large.png" />
+    <Content Include="Resources\node\lib\node_modules\npm\html\npm.png" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\adduser.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\bin.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\build.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\cache.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\completion.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\config.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\deprecate.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\docs.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\edit.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\explore.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\faq.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\get.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\help.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\init.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\install.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\link.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\ls.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\outdated.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\owner.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\prefix.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\prune.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\publish.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\rebuild.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\restart.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\root.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\run-script.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\search.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\set.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\start.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\stop.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\tag.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\test.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\unbuild.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\uninstall.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\unpublish.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\update.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\async-map.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\base64.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\chain.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\completion\file-completion.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\completion\installed-deep.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\completion\installed-shallow.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\completion\remote-packages.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\completion\users.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\config-defs.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\error-handler.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\exec.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\fetch.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\find-prefix.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\find.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\get.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\graceful-fs.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\ini-parser.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\ini.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\lifecycle.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\link.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\load-package-defaults.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\log.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\minimatch.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\mkdir-p.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\npm-registry-client\adduser.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\npm-registry-client\get.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\npm-registry-client\index.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\npm-registry-client\publish.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\npm-registry-client\request.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\npm-registry-client\tag.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\npm-registry-client\unpublish.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\output.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\promise-chain.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\prompt.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\proto-list.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\proxyify.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\read-installed.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\read-json.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\relativize.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\rm-rf.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\set.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\sha.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\sys.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\tar.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\uid-number.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\utils\which.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\version.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\view.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\whoami.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\lib\xmas.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\abbrev\lib\abbrev.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\test\benchmark-native.c" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\test\benchmark.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\test\test.html" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\test\test.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\node-uuid\uuid.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\nopt\.gitignore" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\nopt\examples\my-program.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\nopt\lib\nopt.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\node_modules\semver\semver.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\npm.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\test\common.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\test\disabled\package-config\test.js" />
+    <Content Include="Resources\node\lib\node_modules\npm\test\packages\npm-test-blerg\test.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="libs\Core\Core.csproj">
@@ -509,8 +637,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\node\lib\node_modules\less\.git\objects\info\" />
+    <Folder Include="Resources\node\lib\node_modules\less\.git\refs\tags\" />
     <Folder Include="Resources\node\tmp\" />
-    <Folder Include="Resources\node\usr\share\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -520,4 +649,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PreBuildEvent>xcopy /Y /s /h "$(ProjectDir)Resources\*.*" "$(TargetDir)Resources\"</PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
