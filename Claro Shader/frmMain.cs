@@ -192,7 +192,7 @@ namespace Claro_Shader
             StreamReader oReader2 = p.StandardOutput;
             string sRes = oReader2.ReadToEnd();
 
-			System.IO.StreamReader oReader3 = p.StandardError;
+			StreamReader oReader3 = p.StandardError;
 			string sRes1 = oReader3.ReadToEnd();
 
             oReader2.Close();
