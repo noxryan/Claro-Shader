@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claro Shader", "Claro Shader\Claro Shader.csproj", "{B21147AD-7A4C-40C4-8DC2-B8011BDD413F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imaging", "Claro Shader\libs\Imaging\Imaging.csproj", "{C6A8B9AE-0749-41C7-8FF9-02C156696F45}"
