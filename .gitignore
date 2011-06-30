@@ -1,0 +1,12 @@
+
+/Claro Shader/bin
+/Claro Shader/obj
+/Claro Shader/libs/Core/obj
+/Claro Shader/libs/Core/bin
+/Claro Shader/libs/Imaging/obj
+/Claro Shader/libs/Imaging/bin
+/Claro Shader/libs/Math/obj
+/Claro Shader/libs/Math/bin
+/Claro Shader/libs/Core/AForge.xml
+/Claro Shader/libs/Imaging/AForge.Imaging.xml
+/Claro Shader/libs/Math/AForge.Math.xml
