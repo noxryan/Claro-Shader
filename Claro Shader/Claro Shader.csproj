@@ -411,9 +411,6 @@
     <Content Include="Resources\node\lib\node_modules\less\test\css\comments.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\node\lib\node_modules\less\test\css\Copy of colors.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\node\lib\node_modules\less\test\css\css-3.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
