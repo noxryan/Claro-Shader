@@ -185,12 +185,20 @@ namespace Claro_Shader
             #endif
             psi.RedirectStandardOutput = true;
             psi.WorkingDirectory = txtFolder.Text;
+			psi.RedirectStandardError = true;
+
             Process p = Process.Start(psi);
             p.Disposed += new EventHandler(Process_Exited);
-            System.IO.StreamReader oReader2 = p.StandardOutput;
+            StreamReader oReader2 = p.StandardOutput;
             string sRes = oReader2.ReadToEnd();
+
+			System.IO.StreamReader oReader3 = p.StandardError;
+			string sRes1 = oReader3.ReadToEnd();
+
             oReader2.Close();
+			oReader3.Close();
             log(sRes);
+			log(sRes1);
             resetSliders();
         }
 
