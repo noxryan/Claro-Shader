@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.dirDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.txtFolder = new System.Windows.Forms.TextBox();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -73,7 +72,6 @@
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLog.Size = new System.Drawing.Size(517, 73);
             this.txtLog.TabIndex = 4;
-            this.txtLog.TextChanged += new System.EventHandler(this.txtLog_TextChanged);
             // 
             // btnStart
             // 
@@ -111,7 +109,7 @@
             this.txtH.Size = new System.Drawing.Size(34, 20);
             this.txtH.TabIndex = 10;
             this.txtH.Text = "0";
-            this.txtH.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtH.TextChanged += new System.EventHandler(this.txtH_TextChanged);
             // 
             // txtS
             // 
@@ -122,7 +120,7 @@
             this.txtS.Size = new System.Drawing.Size(34, 20);
             this.txtS.TabIndex = 11;
             this.txtS.Text = "0";
-            this.txtS.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtS.TextChanged += new System.EventHandler(this.txtS_TextChanged);
             // 
             // txtL
             // 
@@ -133,7 +131,7 @@
             this.txtL.Size = new System.Drawing.Size(34, 20);
             this.txtL.TabIndex = 12;
             this.txtL.Text = "0";
-            this.txtL.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.txtL.TextChanged += new System.EventHandler(this.txtL_TextChanged);
             // 
             // label1
             // 
@@ -144,7 +142,6 @@
             this.label1.Size = new System.Drawing.Size(15, 13);
             this.label1.TabIndex = 13;
             this.label1.Text = "H";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -155,7 +152,6 @@
             this.label2.Size = new System.Drawing.Size(14, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "S";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -166,7 +162,6 @@
             this.label3.Size = new System.Drawing.Size(13, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "L";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // trkS
             // 
@@ -220,7 +215,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnFolder
             // 
@@ -230,7 +224,7 @@
             this.btnFolder.TabIndex = 0;
             this.btnFolder.Text = "Browse...";
             this.btnFolder.UseVisualStyleBackColor = true;
-            this.btnFolder.Click += new System.EventHandler(this.button1_Click);
+            this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
             // 
             // chkInvert
             // 
@@ -269,7 +263,7 @@
             this.MinimumSize = new System.Drawing.Size(558, 318);
             this.Name = "frmMain";
             this.Text = "Claro Shader";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trkH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkL)).EndInit();
@@ -281,8 +275,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.FolderBrowserDialog dirDialog;
         private System.Windows.Forms.TextBox txtFolder;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Button btnStart;

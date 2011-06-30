@@ -17,10 +17,11 @@ namespace Claro_Shader
 {
     public partial class frmMain : Form
     {
-        string[] paths = new string[]{"images", "form\\images", "layout\\images"};
-        string[] excludes = new string[] { "error.png", "dnd.png", "Thumbs.db"};
+        string[] paths = new string[]{"images", @"form\images", @"layout\images"};
         string pathToLess = "variables.less";
-        string demoImage = "form/images/checkboxRadioButtonStates.png";
+        string excludeFile = @"Resources\excludes.txt";
+        string demoImage = @"form\images\checkboxRadioButtonStates.png";
+        List<string> excludes = new List<string>();
         Bitmap orginBmp;
 
         public frmMain()
@@ -28,15 +29,28 @@ namespace Claro_Shader
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void frmMain_Load(object sender, EventArgs e)
         {
-            
+            using (StreamReader sr = new StreamReader(excludeFile))
+            {
+                String line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    excludes.Add(line);
+                }
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void log(string msg)
         {
-            folderBrowserDialog1.ShowDialog();
-            txtFolder.Text = folderBrowserDialog1.SelectedPath;
+            txtLog.AppendText(msg + Environment.NewLine);
+            txtLog.ScrollToCaret();
+        }
+
+        private void btnFolder_Click(object sender, EventArgs e)
+        {
+            dirDialog.ShowDialog();
+            txtFolder.Text = dirDialog.SelectedPath;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -50,33 +64,18 @@ namespace Claro_Shader
                 string[] files = Directory.GetFiles(fullPath);
                 foreach (string file in files)
                 {
-                    string[] splitPath = file.Split('\\');
                     bool excluded = false;
-                    try
-                    {
-                        string[] extension = file.Split('.');
-                        if (extension[extension.Length - 1] == "gif")
-                        {
-                            log("xxx GIF File: " + splitPath[splitPath.Length - 1] + " - excluding.");
-                            excluded = true;
-                        }
-                    }
-                    catch(Exception)
-                    {
-                        excluded = true;
-                        log("xxx Unknown file type: " + splitPath[splitPath.Length - 1] + " - excluding.");
-                    }
                     foreach (string exclude in excludes)
                     {
-                        if (splitPath[splitPath.Length - 1] == exclude)
+                        if (Path.GetFileName(file) == exclude)
                         {
-                            log("xxx " + splitPath[splitPath.Length - 1] + " excluded.");
+                            log("xxx " + Path.GetFileName(file) + " excluded.");
                             excluded = true;
                         }
                     }
                     if (!excluded)
                     {
-                        log("=== " + splitPath[splitPath.Length - 1]);
+                        log("=== " + Path.GetFileName(file));
                         FileStream fs = new FileStream(file, FileMode.Open);
                         Image imgPhoto = Image.FromStream(fs);
                         Bitmap bmp = new Bitmap(fs);
@@ -90,12 +89,6 @@ namespace Claro_Shader
             log(pathToLess + " has been updated.");
             buildClaro();
             this.Enabled = true;
-        }
-
-        private void log(string msg)
-        {
-            txtLog.AppendText(msg + Environment.NewLine);
-            txtLog.ScrollToCaret();
         }
 
         private Bitmap processBitmap(Bitmap bmp)
@@ -188,7 +181,7 @@ namespace Claro_Shader
 			psi.RedirectStandardError = true;
 
             Process p = Process.Start(psi);
-            p.Disposed += new EventHandler(Process_Exited);
+            
             StreamReader oReader2 = p.StandardOutput;
             string sRes = oReader2.ReadToEnd();
 
@@ -200,10 +193,8 @@ namespace Claro_Shader
             log(sRes);
 			log(sRes1);
             resetSliders();
-        }
 
-        void Process_Exited(object sender, EventArgs e)
-        {
+            p.WaitForExit(10000);
             log("Compile complete.");
         }
 
@@ -241,27 +232,7 @@ namespace Claro_Shader
             txtL.Text = trkL.Value.ToString();
         }
 
-        private void txtLog_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void txtL_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -271,7 +242,7 @@ namespace Claro_Shader
             catch (Exception) { }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void txtS_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -281,7 +252,7 @@ namespace Claro_Shader
             catch (Exception) { }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtH_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -289,21 +260,6 @@ namespace Claro_Shader
                 trkH_Scroll(sender, e);
             }
             catch (Exception) { }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chkLess_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txtFolder_TextChanged(object sender, EventArgs e)
