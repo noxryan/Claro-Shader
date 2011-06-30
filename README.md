@@ -18,4 +18,4 @@ Everything else is included and configured.
 
 ## Result
 
-![Claro-Shader](https://github.com/noxryan/Claro-Shader/raw/master/Claro-Shader/result.png)
+![Claro-Shader](https://github.com/noxryan/Claro-Shader/raw/master/result.png)
