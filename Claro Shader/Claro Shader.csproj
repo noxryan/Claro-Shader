@@ -650,7 +650,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PreBuildEvent>xcopy /Y /s /h "$(ProjectDir)Resources\*.*" "$(TargetDir)Resources\"</PreBuildEvent>
+    <PreBuildEvent>xcopy /Y /s /h "$(ProjectDir)Resources\*.*" "$(TargetDir)Resources\"
+ATTRIB +s +h +r "$(TargetDir)Resources\node\lib\node"</PreBuildEvent>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
