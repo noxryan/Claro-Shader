@@ -50,6 +50,8 @@ namespace AForge.Imaging.Filters
         private DoubleRange outLuminance  = new DoubleRange( 0.0, 1.0 );
         private DoubleRange outSaturation = new DoubleRange( 0.0, 1.0 );
         private bool keepBW = false;
+        private bool keepGray = false;
+        private int grayTolerance = 0;
 
         #region Public Propertis
 
@@ -113,6 +115,30 @@ namespace AForge.Imaging.Filters
             set { keepBW = value; }
         }
 
+        /// <summary>
+        /// Leave grays alone.
+        /// </summary>
+        /// 
+        /// <remarks><para>Default value is set to <see langword="false"/>.</para></remarks>
+        /// 
+        public bool KeepGray
+        {
+            get { return keepGray; }
+            set { keepGray = value; }
+        }
+
+        /// <summary>
+        /// Gray Tolerance
+        /// </summary>
+        /// 
+        /// <remarks><para>Default value is set to 0.</para></remarks>
+        /// 
+        public int GrayTolerance
+        {
+            get { return grayTolerance; }
+            set { grayTolerance = value; }
+        }
+
         #endregion
 
         // format translation dictionary
@@ -138,20 +164,6 @@ namespace AForge.Imaging.Filters
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HSLLinear"/> class.
-        /// </summary>
-        /// 
-        /// <param name="keepBW">Keep blacks and whites alone.</param>
-        /// 
-        public HSLLinear(bool keepBW)
-        {
-            formatTranslations[PixelFormat.Format24bppRgb] = PixelFormat.Format24bppRgb;
-            formatTranslations[PixelFormat.Format32bppRgb] = PixelFormat.Format32bppRgb;
-            formatTranslations[PixelFormat.Format32bppArgb] = PixelFormat.Format32bppArgb;
-            this.keepBW = keepBW;
-        }
-
-        /// <summary>
         /// Process the filter on the specified image.
         /// </summary>
         /// 
@@ -167,8 +179,6 @@ namespace AForge.Imaging.Filters
             int stopX   = startX + rect.Width;
             int stopY   = startY + rect.Height;
             int offset  = image.Stride - rect.Width * pixelSize;
-
-            bool exclude = false;
 
             RGB rgb = new RGB( );
             HSL hsl = new HSL( );
@@ -205,12 +215,18 @@ namespace AForge.Imaging.Filters
                     rgb.Green = ptr[RGB.G];
                     rgb.Blue  = ptr[RGB.B];
 
-                    exclude = false;
+                    bool exclude = false;
                     if (keepBW)
                     {
                         if (rgb.Red == 0 && rgb.Green == 0 && rgb.Blue == 0)
                             exclude = true;
                         if (rgb.Red == 255 && rgb.Green == 255 && rgb.Blue == 255)
+                            exclude = true;
+                    }
+                    if (keepGray)
+                    {
+                        int dif = Math.Max(rgb.Red, Math.Max(rgb.Green, rgb.Blue)) - Math.Min(rgb.Red, Math.Min(rgb.Green, rgb.Blue));
+                        if (dif <= grayTolerance)
                             exclude = true;
                     }
 

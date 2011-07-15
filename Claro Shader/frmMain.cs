@@ -118,24 +118,24 @@ namespace Claro_Shader
 
         private Bitmap processBitmap(Bitmap bmp)
         {
-            return processBitmap(bmp, trkH.Value, trkS.Value, trkL.Value, chkInvert.Checked, chkBW.Checked);
+            return processBitmap(bmp, trkH.Value, trkS.Value, trkL.Value, chkInvert.Checked, chkBW.Checked, chkGray.Checked, (int)numGrayTolerance.Value);
         }
 
-        private Bitmap processBitmap(Bitmap bmp, int h, double s, double l, bool invert, bool keepBW)
+        private Bitmap processBitmap(Bitmap bmp, int h, double s, double l, bool invert, bool keepBW, bool keepGray, int grayTolerance)
         {
-            bmp = changeHSL(bmp, h, s, l, keepBW);
+            bmp = changeHSL(bmp, h, s, l, keepBW, keepGray, grayTolerance);
             if (invert)
                 bmp = invertColors(bmp);
             return bmp;
         }
 
-        private Bitmap changeHSL(Bitmap bmp, int h, double s, double l, bool keepBW)
+        private Bitmap changeHSL(Bitmap bmp, int h, double s, double l, bool keepBW, bool keepGray, int grayTolerance)
         {
             s = Math.Round(s / 100, 2);
             l = Math.Round(l / 100, 2);
             HueModifierRelative hue = new HueModifierRelative(h, keepBW);
             SaturationCorrection saturation = new SaturationCorrection(s, keepBW);
-            BrightnessCorrection bright = new BrightnessCorrection(l, keepBW);
+            BrightnessCorrection bright = new BrightnessCorrection(l, keepBW, keepGray, grayTolerance);
             hue.ApplyInPlace(bmp);
             saturation.ApplyInPlace(bmp);
             bright.ApplyInPlace(bmp);
@@ -232,7 +232,8 @@ namespace Claro_Shader
             txtS.Text = "0";
             txtL.Text = "0";
             chkInvert.Checked = false;
-            chkBW.Checked = false;
+            chkBW.Checked = true;
+            chkGray.Checked = false;
             FileStream fs = new FileStream(Path.Combine(txtFolder.Text, "form/images/checkboxRadioButtonStates.png"), FileMode.Open);
             Image imgPhoto = Image.FromStream(fs);
             pictureBox1.Image = new Bitmap(fs);
@@ -300,6 +301,7 @@ namespace Claro_Shader
                 txtL.Enabled = true;
                 chkInvert.Enabled = true;
                 chkBW.Enabled = true;
+                chkGray.Enabled = true;
                 btnStart.Enabled = true;
                 resetSliders();
             }
@@ -314,6 +316,7 @@ namespace Claro_Shader
                 txtL.Enabled = false;
                 chkInvert.Enabled = false;
                 chkBW.Enabled = false;
+                chkGray.Enabled = false;
                 btnStart.Enabled = false;
             }
         }
@@ -324,6 +327,20 @@ namespace Claro_Shader
         }
 
         private void chkBW_CheckedChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+        }
+
+        private void chkGray_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkGray.Checked)
+                numGrayTolerance.Enabled = true;
+            else
+                numGrayTolerance.Enabled = false;
+            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+        }
+
+        private void numGrayTolerance_ValueChanged(object sender, EventArgs e)
         {
             pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
         }

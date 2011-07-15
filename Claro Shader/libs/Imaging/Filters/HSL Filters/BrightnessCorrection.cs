@@ -45,6 +45,8 @@ namespace AForge.Imaging.Filters
         private HSLLinear baseFilter = new HSLLinear( );
         private double adjustValue;	// [-1, 1]
         private bool keepBW = false;
+        private bool keepGray = false;
+        private int grayTolerance = 0;
 
         /// <summary>
         /// Brightness adjust value, [-1, 1].
@@ -84,6 +86,30 @@ namespace AForge.Imaging.Filters
         {
             get { return keepBW; }
             set { keepBW = value; }
+        }
+
+        /// <summary>
+        /// Leave grays alone.
+        /// </summary>
+        /// 
+        /// <remarks><para>Default value is set to <see langword="false"/>.</para></remarks>
+        /// 
+        public bool KeepGray
+        {
+            get { return keepGray; }
+            set { keepGray = value; }
+        }
+
+        /// <summary>
+        /// Gray Tolerance
+        /// </summary>
+        /// 
+        /// <remarks><para>Default value is set to 0.</para></remarks>
+        /// 
+        public int GrayTolerance
+        {
+            get { return grayTolerance; }
+            set { grayTolerance = value; }
         }
 
         // format translation dictionary
@@ -126,12 +152,18 @@ namespace AForge.Imaging.Filters
         /// 
         /// <param name="adjustValue">Brightness adjust value.</param>
         /// <param name="keepBW">Keep blacks and whites alone.</param>
+        /// <param name="keepGray">Keep grays alone.</param>
+        /// <param name="grayTolerance">Gray Tolerance range to leave untouched.</param>
         /// 
-        public BrightnessCorrection(double adjustValue, bool keepBW)
+        public BrightnessCorrection(double adjustValue, bool keepBW, bool keepGray, int grayTolerance)
         {
             AdjustValue = adjustValue;
             this.keepBW = keepBW;
+            this.keepGray = keepGray;
+            this.grayTolerance = grayTolerance;
             baseFilter.KeepBW = keepBW;
+            baseFilter.KeepGray = keepGray;
+            baseFilter.GrayTolerance = grayTolerance;
 
             formatTranslations[PixelFormat.Format24bppRgb] = PixelFormat.Format24bppRgb;
             formatTranslations[PixelFormat.Format32bppRgb] = PixelFormat.Format32bppRgb;
