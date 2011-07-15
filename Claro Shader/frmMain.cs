@@ -134,7 +134,7 @@ namespace Claro_Shader
             s = Math.Round(s / 100, 2);
             l = Math.Round(l / 100, 2);
             HueModifierRelative hue = new HueModifierRelative(h, keepBW);
-            SaturationCorrection saturation = new SaturationCorrection(s, keepBW);
+            SaturationCorrection saturation = new SaturationCorrection(s, keepBW, keepGray, grayTolerance);
             BrightnessCorrection bright = new BrightnessCorrection(l, keepBW, keepGray, grayTolerance);
             hue.ApplyInPlace(bmp);
             saturation.ApplyInPlace(bmp);
