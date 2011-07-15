@@ -45,6 +45,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnFolder = new System.Windows.Forms.Button();
             this.chkInvert = new System.Windows.Forms.CheckBox();
+            this.chkBW = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trkH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkL)).BeginInit();
@@ -65,7 +66,7 @@
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLog.Location = new System.Drawing.Point(12, 195);
+            this.txtLog.Location = new System.Drawing.Point(12, 219);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
@@ -211,7 +212,7 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(13, 42);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(351, 137);
+            this.pictureBox1.Size = new System.Drawing.Size(351, 171);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -230,8 +231,9 @@
             // 
             this.chkInvert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkInvert.AutoSize = true;
+            this.chkInvert.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkInvert.Enabled = false;
-            this.chkInvert.Location = new System.Drawing.Point(444, 172);
+            this.chkInvert.Location = new System.Drawing.Point(444, 173);
             this.chkInvert.Name = "chkInvert";
             this.chkInvert.Size = new System.Drawing.Size(85, 17);
             this.chkInvert.TabIndex = 19;
@@ -239,11 +241,26 @@
             this.chkInvert.UseVisualStyleBackColor = true;
             this.chkInvert.CheckedChanged += new System.EventHandler(this.chkInvert_CheckedChanged);
             // 
+            // chkBW
+            // 
+            this.chkBW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkBW.AutoSize = true;
+            this.chkBW.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkBW.Enabled = false;
+            this.chkBW.Location = new System.Drawing.Point(398, 196);
+            this.chkBW.Name = "chkBW";
+            this.chkBW.Size = new System.Drawing.Size(131, 17);
+            this.chkBW.TabIndex = 20;
+            this.chkBW.Text = "Keep Blacks && Whites";
+            this.chkBW.UseVisualStyleBackColor = true;
+            this.chkBW.CheckedChanged += new System.EventHandler(this.chkBW_CheckedChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 280);
+            this.ClientSize = new System.Drawing.Size(542, 304);
+            this.Controls.Add(this.chkBW);
             this.Controls.Add(this.chkInvert);
             this.Controls.Add(this.chkLess);
             this.Controls.Add(this.trkL);
@@ -292,6 +309,7 @@
         private System.Windows.Forms.CheckBox chkLess;
         private System.Windows.Forms.Button btnFolder;
         private System.Windows.Forms.CheckBox chkInvert;
+        private System.Windows.Forms.CheckBox chkBW;
     }
 }
 

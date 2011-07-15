@@ -49,6 +49,7 @@ namespace AForge.Imaging.Filters
         private DoubleRange inSaturation  = new DoubleRange( 0.0, 1.0 );
         private DoubleRange outLuminance  = new DoubleRange( 0.0, 1.0 );
         private DoubleRange outSaturation = new DoubleRange( 0.0, 1.0 );
+        private bool keepBW = false;
 
         #region Public Propertis
 
@@ -100,6 +101,18 @@ namespace AForge.Imaging.Filters
             set { outSaturation = value; }
         }
 
+        /// <summary>
+        /// Leave blacks and whites alone.
+        /// </summary>
+        /// 
+        /// <remarks><para>Default value is set to <see langword="false"/>.</para></remarks>
+        /// 
+        public bool KeepBW
+        {
+            get { return keepBW; }
+            set { keepBW = value; }
+        }
+
         #endregion
 
         // format translation dictionary
@@ -125,6 +138,20 @@ namespace AForge.Imaging.Filters
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="HSLLinear"/> class.
+        /// </summary>
+        /// 
+        /// <param name="keepBW">Keep blacks and whites alone.</param>
+        /// 
+        public HSLLinear(bool keepBW)
+        {
+            formatTranslations[PixelFormat.Format24bppRgb] = PixelFormat.Format24bppRgb;
+            formatTranslations[PixelFormat.Format32bppRgb] = PixelFormat.Format32bppRgb;
+            formatTranslations[PixelFormat.Format32bppArgb] = PixelFormat.Format32bppArgb;
+            this.keepBW = keepBW;
+        }
+
+        /// <summary>
         /// Process the filter on the specified image.
         /// </summary>
         /// 
@@ -140,6 +167,8 @@ namespace AForge.Imaging.Filters
             int stopX   = startX + rect.Width;
             int stopY   = startY + rect.Height;
             int offset  = image.Stride - rect.Width * pixelSize;
+
+            bool exclude = false;
 
             RGB rgb = new RGB( );
             HSL hsl = new HSL( );
@@ -176,31 +205,43 @@ namespace AForge.Imaging.Filters
                     rgb.Green = ptr[RGB.G];
                     rgb.Blue  = ptr[RGB.B];
 
-                    // convert to HSL
-                    AForge.Imaging.HSL.FromRGB( rgb, hsl );
+                    exclude = false;
+                    if (keepBW)
+                    {
+                        if (rgb.Red == 0 && rgb.Green == 0 && rgb.Blue == 0)
+                            exclude = true;
+                        if (rgb.Red == 255 && rgb.Green == 255 && rgb.Blue == 255)
+                            exclude = true;
+                    }
 
-                    // do luminance correction
-                    if ( hsl.Luminance >= inLuminance.Max )
-                        hsl.Luminance = outLuminance.Max;
-                    else if ( hsl.Luminance <= inLuminance.Min )
-                        hsl.Luminance = outLuminance.Min;
-                    else
-                        hsl.Luminance = kl * hsl.Luminance + bl;
+                    if (!exclude)
+                    {
+                        // convert to HSL
+                        AForge.Imaging.HSL.FromRGB(rgb, hsl);
 
-                    // do saturation correct correction
-                    if ( hsl.Saturation >= inSaturation.Max )
-                        hsl.Saturation = outSaturation.Max;
-                    else if ( hsl.Saturation <= inSaturation.Min )
-                        hsl.Saturation = outSaturation.Min;
-                    else
-                        hsl.Saturation = ks * hsl.Saturation + bs;
+                        // do luminance correction
+                        if (hsl.Luminance >= inLuminance.Max)
+                            hsl.Luminance = outLuminance.Max;
+                        else if (hsl.Luminance <= inLuminance.Min)
+                            hsl.Luminance = outLuminance.Min;
+                        else
+                            hsl.Luminance = kl * hsl.Luminance + bl;
 
-                    // convert back to RGB
-                    AForge.Imaging.HSL.ToRGB( hsl, rgb );
+                        // do saturation correct correction
+                        if (hsl.Saturation >= inSaturation.Max)
+                            hsl.Saturation = outSaturation.Max;
+                        else if (hsl.Saturation <= inSaturation.Min)
+                            hsl.Saturation = outSaturation.Min;
+                        else
+                            hsl.Saturation = ks * hsl.Saturation + bs;
 
-                    ptr[RGB.R] = rgb.Red;
-                    ptr[RGB.G] = rgb.Green;
-                    ptr[RGB.B] = rgb.Blue;
+                        // convert back to RGB
+                        AForge.Imaging.HSL.ToRGB(hsl, rgb);
+
+                        ptr[RGB.R] = rgb.Red;
+                        ptr[RGB.G] = rgb.Green;
+                        ptr[RGB.B] = rgb.Blue;
+                    }
                 }
                 ptr += offset;
             }

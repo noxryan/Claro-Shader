@@ -44,6 +44,7 @@ namespace AForge.Imaging.Filters
     {
         private HSLLinear baseFilter = new HSLLinear( );
         private double adjustValue;	// [-1, 1]
+        private bool keepBW = false;
 
         /// <summary>
         /// Brightness adjust value, [-1, 1].
@@ -71,6 +72,18 @@ namespace AForge.Imaging.Filters
                     baseFilter.OutLuminance = new DoubleRange( 0.0, 1.0 + adjustValue );
                 }
             }
+        }
+
+        /// <summary>
+        /// Leave blacks and whites alone.
+        /// </summary>
+        /// 
+        /// <remarks><para>Default value is set to <see langword="false"/>.</para></remarks>
+        /// 
+        public bool KeepBW
+        {
+            get { return keepBW; }
+            set { keepBW = value; }
         }
 
         // format translation dictionary
@@ -104,6 +117,24 @@ namespace AForge.Imaging.Filters
 
             formatTranslations[PixelFormat.Format24bppRgb]  = PixelFormat.Format24bppRgb;
             formatTranslations[PixelFormat.Format32bppRgb]  = PixelFormat.Format32bppRgb;
+            formatTranslations[PixelFormat.Format32bppArgb] = PixelFormat.Format32bppArgb;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BrightnessCorrection"/> class.
+        /// </summary>
+        /// 
+        /// <param name="adjustValue">Brightness adjust value.</param>
+        /// <param name="keepBW">Keep blacks and whites alone.</param>
+        /// 
+        public BrightnessCorrection(double adjustValue, bool keepBW)
+        {
+            AdjustValue = adjustValue;
+            this.keepBW = keepBW;
+            baseFilter.KeepBW = keepBW;
+
+            formatTranslations[PixelFormat.Format24bppRgb] = PixelFormat.Format24bppRgb;
+            formatTranslations[PixelFormat.Format32bppRgb] = PixelFormat.Format32bppRgb;
             formatTranslations[PixelFormat.Format32bppArgb] = PixelFormat.Format32bppArgb;
         }
 

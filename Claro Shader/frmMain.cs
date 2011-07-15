@@ -118,24 +118,24 @@ namespace Claro_Shader
 
         private Bitmap processBitmap(Bitmap bmp)
         {
-            return processBitmap(bmp, trkH.Value, trkS.Value, trkL.Value, chkInvert.Checked);
+            return processBitmap(bmp, trkH.Value, trkS.Value, trkL.Value, chkInvert.Checked, chkBW.Checked);
         }
 
-        private Bitmap processBitmap(Bitmap bmp, int h, double s, double l, bool invert)
+        private Bitmap processBitmap(Bitmap bmp, int h, double s, double l, bool invert, bool keepBW)
         {
-            bmp = changeHSL(bmp, h, s, l);
+            bmp = changeHSL(bmp, h, s, l, keepBW);
             if (invert)
                 bmp = invertColors(bmp);
             return bmp;
         }
 
-        private Bitmap changeHSL(Bitmap bmp, int h, double s, double l)
+        private Bitmap changeHSL(Bitmap bmp, int h, double s, double l, bool keepBW)
         {
             s = Math.Round(s / 100, 2);
             l = Math.Round(l / 100, 2);
-            HueModifierRelative hue = new HueModifierRelative(h);
-            SaturationCorrection saturation = new SaturationCorrection(s);
-            BrightnessCorrection bright = new BrightnessCorrection(l);
+            HueModifierRelative hue = new HueModifierRelative(h, keepBW);
+            SaturationCorrection saturation = new SaturationCorrection(s, keepBW);
+            BrightnessCorrection bright = new BrightnessCorrection(l, keepBW);
             hue.ApplyInPlace(bmp);
             saturation.ApplyInPlace(bmp);
             bright.ApplyInPlace(bmp);
@@ -232,6 +232,7 @@ namespace Claro_Shader
             txtS.Text = "0";
             txtL.Text = "0";
             chkInvert.Checked = false;
+            chkBW.Checked = false;
             FileStream fs = new FileStream(Path.Combine(txtFolder.Text, "form/images/checkboxRadioButtonStates.png"), FileMode.Open);
             Image imgPhoto = Image.FromStream(fs);
             pictureBox1.Image = new Bitmap(fs);
@@ -298,6 +299,7 @@ namespace Claro_Shader
                 txtS.Enabled = true;
                 txtL.Enabled = true;
                 chkInvert.Enabled = true;
+                chkBW.Enabled = true;
                 btnStart.Enabled = true;
                 resetSliders();
             }
@@ -311,11 +313,17 @@ namespace Claro_Shader
                 txtS.Enabled = false;
                 txtL.Enabled = false;
                 chkInvert.Enabled = false;
+                chkBW.Enabled = false;
                 btnStart.Enabled = false;
             }
         }
 
         private void chkInvert_CheckedChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+        }
+
+        private void chkBW_CheckedChanged(object sender, EventArgs e)
         {
             pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
         }

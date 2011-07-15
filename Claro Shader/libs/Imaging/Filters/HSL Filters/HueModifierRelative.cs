@@ -40,6 +40,7 @@ namespace AForge.Imaging.Filters
     public class HueModifierRelative : BaseInPlacePartialFilter
     {
         private int hue = 0;
+        private bool keepBW = false;
 
         // private format translation dictionary
         private Dictionary<PixelFormat, PixelFormat> formatTranslations = new Dictionary<PixelFormat, PixelFormat>();
@@ -65,6 +66,18 @@ namespace AForge.Imaging.Filters
         }
 
         /// <summary>
+        /// Leave blacks and whites alone.
+        /// </summary>
+        /// 
+        /// <remarks><para>Default value is set to <see langword="false"/>.</para></remarks>
+        /// 
+        public bool KeepBW
+        {
+            get { return keepBW; }
+            set { keepBW = value; }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="HueModifier"/> class.
         /// </summary>
         /// 
@@ -82,10 +95,22 @@ namespace AForge.Imaging.Filters
         /// 
         /// <param name="hue">Hue value to set.</param>
         /// 
-        public HueModifierRelative(int hue)
-            : this()
+        public HueModifierRelative(int hue) : this()
         {
             this.hue = hue;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HueModifier"/> class.
+        /// </summary>
+        /// 
+        /// <param name="hue">Hue value to set.</param>
+        /// <param name="keepBW">Keep blacks and whites alone.</param>
+        /// 
+        public HueModifierRelative(int hue, bool keepBW) : this()
+        {
+            this.hue = hue;
+            this.keepBW = keepBW;
         }
 
         /// <summary>
@@ -104,6 +129,7 @@ namespace AForge.Imaging.Filters
             int stopX = startX + rect.Width;
             int stopY = startY + rect.Height;
             int offset = image.Stride - rect.Width * pixelSize;
+            bool exclude = false;
 
             RGB rgb = new RGB();
             HSL hsl = new HSL();
@@ -124,18 +150,30 @@ namespace AForge.Imaging.Filters
                     rgb.Green = ptr[RGB.G];
                     rgb.Blue = ptr[RGB.B];
 
-                    // convert to HSL
-                    AForge.Imaging.HSL.FromRGB(rgb, hsl);
+                    exclude = false;
+                    if (keepBW)
+                    {
+                        if (rgb.Red == 0 && rgb.Green == 0 && rgb.Blue == 0)
+                            exclude = true;
+                        if (rgb.Red == 255 && rgb.Green == 255 && rgb.Blue == 255)
+                            exclude = true;
+                    }
 
-                    // modify hue value
-                    hsl.Hue += hue;
+                    if(!exclude)
+                    {
+                        // convert to HSL
+                        AForge.Imaging.HSL.FromRGB(rgb, hsl);
 
-                    // convert back to RGB
-                    AForge.Imaging.HSL.ToRGB(hsl, rgb);
+                        // modify hue value
+                        hsl.Hue += hue;
 
-                    ptr[RGB.R] = rgb.Red;
-                    ptr[RGB.G] = rgb.Green;
-                    ptr[RGB.B] = rgb.Blue;
+                        // convert back to RGB
+                        AForge.Imaging.HSL.ToRGB(hsl, rgb);
+
+                        ptr[RGB.R] = rgb.Red;
+                        ptr[RGB.G] = rgb.Green;
+                        ptr[RGB.B] = rgb.Blue;
+                    }
                 }
                 ptr += offset;
             }
