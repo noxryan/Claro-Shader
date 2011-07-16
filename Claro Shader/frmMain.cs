@@ -228,9 +228,9 @@ namespace Claro_Shader
             trkH.Value = 0;
             trkS.Value = 0;
             trkL.Value = 0;
-            txtH.Text = "0";
-            txtS.Text = "0";
-            txtL.Text = "0";
+            numH.Value = 0;
+            numS.Value = 0;
+            numL.Value = 0;
             chkInvert.Checked = false;
             chkBW.Checked = true;
             chkGray.Checked = false;
@@ -244,49 +244,19 @@ namespace Claro_Shader
         private void trkH_Scroll(object sender, EventArgs e)
         {
             pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
-            txtH.Text = trkH.Value.ToString();
+            numH.Value = trkH.Value;
         }
 
         private void trkS_Scroll(object sender, EventArgs e)
         {
             pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone()); 
-            txtS.Text = trkS.Value.ToString();
+            numS.Value = trkS.Value;
         }
 
         private void trkL_Scroll(object sender, EventArgs e)
         {
             pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone()); 
-            txtL.Text = trkL.Value.ToString();
-        }
-
-        private void txtL_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                trkL.Value = Int32.Parse(txtL.Text);
-                trkL_Scroll(sender, e);
-            }
-            catch (Exception) { }
-        }
-
-        private void txtS_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                trkS.Value = Int32.Parse(txtS.Text);
-                trkS_Scroll(sender, e);
-            }
-            catch (Exception) { }
-        }
-
-        private void txtH_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                trkH.Value = Int32.Parse(txtH.Text);
-                trkH_Scroll(sender, e);
-            }
-            catch (Exception) { }
+            numL.Value = trkL.Value;
         }
 
         private void txtFolder_TextChanged(object sender, EventArgs e)
@@ -296,9 +266,9 @@ namespace Claro_Shader
                 trkH.Enabled = true;
                 trkS.Enabled = true;
                 trkL.Enabled = true;
-                txtH.Enabled = true;
-                txtS.Enabled = true;
-                txtL.Enabled = true;
+                numH.Enabled = true;
+                numS.Enabled = true;
+                numL.Enabled = true;
                 chkInvert.Enabled = true;
                 chkBW.Enabled = true;
                 chkGray.Enabled = true;
@@ -311,9 +281,9 @@ namespace Claro_Shader
                 trkH.Enabled = false;
                 trkS.Enabled = false;
                 trkL.Enabled = false;
-                txtH.Enabled = false;
-                txtS.Enabled = false;
-                txtL.Enabled = false;
+                numH.Enabled = false;
+                numS.Enabled = false;
+                numL.Enabled = false;
                 chkInvert.Enabled = false;
                 chkBW.Enabled = false;
                 chkGray.Enabled = false;
@@ -343,6 +313,24 @@ namespace Claro_Shader
         private void numGrayTolerance_ValueChanged(object sender, EventArgs e)
         {
             pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+        }
+
+        private void numH_ValueChanged(object sender, EventArgs e)
+        {
+            trkH.Value = (int) numH.Value;
+            trkH_Scroll(sender, e);
+        }
+
+        private void numS_ValueChanged(object sender, EventArgs e)
+        {
+            trkS.Value = (int) numS.Value;
+            trkS_Scroll(sender, e);
+        }
+
+        private void numL_ValueChanged(object sender, EventArgs e)
+        {
+            trkL.Value = (int) numL.Value;
+            trkL_Scroll(sender, e);
         }
     }
 }
