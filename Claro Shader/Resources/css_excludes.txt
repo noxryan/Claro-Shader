@@ -1,0 +1,2 @@
+﻿@dnd-avatar-header-background-color
+@dnd-avatar-candrop-header-background-color

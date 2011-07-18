@@ -44,9 +44,11 @@ namespace Claro_Shader
     {
         string[] paths = new string[]{"images", @"form\images", @"layout\images"};
         string pathToLess = "variables.less";
-        string excludeFile = @"Resources\excludes.txt";
+        string imgExcludeFile = @"Resources\img_excludes.txt";
+        string cssExcludeFile = @"Resources\css_excludes.txt";
         string demoImage = @"form\images\checkboxRadioButtonStates.png";
-        List<string> excludes = new List<string>();
+        List<string> imgExcludes = new List<string>();
+        List<string> cssExcludes = new List<string>();
         Bitmap orginBmp;
 
         public frmMain()
@@ -56,12 +58,20 @@ namespace Claro_Shader
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            using (StreamReader sr = new StreamReader(excludeFile))
+            using (StreamReader sr = new StreamReader(imgExcludeFile))
             {
                 String line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    excludes.Add(line);
+                    imgExcludes.Add(line);
+                }
+            }
+            using (StreamReader sr = new StreamReader(cssExcludeFile))
+            {
+                String line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    cssExcludes.Add(line);
                 }
             }
         }
@@ -90,9 +100,9 @@ namespace Claro_Shader
                 foreach (string file in files)
                 {
                     bool excluded = false;
-                    foreach (string exclude in excludes)
+                    foreach (string imgExclude in imgExcludes)
                     {
-                        if (Path.GetFileName(file) == exclude)
+                        if (Path.GetFileName(file) == imgExclude)
                         {
                             log("xxx " + Path.GetFileName(file) + " excluded.");
                             excluded = true;
@@ -159,17 +169,24 @@ namespace Claro_Shader
                     String line;
                     while ((line = sr.ReadLine()) != null)
                     {
-                        Match m = Regex.Match(line, "#.*;");
-                        foreach (Match match in m.Groups)
+                        bool excluded = false;
+                        foreach(string cssExclude in cssExcludes)
+                            if(line.Contains(cssExclude))
+                                excluded = true;
+                        if (!excluded)
                         {
-                            string oldRGB = match.ToString().Trim(new char[]{';'});
-                            if (oldRGB != "")
+                            Match m = Regex.Match(line, "#.*;");
+                            foreach (Match match in m.Groups)
                             {
-                                Bitmap tmp = new Bitmap(1, 1);
-                                tmp.SetPixel(0, 0, ColorTranslator.FromHtml(oldRGB));
-                                Color newColor = processBitmap(tmp).GetPixel(0, 0);
-                                log(oldRGB + " - " + ColorTranslator.ToHtml(newColor));
-                                line = line.Replace(oldRGB, ColorTranslator.ToHtml(newColor));
+                                string oldRGB = match.ToString().Trim(new char[] { ';' });
+                                if (oldRGB != "")
+                                {
+                                    Bitmap tmp = new Bitmap(1, 1);
+                                    tmp.SetPixel(0, 0, ColorTranslator.FromHtml(oldRGB));
+                                    Color newColor = processBitmap(tmp).GetPixel(0, 0);
+                                    log(oldRGB + " - " + ColorTranslator.ToHtml(newColor));
+                                    line = line.Replace(oldRGB, ColorTranslator.ToHtml(newColor));
+                                }
                             }
                         }
                         newData += line + "\n";

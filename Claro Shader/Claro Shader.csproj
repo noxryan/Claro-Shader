@@ -374,7 +374,8 @@
   <ItemGroup>
     <Content Include="Resources\compile.js">
     </Content>
-    <Content Include="Resources\excludes.txt" />
+    <Content Include="Resources\css_excludes.txt" />
+    <Content Include="Resources\img_excludes.txt" />
     <Content Include="Resources\node\bin\cygcrypto-0.9.8.dll" />
     <Content Include="Resources\node\bin\cyggcc_s-1.dll" />
     <Content Include="Resources\node\bin\cygiconv-2.dll" />
