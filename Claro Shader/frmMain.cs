@@ -217,6 +217,18 @@ namespace Claro_Shader
 			oReader3.Close();
             log(sRes);
 			log(sRes1);
+
+            using (StreamWriter outfile = new StreamWriter(Path.Combine(txtFolder.Text, "Claro-Shader_Colors.txt")))
+            {
+                outfile.Write("Hue: " + trkH.Value.ToString() + Environment.NewLine);
+                outfile.Write("Saturation: " + trkS.Value.ToString() + Environment.NewLine);
+                outfile.Write("Luminosity: " + trkL.Value.ToString() + Environment.NewLine);
+                outfile.Write("Invert: " + chkInvert.Checked.ToString() + Environment.NewLine);
+                outfile.Write("Keep Blacks: " + chkBW.Checked.ToString() + Environment.NewLine);
+                outfile.Write("Keep Grays: " + chkGray.Checked.ToString() + Environment.NewLine);
+                outfile.Write("Gray Tolerance: " + numGrayTolerance.Value.ToString());
+            }
+
             resetSliders();
 
             p.WaitForExit(10000);
