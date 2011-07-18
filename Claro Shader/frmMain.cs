@@ -235,8 +235,9 @@ namespace Claro_Shader
             log(sRes);
 			log(sRes1);
 
-            using (StreamWriter outfile = new StreamWriter(Path.Combine(txtFolder.Text, "Claro-Shader_Colors.txt")))
+            using (StreamWriter outfile = new StreamWriter(Path.Combine(txtFolder.Text, "Claro-Shader_Colors.txt"), true))
             {
+                outfile.Write("Date: " + DateTime.Now + Environment.NewLine);
                 outfile.Write("Hue: " + trkH.Value.ToString() + Environment.NewLine);
                 outfile.Write("Saturation: " + trkS.Value.ToString() + Environment.NewLine);
                 outfile.Write("Luminosity: " + trkL.Value.ToString() + Environment.NewLine);
