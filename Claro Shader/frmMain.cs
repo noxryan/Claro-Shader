@@ -32,23 +32,21 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows;
-using AForge;
-using AForge.Imaging.Filters;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using Claro_Shader_Core;
 
 namespace Claro_Shader
 {
     public partial class frmMain : Form
     {
-        string[] paths = new string[]{"images", @"form\images", @"layout\images"};
+        Shader shader;
+
+        string imgExcludeFile = Path.Combine("Resources", "img_excludes.txt");
+        string cssExcludeFile = Path.Combine("Resources", "css_excludes.txt");
         string pathToLess = "variables.less";
-        string imgExcludeFile = @"Resources\img_excludes.txt";
-        string cssExcludeFile = @"Resources\css_excludes.txt";
         string demoImage = @"form\images\checkboxRadioButtonStates.png";
-        List<string> imgExcludes = new List<string>();
-        List<string> cssExcludes = new List<string>();
         Bitmap orginBmp;
 
         public frmMain()
@@ -58,12 +56,15 @@ namespace Claro_Shader
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            shader = new Shader();
+            shader.Log += new Shader.LogEventHandler(shader_Log);
+
             using (StreamReader sr = new StreamReader(imgExcludeFile))
             {
                 String line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    imgExcludes.Add(line);
+                    shader.ImgExcludes.Add(line);
                 }
             }
             using (StreamReader sr = new StreamReader(cssExcludeFile))
@@ -71,12 +72,12 @@ namespace Claro_Shader
                 String line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    cssExcludes.Add(line);
+                    shader.CssExcludes.Add(line);
                 }
             }
         }
 
-        private void log(string msg)
+        void shader_Log(string msg)
         {
             txtLog.AppendText(msg + Environment.NewLine);
             txtLog.ScrollToCaret();
@@ -91,167 +92,9 @@ namespace Claro_Shader
         private void btnStart_Click(object sender, EventArgs e)
         {
             this.Enabled = false;
-            log("Starting...");
-            foreach(string path in paths)
-            {
-                string fullPath = Path.Combine(txtFolder.Text, path);
-                log(Environment.NewLine + "Path: " + fullPath);
-                string[] files = Directory.GetFiles(fullPath);
-                foreach (string file in files)
-                {
-                    bool excluded = false;
-                    foreach (string imgExclude in imgExcludes)
-                    {
-                        if (Path.GetFileName(file) == imgExclude)
-                        {
-                            log("xxx " + Path.GetFileName(file) + " excluded.");
-                            excluded = true;
-                        }
-                    }
-                    if (!excluded)
-                    {
-                        log("=== " + Path.GetFileName(file));
-                        FileStream fs = new FileStream(file, FileMode.Open);
-                        Image imgPhoto = Image.FromStream(fs);
-                        Bitmap bmp = new Bitmap(fs);
-                        fs.Close();
-                        bmp = processBitmap(bmp);
-                        bmp.Save(file);
-                    }
-                }
-            }
-            editLess();
-            log(pathToLess + " has been updated.");
-            buildClaro();
-            this.Enabled = true;
-        }
-
-        private Bitmap processBitmap(Bitmap bmp)
-        {
-            return processBitmap(bmp, trkH.Value, trkS.Value, trkL.Value, chkInvert.Checked, chkBW.Checked, chkGray.Checked, (int)numGrayTolerance.Value);
-        }
-
-        private Bitmap processBitmap(Bitmap bmp, int h, double s, double l, bool invert, bool keepBW, bool keepGray, int grayTolerance)
-        {
-            bmp = changeHSL(bmp, h, s, l, keepBW, keepGray, grayTolerance);
-            if (invert)
-                bmp = invertColors(bmp);
-            return bmp;
-        }
-
-        private Bitmap changeHSL(Bitmap bmp, int h, double s, double l, bool keepBW, bool keepGray, int grayTolerance)
-        {
-            s = Math.Round(s / 100, 2);
-            l = Math.Round(l / 100, 2);
-            HueModifierRelative hue = new HueModifierRelative(h, keepBW);
-            SaturationCorrection saturation = new SaturationCorrection(s, keepBW, keepGray, grayTolerance);
-            BrightnessCorrection bright = new BrightnessCorrection(l, keepBW, keepGray, grayTolerance);
-            hue.ApplyInPlace(bmp);
-            saturation.ApplyInPlace(bmp);
-            bright.ApplyInPlace(bmp);
-            return bmp;
-        }
-
-        private Bitmap invertColors(Bitmap bmp)
-        {
-            Invert filter = new Invert();
-            filter.ApplyInPlace(bmp);
-            return bmp;
-        }
-
-        private void editLess()
-        {
-            string newData = "";
-            try
-            {
-                using (StreamReader sr = new StreamReader(Path.Combine(txtFolder.Text, pathToLess)))
-                {
-                    String line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        bool excluded = false;
-                        foreach(string cssExclude in cssExcludes)
-                            if(line.Contains(cssExclude))
-                                excluded = true;
-                        if (!excluded)
-                        {
-                            Match m = Regex.Match(line, "#.*;");
-                            while (m.Success)
-                            {
-                                string oldRGB = m.ToString().Trim(new char[] { ';' });
-                                if (oldRGB != "")
-                                {
-                                    Bitmap tmp = new Bitmap(1, 1);
-                                    tmp.SetPixel(0, 0, ColorTranslator.FromHtml(oldRGB));
-                                    Color newColor = processBitmap(tmp).GetPixel(0, 0);
-                                    log(oldRGB + " - " + ColorTranslator.ToHtml(newColor));
-                                    line = line.Replace(oldRGB, ColorTranslator.ToHtml(newColor));
-                                }
-                                m = m.NextMatch();
-                            }
-                        }
-                        newData += line + "\n";
-                    }
-                }
-                using (StreamWriter outfile = new StreamWriter(Path.Combine(txtFolder.Text, pathToLess)))
-                {
-                    outfile.Write(newData);
-                }
-                if (chkLess.Checked)
-                {
-                    frmEditor editor = new frmEditor(Path.Combine(txtFolder.Text, pathToLess));
-                    editor.ShowDialog();
-                }
-            }
-            catch (Exception e)
-            {
-                log(e.Message);
-            }
-        }
-
-        private void buildClaro()
-        {
-            log(".less Compile Started.");
-            File.Copy("Resources\\compile.js", Path.Combine(txtFolder.Text, "compile.js"), true);
-            ProcessStartInfo psi = new ProcessStartInfo(@"Resources\node\bin\node.exe", "compile.js \"" + Path.Combine(Application.StartupPath, @"Resources\node\lib\node_modules\less").Replace('\\', '/') + "\"");
-            psi.CreateNoWindow = true;
-            psi.UseShellExecute = false;
-            #if !DEBUG
-                psi.ErrorDialog = false;
-            #endif
-            psi.RedirectStandardOutput = true;
-            psi.WorkingDirectory = txtFolder.Text;
-			psi.RedirectStandardError = true;
-
-            Process p = Process.Start(psi);
-            
-            StreamReader oReader2 = p.StandardOutput;
-            string sRes = oReader2.ReadToEnd();
-
-			StreamReader oReader3 = p.StandardError;
-			string sRes1 = oReader3.ReadToEnd();
-
-            oReader2.Close();
-			oReader3.Close();
-            log(sRes);
-			log(sRes1);
-
-            using (StreamWriter outfile = new StreamWriter(Path.Combine(txtFolder.Text, "Claro-Shader_Colors.txt"), true))
-            {
-                outfile.Write("Date: " + DateTime.Now + Environment.NewLine);
-                outfile.Write("Hue: " + trkH.Value.ToString() + Environment.NewLine);
-                outfile.Write("Saturation: " + trkS.Value.ToString() + Environment.NewLine);
-                outfile.Write("Luminosity: " + trkL.Value.ToString() + Environment.NewLine);
-                outfile.Write("Invert: " + chkInvert.Checked.ToString() + Environment.NewLine);
-                outfile.Write("Keep Blacks: " + chkBW.Checked.ToString() + Environment.NewLine);
-                outfile.Write("Keep Grays: " + chkGray.Checked.ToString() + Environment.NewLine);
-                outfile.Write("Gray Tolerance: " + numGrayTolerance.Value.ToString() + Environment.NewLine);
-            }
-
+            shader.Start();
             resetSliders();
-
-            p.WaitForExit(10000);
-            log("Compile complete.");
+            this.Enabled = true;
         }
 
         private void resetSliders()
@@ -274,24 +117,28 @@ namespace Claro_Shader
 
         private void trkH_Scroll(object sender, EventArgs e)
         {
-            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+            shader.H = trkH.Value;
+            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
             numH.Value = trkH.Value;
         }
 
         private void trkS_Scroll(object sender, EventArgs e)
         {
-            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone()); 
+            shader.S = trkS.Value;
+            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone()); 
             numS.Value = trkS.Value;
         }
 
         private void trkL_Scroll(object sender, EventArgs e)
         {
-            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone()); 
+            shader.L = trkL.Value;
+            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone()); 
             numL.Value = trkL.Value;
         }
 
         private void txtFolder_TextChanged(object sender, EventArgs e)
         {
+            shader.ClaroPath = dirDialog.SelectedPath;
             if (File.Exists(Path.Combine(txtFolder.Text, demoImage)))
             {
                 trkH.Enabled = true;
@@ -324,12 +171,14 @@ namespace Claro_Shader
 
         private void chkInvert_CheckedChanged(object sender, EventArgs e)
         {
-            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+            shader.Invert = chkInvert.Checked;
+            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
         }
 
         private void chkBW_CheckedChanged(object sender, EventArgs e)
         {
-            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+            shader.KeepBlacks = chkBW.Checked;
+            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
         }
 
         private void chkGray_CheckedChanged(object sender, EventArgs e)
@@ -338,12 +187,14 @@ namespace Claro_Shader
                 numGrayTolerance.Enabled = true;
             else
                 numGrayTolerance.Enabled = false;
-            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+            shader.KeepGrays = chkGray.Checked;
+            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
         }
 
         private void numGrayTolerance_ValueChanged(object sender, EventArgs e)
         {
-            pictureBox1.Image = (Image)processBitmap((Bitmap)orginBmp.Clone());
+            shader.GrayTolerance = (int) numGrayTolerance.Value;
+            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
         }
 
         private void numH_ValueChanged(object sender, EventArgs e)
