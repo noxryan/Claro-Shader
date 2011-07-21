@@ -176,9 +176,9 @@ namespace Claro_Shader
                         if (!excluded)
                         {
                             Match m = Regex.Match(line, "#.*;");
-                            foreach (Match match in m.Groups)
+                            while (m.Success)
                             {
-                                string oldRGB = match.ToString().Trim(new char[] { ';' });
+                                string oldRGB = m.ToString().Trim(new char[] { ';' });
                                 if (oldRGB != "")
                                 {
                                     Bitmap tmp = new Bitmap(1, 1);
@@ -187,6 +187,7 @@ namespace Claro_Shader
                                     log(oldRGB + " - " + ColorTranslator.ToHtml(newColor));
                                     line = line.Replace(oldRGB, ColorTranslator.ToHtml(newColor));
                                 }
+                                m = m.NextMatch();
                             }
                         }
                         newData += line + "\n";
@@ -244,7 +245,7 @@ namespace Claro_Shader
                 outfile.Write("Invert: " + chkInvert.Checked.ToString() + Environment.NewLine);
                 outfile.Write("Keep Blacks: " + chkBW.Checked.ToString() + Environment.NewLine);
                 outfile.Write("Keep Grays: " + chkGray.Checked.ToString() + Environment.NewLine);
-                outfile.Write("Gray Tolerance: " + numGrayTolerance.Value.ToString());
+                outfile.Write("Gray Tolerance: " + numGrayTolerance.Value.ToString() + Environment.NewLine);
             }
 
             resetSliders();

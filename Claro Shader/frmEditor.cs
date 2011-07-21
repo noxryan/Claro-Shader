@@ -31,12 +31,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Claro_Shader
 {
     public partial class frmEditor : Form
     {
-        string file = "";
+        private string file = "";
 
         public frmEditor(string file)
         {
@@ -47,6 +48,8 @@ namespace Claro_Shader
         private void frmEditor_Load(object sender, EventArgs e)
         {
             rtbEdit.LoadFile(file, RichTextBoxStreamType.PlainText);
+            highlight();
+            rtbEdit.Select(0, 0);
         }
 
         private void btnCompile_Click(object sender, EventArgs e)
@@ -58,6 +61,70 @@ namespace Claro_Shader
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void highlight()
+        {
+            Regex regx = new Regex("#.*;", RegexOptions.IgnoreCase);
+            Match m = regx.Match(rtbEdit.Text);
+            while (m.Success)
+            {
+                string RGB = m.Value.Trim(new char[] { ';' });
+                try
+                {
+                    rtbEdit.Select(m.Index, m.Length);
+                    rtbEdit.SelectionColor = ColorTranslator.FromHtml(RGB);
+                }
+                catch (Exception e) { }
+                m = m.NextMatch();
+            }
+            rtbEdit.DeselectAll();
+        }
+
+        private void highlight(int index)
+        {
+            if (index == 0)
+                return;
+            int lineIndex = rtbEdit.GetLineFromCharIndex(index);
+            Regex regx = new Regex("#.*;", RegexOptions.IgnoreCase);
+            Match m = regx.Match(rtbEdit.Lines[lineIndex]);
+            while (m.Success)
+            {
+                string RGB = m.Value.Trim(new char[] { ';' });
+                try
+                {
+                    rtbEdit.Select(rtbEdit.GetFirstCharIndexFromLine(lineIndex) + m.Index, m.Length);
+                    rtbEdit.SelectionColor = ColorTranslator.FromHtml(RGB);
+                }
+                catch (Exception e) { }
+                m = m.NextMatch();
+            }
+            rtbEdit.DeselectAll();
+        }
+
+        private void rtbEdit_TextChanged(object sender, EventArgs e)
+        {
+            if (!chkHighlight.Checked)
+                return;
+            int selected = rtbEdit.SelectionStart;
+            int selectedLength = rtbEdit.SelectionLength;
+            highlight(selected);
+            rtbEdit.Select(selected, selectedLength);
+        }
+
+        private void chkHighlight_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkHighlight.Checked)
+                highlight();
+            else
+            {
+                int selected = rtbEdit.SelectionStart;
+                int selectedLength = rtbEdit.SelectionLength;
+                rtbEdit.SelectAll();
+                rtbEdit.SelectionColor = Color.Black;
+                rtbEdit.DeselectAll();
+                rtbEdit.Select(selected, selectedLength);
+            }
         }
     }
 }
