@@ -22,25 +22,25 @@ Everything else is included and configured.
 
 ## Running With Mono
 
-There are seperate Command Line (Claro Shader CLI) and WinForms (Claro Shader) projects included. All processing is handled by Claro Shader Core. The CLI exe will run with Mono.
+There are separate Command Line (Claro Shader CLI) and WinForms (Claro Shader) projects included. All processing is handled by Claro Shader Core. The CLI exe will run with Mono.
 
 The CLI version is not pre-packaged with nodeJS or the lessJS module. You will need to have these configured.
 
 CLI Arguments:
 
--p  Path to the Claro directory. (Required)
+**-p**  Path to the Claro directory. (Required)
 
--h  Hue adjustment. (Default: 0)
+**-h**  Hue adjustment. (Default: 0)
 
--s  Saturation adjustment. (Default: 0)
+**-s**  Saturation adjustment. (Default: 0)
 
--l  Luminosity adjustment. (Default: 0)
+**-l**  Luminosity adjustment. (Default: 0)
 
--kb Keep blacks and whites from HSL adjustments. This should generally be used when adjusting luminosity. (Default: true)
+**-kb** Keep blacks and whites from HSL adjustments. This should generally be used when adjusting luminosity. (Default: true)
 
--kg Keep all shades of gray from HSL adjustments. This should generally be used when adjusting luminosity. (Default: false)
+**-kg** Keep all shades of gray from HSL adjustments. This should generally be used when adjusting luminosity. (Default: false)
 
--gt Setting this above 0 will also ignore off shades of gray. For Claro generally keep this at 0. (Default: 0)
+**-gt** Setting this above 0 will also ignore off shades of gray. For Claro generally keep this at 0. (Default: 0)
 
 Example: mono "Claro Shader CLI.exe" -p "/dijit/themes/claro" -h 149 -l=-10 -kg true      #This will create a light red Claro theme.
 
