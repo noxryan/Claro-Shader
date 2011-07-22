@@ -40,7 +40,7 @@ CLI Arguments:
 
 **-kg** Keep all shades of gray from HSL adjustments. This should generally be used when adjusting luminosity. (Default: false)
 
-**-gt** Setting this above 0 will also ignore off shades of gray. For Claro generally keep this at 0. (Default: 0)
+**-gt** Gray tolerance. Setting this above 0 will also ignore off shades of gray. For Claro generally keep this at 0. (Default: 0)
 
 Example: mono "Claro Shader CLI.exe" -p "/dijit/themes/claro" -h 149 -l=-10 -kg true      #This will create a light red Claro theme.
 
