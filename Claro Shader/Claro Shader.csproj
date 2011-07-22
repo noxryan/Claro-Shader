@@ -16,6 +16,7 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -612,19 +612,24 @@
     <Content Include="Resources\node\lib\node_modules\npm\test\packages\npm-test-blerg\test.js" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="libs\Core\Core.csproj">
-      <Project>{631AC093-430F-45F4-BA0C-AF0F0405918A}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="libs\Imaging\Imaging.csproj">
-      <Project>{C6A8B9AE-0749-41C7-8FF9-02C156696F45}</Project>
-      <Name>Imaging</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -642,6 +647,12 @@
     <Folder Include="Resources\node\lib\node_modules\less\.git\objects\info\" />
     <Folder Include="Resources\node\lib\node_modules\less\.git\refs\tags\" />
     <Folder Include="Resources\node\tmp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Claro Shader Core\Claro Shader Core.csproj">
+      <Project>{E05C7608-29E3-4C06-95F1-337D65B9131D}</Project>
+      <Name>Claro Shader Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

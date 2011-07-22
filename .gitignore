@@ -2,14 +2,20 @@
 /Claro Shader/bin
 /Claro Shader/obj
 /Claro Shader/Release
-/Claro Shader/libs/Core/obj
-/Claro Shader/libs/Core/bin
-/Claro Shader/libs/Imaging/obj
-/Claro Shader/libs/Imaging/bin
-/Claro Shader/libs/Math/obj
-/Claro Shader/libs/Math/bin
-/Claro Shader/libs/Core/AForge.xml
-/Claro Shader/libs/Imaging/AForge.Imaging.xml
-/Claro Shader/libs/Math/AForge.Math.xml
+/Claro Shader CLI/bin
+/Claro Shader CLI/obj
+/Claro Shader CLI/Release
+/Claro Shader Core/bin
+/Claro Shader Core/obj
+/Claro Shader Core/Release
+/Claro Shader Core/libs/Core/obj
+/Claro Shader Core/libs/Core/bin
+/Claro Shader Core/libs/Imaging/obj
+/Claro Shader Core/libs/Imaging/bin
+/Claro Shader Core/libs/Math/obj
+/Claro Shader Core/libs/Math/bin
+/Claro Shader Core/libs/Core/AForge.xml
+/Claro Shader Core/libs/Imaging/AForge.Imaging.xml
+/Claro Shader Core/libs/Math/AForge.Math.xml
 /Claro Shader.suo
 /Claro Shader2008.suo
