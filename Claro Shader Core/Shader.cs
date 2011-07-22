@@ -36,105 +36,131 @@ using System.Diagnostics;
 
 namespace Claro_Shader_Core
 {
-    public class Shader
+    public static class Shader
     {
-        string[] paths = new string[] { "images", Path.Combine("form", "images"), Path.Combine("layout", "images") };
-        string pathToLess = "variables.less";
-        private List<string> imgExcludes = new List<string>();
-        private List<string> cssExcludes = new List<string>();
-        private string claroPath = "";
-        private int h = 0;
-        private int s = 0;
-        private int l = 0;
-        private bool invert = false;
-        private bool keepBlacks = true;
-        private bool keepGrays = false;
-        private int grayTolerance = 0;
+        private static string[] paths = new string[] { "images", Path.Combine("form", "images"), Path.Combine("layout", "images") };
+        private static string pathToLess = "variables.less";
+        private static List<string> imgExcludes = new List<string>();
+        private static List<string> cssExcludes = new List<string>();
+        private static string claroPath = "";
+        private static int h = 0;
+        private static int s = 0;
+        private static int l = 0;
+        private static bool invert = false;
+        private static bool keepBlacks = true;
+        private static bool keepGrays = false;
+        private static int grayTolerance = 0;
 
 #region Public Properties
 
-        public List<string> ImgExcludes
+        /// <summary>
+        /// List of images that will be excluded when recoloring.
+        /// </summary>
+        public static List<string> ImgExcludes
         {
-            set { this.imgExcludes= value; }
-            get { return this.imgExcludes; }
+            set { imgExcludes= value; }
+            get { return imgExcludes; }
         }
 
-        public List<string> CssExcludes
+        /// <summary>
+        /// List of CSS .less variables that will be excluded when recoloring.
+        /// </summary>
+        public static List<string> CssExcludes
         {
-            set { this.cssExcludes = value; }
-            get { return this.cssExcludes; }
+            set { cssExcludes = value; }
+            get { return cssExcludes; }
         }
 
-        public string ClaroPath
+        /// <summary>
+        /// File path to the Claro folder.
+        /// </summary>
+        public static string ClaroPath
         {
-            set { this.claroPath = value; }
-            get { return this.claroPath; }
+            set { claroPath = value; }
+            get { return claroPath; }
         }
 
-        public int H
+        /// <summary>
+        /// Hue adjustment. Default is 0 (No Change).
+        /// </summary>
+        public static int H
         {
-            set { this.h = value; }
-            get { return this.h; }
+            set { h = value; }
+            get { return h; }
         }
 
-        public int S
+        /// <summary>
+        /// Saturation adjustment. Default is 0 (No Change).
+        /// </summary>
+        public static int S
         {
-            set { this.s = value; }
-            get { return this.s; }
+            set { s = value; }
+            get { return s; }
         }
 
-        public int L
+        /// <summary>
+        /// Luminosity adjustment. Default is 0 (No Change).
+        /// </summary>
+        public static int L
         {
-            set { this.l = value; }
-            get { return this.l; }
+            set { l = value; }
+            get { return l; }
         }
 
-        public bool Invert
+        /// <summary>
+        /// Invert all colors. Default is false (No Change).
+        /// </summary>
+        public static bool Invert
         {
-            set { this.invert = value; }
-            get { return this.invert; }
+            set { invert = value; }
+            get { return invert; }
         }
 
-        public bool KeepBlacks
+        /// <summary>
+        /// Ignore black and white from HSL adjustments. This should generally be used when adjusting luminosity. Default is true.
+        /// </summary>
+        public static bool KeepBlacks
         {
-            set { this.keepBlacks = value; }
-            get { return this.keepBlacks; }
+            set { keepBlacks = value; }
+            get { return keepBlacks; }
         }
 
-        public bool KeepGrays
+        /// <summary>
+        /// Ignore all shades of gray from HSL adjustments. This should generally be used when adjusting luminosity. Default is false.
+        /// </summary>
+        public static bool KeepGrays
         {
-            set { this.keepGrays = value; }
-            get { return this.keepGrays; }
+            set { keepGrays = value; }
+            get { return keepGrays; }
         }
 
-        public int GrayTolerance
+        /// <summary>
+        /// Setting this above 0 will also ignore off shades of gray. For Claro generally keep this at 0. Default is 0.
+        /// </summary>
+        public static int GrayTolerance
         {
-            set { this.grayTolerance = value; }
-            get { return this.grayTolerance; }
+            set { grayTolerance = value; }
+            get { return grayTolerance; }
         }
 
 #endregion
 
+        /// <summary>
+        /// Delegate for log messages.
+        /// </summary>
+        /// <param name="msg">Log message</param>
         public delegate void LogEventHandler(string msg);
-        public event LogEventHandler Log;
 
-        public Shader()
-        {
+        /// <summary>
+        /// Event handler for log messages.
+        /// </summary>
+        public static event LogEventHandler Log;
 
-        }
-
-       /* public Shader(string claroPath, int h, int s, int l, bool keepBlacks, bool keepGrays, int grayTolerance) : this()
-        {
-            this.claroPath = claroPath;
-            this.h = h;
-            this.s = s;
-            this.l = l;
-            this.keepBlacks = keepBlacks;
-            this.keepGrays = keepGrays;
-            this.grayTolerance = grayTolerance;
-        }*/
-
-        public void Start()
+        /// <summary>
+        /// Starts the recoloring process. Edits all images and variables.less.
+        /// </summary>
+        /// <param name="buildClaro">Executes NodeJS and runs compile.js</param>
+        public static void Start(bool buildClaro)
         {
             Log("Starting...");
             foreach (string path in paths)
@@ -166,16 +192,45 @@ namespace Claro_Shader_Core
                 }
             }
             editLess();
+            using (StreamWriter outfile = new StreamWriter(Path.Combine(claroPath, "Claro-Shader_Colors.txt"), true))
+            {
+                outfile.Write("Date: " + DateTime.Now + Environment.NewLine);
+                outfile.Write("Hue: " + h.ToString() + Environment.NewLine);
+                outfile.Write("Saturation: " + s.ToString() + Environment.NewLine);
+                outfile.Write("Luminosity: " + l.ToString() + Environment.NewLine);
+                outfile.Write("Invert: " + invert.ToString() + Environment.NewLine);
+                outfile.Write("Keep Blacks: " + keepBlacks.ToString() + Environment.NewLine);
+                outfile.Write("Keep Grays: " + keepGrays.ToString() + Environment.NewLine);
+                outfile.Write("Gray Tolerance: " + grayTolerance.ToString() + Environment.NewLine);
+            }
             Log(pathToLess + " has been updated.");
-            buildClaro();
+            if (buildClaro)
+                BuildClaro();
         }
-       
-        public Bitmap ProcessBitmap(Bitmap bmp)
+
+        /// <summary>
+        /// Runs a bitmap through all filters.
+        /// </summary>
+        /// <param name="bmp">Bitmap to be processed.</param>
+        /// <returns>Processed bitmap.</returns>
+        public static Bitmap ProcessBitmap(Bitmap bmp)
         {
             return ProcessBitmap(bmp, h, s, l, invert, keepBlacks, keepGrays, grayTolerance);
         }
 
-        public Bitmap ProcessBitmap(Bitmap bmp, int h, double s, double l, bool invert, bool keepBW, bool keepGray, int grayTolerance)
+        /// <summary>
+        /// Runs a bitmap through all filters.
+        /// </summary>
+        /// <param name="bmp">Bitmap for processing.</param>
+        /// <param name="h">Hue adjustment.</param>
+        /// <param name="s">Saturation adjustment.</param>
+        /// <param name="l">Luminosity adjustment</param>
+        /// <param name="invert">Invert all colors.</param>
+        /// <param name="keepBW">Ignore black and white.</param>
+        /// <param name="keepGray">Ignore Shades of gray.</param>
+        /// <param name="grayTolerance">Tolerance for off shades of gray.</param>
+        /// <returns>Processed bitmap.</returns>
+        public static Bitmap ProcessBitmap(Bitmap bmp, int h, double s, double l, bool invert, bool keepBW, bool keepGray, int grayTolerance)
         {
             bmp = changeHSL(bmp, h, s, l, keepBW, keepGray, grayTolerance);
             if (invert)
@@ -183,7 +238,7 @@ namespace Claro_Shader_Core
             return bmp;
         }
 
-        private Bitmap changeHSL(Bitmap bmp, int h, double s, double l, bool keepBW, bool keepGray, int grayTolerance)
+        private static Bitmap changeHSL(Bitmap bmp, int h, double s, double l, bool keepBW, bool keepGray, int grayTolerance)
         {
             s = Math.Round(s / 100, 2);
             l = Math.Round(l / 100, 2);
@@ -196,14 +251,14 @@ namespace Claro_Shader_Core
             return bmp;
         }
 
-        private Bitmap invertColors(Bitmap bmp)
+        private static Bitmap invertColors(Bitmap bmp)
         {
             Invert filter = new Invert();
             filter.ApplyInPlace(bmp);
             return bmp;
         }
 
-        private void editLess()
+        private static void editLess()
         {
             string newData = "";
             try
@@ -248,21 +303,33 @@ namespace Claro_Shader_Core
             }
         }
 
-        private void buildClaro()
+        /// <summary>
+        /// Executes NodeJS and runs compile.js
+        /// </summary>
+        /// <returns></returns>
+        public static bool BuildClaro()
+        {
+            return BuildClaro(new ProcessStartInfo("node", "compile.js"));
+        }
+
+       /// <summary>
+       /// Executes NodeJS and runs compile.js
+       /// </summary>
+       /// <param name="nodeJS">ProcessStartInfo for NodeJS</param>
+       /// <returns></returns>
+        public static bool BuildClaro(ProcessStartInfo nodeJS)
         {
             Log(".less Compile Started.");
-            File.Copy("Resources\\compile.js", Path.Combine(claroPath, "compile.js"), true);
-            ProcessStartInfo psi = new ProcessStartInfo(@"Resources\node\bin\node.exe", "compile.js \"" + Path.Combine(Environment.CurrentDirectory, @"Resources\node\lib\node_modules\less").Replace('\\', '/') + "\"");
-            psi.CreateNoWindow = true;
-            psi.UseShellExecute = false;
+            nodeJS.CreateNoWindow = true;
+            nodeJS.UseShellExecute = false;
             #if !DEBUG
-                psi.ErrorDialog = false;
+                nodeJS.ErrorDialog = false;
             #endif
-            psi.RedirectStandardOutput = true;
-            psi.WorkingDirectory = claroPath;
-            psi.RedirectStandardError = true;
+            nodeJS.RedirectStandardOutput = true;
+            nodeJS.WorkingDirectory = claroPath;
+            nodeJS.RedirectStandardError = true;
 
-            Process p = Process.Start(psi);
+            Process p = Process.Start(nodeJS);
 
             StreamReader oReader2 = p.StandardOutput;
             string sRes = oReader2.ReadToEnd();
@@ -275,20 +342,16 @@ namespace Claro_Shader_Core
             Log(sRes);
             Log(sRes1);
 
-            using (StreamWriter outfile = new StreamWriter(Path.Combine(claroPath, "Claro-Shader_Colors.txt"), true))
+            if (p.WaitForExit(5000))
             {
-                outfile.Write("Date: " + DateTime.Now + Environment.NewLine);
-                outfile.Write("Hue: " + h.ToString() + Environment.NewLine);
-                outfile.Write("Saturation: " + s.ToString() + Environment.NewLine);
-                outfile.Write("Luminosity: " + l.ToString() + Environment.NewLine);
-                outfile.Write("Invert: " + invert.ToString() + Environment.NewLine);
-                outfile.Write("Keep Blacks: " + keepBlacks.ToString() + Environment.NewLine);
-                outfile.Write("Keep Grays: " + keepGrays.ToString() + Environment.NewLine);
-                outfile.Write("Gray Tolerance: " + grayTolerance.ToString() + Environment.NewLine);
+                Log("Compile complete.");
+                return true;
             }
-
-            p.WaitForExit(10000);
-            Log("Compile complete.");
+            else
+            {
+                Log("Compile Failed.");
+                return false;
+            }
         }
     }
 }

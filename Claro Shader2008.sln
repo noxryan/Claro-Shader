@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imaging", "Claro Shader Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math", "Claro Shader Core\libs\Math\Math.csproj", "{C0FAF524-72E4-46F7-8C1B-A6B74DEC5EBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claro Shader CLI", "Claro Shader CLI\Claro Shader CLI.csproj", "{DA99AF25-11AD-442E-99C5-C5255703A281}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{C0FAF524-72E4-46F7-8C1B-A6B74DEC5EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0FAF524-72E4-46F7-8C1B-A6B74DEC5EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0FAF524-72E4-46F7-8C1B-A6B74DEC5EBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA99AF25-11AD-442E-99C5-C5255703A281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA99AF25-11AD-442E-99C5-C5255703A281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA99AF25-11AD-442E-99C5-C5255703A281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA99AF25-11AD-442E-99C5-C5255703A281}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -41,12 +41,11 @@ namespace Claro_Shader
 {
     public partial class frmMain : Form
     {
-        Shader shader;
-
         string imgExcludeFile = Path.Combine("Resources", "img_excludes.txt");
         string cssExcludeFile = Path.Combine("Resources", "css_excludes.txt");
         string pathToLess = "variables.less";
-        string demoImage = @"form\images\checkboxRadioButtonStates.png";
+        string demoImage = Path.Combine(Path.Combine("form", "images"), "checkboxRadioButtonStates.png");
+
         Bitmap orginBmp;
 
         public frmMain()
@@ -56,15 +55,14 @@ namespace Claro_Shader
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            shader = new Shader();
-            shader.Log += new Shader.LogEventHandler(shader_Log);
+            Shader.Log += new Shader.LogEventHandler(shader_Log);
 
             using (StreamReader sr = new StreamReader(imgExcludeFile))
             {
                 String line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    shader.ImgExcludes.Add(line);
+                    Shader.ImgExcludes.Add(line);
                 }
             }
             using (StreamReader sr = new StreamReader(cssExcludeFile))
@@ -72,12 +70,12 @@ namespace Claro_Shader
                 String line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    shader.CssExcludes.Add(line);
+                    Shader.CssExcludes.Add(line);
                 }
             }
         }
 
-        void shader_Log(string msg)
+        private void shader_Log(string msg)
         {
             txtLog.AppendText(msg + Environment.NewLine);
             txtLog.ScrollToCaret();
@@ -92,53 +90,43 @@ namespace Claro_Shader
         private void btnStart_Click(object sender, EventArgs e)
         {
             this.Enabled = false;
-            shader.Start();
+            Shader.Start(false);
+            if (chkLess.Checked)
+            {
+                frmEditor editor = new frmEditor(Path.Combine(txtFolder.Text, pathToLess));
+                editor.ShowDialog();
+            }
+            File.Copy("Resources\\compile.js", Path.Combine(Shader.ClaroPath, "compile.js"), true);
+            ProcessStartInfo psi = new ProcessStartInfo(@"Resources\node\bin\node.exe", "compile.js \"" + Path.Combine(Environment.CurrentDirectory, @"Resources\node\lib\node_modules\less").Replace('\\', '/') + "\"");
+            Shader.BuildClaro(psi);
             resetSliders();
             this.Enabled = true;
         }
 
-        private void resetSliders()
-        {
-            trkH.Value = 0;
-            trkS.Value = 0;
-            trkL.Value = 0;
-            numH.Value = 0;
-            numS.Value = 0;
-            numL.Value = 0;
-            chkInvert.Checked = false;
-            chkBW.Checked = true;
-            chkGray.Checked = false;
-            FileStream fs = new FileStream(Path.Combine(txtFolder.Text, "form/images/checkboxRadioButtonStates.png"), FileMode.Open);
-            Image imgPhoto = Image.FromStream(fs);
-            pictureBox1.Image = new Bitmap(fs);
-            fs.Close();
-            orginBmp = new Bitmap(pictureBox1.Image);
-        }
-
         private void trkH_Scroll(object sender, EventArgs e)
         {
-            shader.H = trkH.Value;
-            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
+            Shader.H = trkH.Value;
+            pictureBox1.Image = (Image)Shader.ProcessBitmap((Bitmap)orginBmp.Clone());
             numH.Value = trkH.Value;
         }
 
         private void trkS_Scroll(object sender, EventArgs e)
         {
-            shader.S = trkS.Value;
-            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone()); 
+            Shader.S = trkS.Value;
+            pictureBox1.Image = (Image)Shader.ProcessBitmap((Bitmap)orginBmp.Clone()); 
             numS.Value = trkS.Value;
         }
 
         private void trkL_Scroll(object sender, EventArgs e)
         {
-            shader.L = trkL.Value;
-            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone()); 
+            Shader.L = trkL.Value;
+            pictureBox1.Image = (Image)Shader.ProcessBitmap((Bitmap)orginBmp.Clone()); 
             numL.Value = trkL.Value;
         }
 
         private void txtFolder_TextChanged(object sender, EventArgs e)
         {
-            shader.ClaroPath = dirDialog.SelectedPath;
+            Shader.ClaroPath = dirDialog.SelectedPath;
             if (File.Exists(Path.Combine(txtFolder.Text, demoImage)))
             {
                 trkH.Enabled = true;
@@ -171,14 +159,14 @@ namespace Claro_Shader
 
         private void chkInvert_CheckedChanged(object sender, EventArgs e)
         {
-            shader.Invert = chkInvert.Checked;
-            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
+            Shader.Invert = chkInvert.Checked;
+            pictureBox1.Image = (Image)Shader.ProcessBitmap((Bitmap)orginBmp.Clone());
         }
 
         private void chkBW_CheckedChanged(object sender, EventArgs e)
         {
-            shader.KeepBlacks = chkBW.Checked;
-            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
+            Shader.KeepBlacks = chkBW.Checked;
+            pictureBox1.Image = (Image)Shader.ProcessBitmap((Bitmap)orginBmp.Clone());
         }
 
         private void chkGray_CheckedChanged(object sender, EventArgs e)
@@ -187,14 +175,14 @@ namespace Claro_Shader
                 numGrayTolerance.Enabled = true;
             else
                 numGrayTolerance.Enabled = false;
-            shader.KeepGrays = chkGray.Checked;
-            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
+            Shader.KeepGrays = chkGray.Checked;
+            pictureBox1.Image = (Image)Shader.ProcessBitmap((Bitmap)orginBmp.Clone());
         }
 
         private void numGrayTolerance_ValueChanged(object sender, EventArgs e)
         {
-            shader.GrayTolerance = (int) numGrayTolerance.Value;
-            pictureBox1.Image = (Image)shader.ProcessBitmap((Bitmap)orginBmp.Clone());
+            Shader.GrayTolerance = (int)numGrayTolerance.Value;
+            pictureBox1.Image = (Image)Shader.ProcessBitmap((Bitmap)orginBmp.Clone());
         }
 
         private void numH_ValueChanged(object sender, EventArgs e)
@@ -213,6 +201,24 @@ namespace Claro_Shader
         {
             trkL.Value = (int) numL.Value;
             trkL_Scroll(sender, e);
+        }
+
+        private void resetSliders()
+        {
+            trkH.Value = 0;
+            trkS.Value = 0;
+            trkL.Value = 0;
+            numH.Value = 0;
+            numS.Value = 0;
+            numL.Value = 0;
+            chkInvert.Checked = false;
+            chkBW.Checked = true;
+            chkGray.Checked = false;
+            FileStream fs = new FileStream(Path.Combine(txtFolder.Text, demoImage), FileMode.Open);
+            Image imgPhoto = Image.FromStream(fs);
+            pictureBox1.Image = new Bitmap(fs);
+            fs.Close();
+            orginBmp = new Bitmap(pictureBox1.Image);
         }
     }
 }
