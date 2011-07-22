@@ -1,5 +1,0 @@
-﻿@dnd-avatar-header-background-color
-@dnd-avatar-candrop-header-background-color
-@error-border-color
-@error-focused-border-color
-@erroricon-background-color

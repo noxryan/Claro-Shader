@@ -1,7 +1,0 @@
-﻿error.png
-dnd.png
-Thumbs.db
-loadingAnimation.gif
-progressBarAnim.gif
-treeExpand_loading.gif
-checkmarkNoBorder.gif
