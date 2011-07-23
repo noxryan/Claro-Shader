@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Diagnostics;
 using Claro_Shader_Core;
 
 namespace Claro_Shader_CLI
@@ -92,7 +93,17 @@ namespace Claro_Shader_CLI
             try { Shader.KeepGrays = Boolean.Parse(cliArgs["kg"]); } catch (Exception e) { }
             try { Shader.GrayTolerance = Int32.Parse(cliArgs["gt"]); } catch (Exception e) { }
 
-            Shader.Start(true);
+            Shader.Start();
+
+            string pathToLess;
+            if (cliArgs.TryGetValue("pl", out pathToLess))
+            {
+                File.Copy(Path.Combine("Resources", "compile.js"), Path.Combine(Shader.ClaroPath, "compile.js"), true);
+                ProcessStartInfo psi = new ProcessStartInfo("node", "compile.js \"" + pathToLess + "\"");
+                Shader.BuildClaro(psi);
+            }
+            else
+                Shader.BuildClaro();
         }
 
         static void Shader_Log(string msg)

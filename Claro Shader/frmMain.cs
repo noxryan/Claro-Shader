@@ -90,13 +90,13 @@ namespace Claro_Shader
         private void btnStart_Click(object sender, EventArgs e)
         {
             this.Enabled = false;
-            Shader.Start(false);
+            Shader.Start();
             if (chkLess.Checked)
             {
                 frmEditor editor = new frmEditor(Path.Combine(txtFolder.Text, pathToLess));
                 editor.ShowDialog();
             }
-            File.Copy("Resources\\compile.js", Path.Combine(Shader.ClaroPath, "compile.js"), true);
+            File.Copy(Path.Combine("Resources", "compile.js"), Path.Combine(Shader.ClaroPath, "compile.js"), true);
             ProcessStartInfo psi = new ProcessStartInfo(@"Resources\node\bin\node.exe", "compile.js \"" + Path.Combine(Environment.CurrentDirectory, @"Resources\node\lib\node_modules\less").Replace('\\', '/') + "\"");
             Shader.BuildClaro(psi);
             resetSliders();

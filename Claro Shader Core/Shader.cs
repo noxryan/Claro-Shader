@@ -39,7 +39,7 @@ namespace Claro_Shader_Core
     public static class Shader
     {
         private static string[] paths = new string[] { "images", Path.Combine("form", "images"), Path.Combine("layout", "images") };
-        private static string pathToLess = "variables.less";
+        private static string pathToVariables = "variables.less";
         private static List<string> imgExcludes = new List<string>();
         private static List<string> cssExcludes = new List<string>();
         private static string claroPath = "";
@@ -159,8 +159,7 @@ namespace Claro_Shader_Core
         /// <summary>
         /// Starts the recoloring process. Edits all images and variables.less.
         /// </summary>
-        /// <param name="buildClaro">Executes NodeJS and runs compile.js</param>
-        public static void Start(bool buildClaro)
+        public static void Start()
         {
             Log("Starting...");
             foreach (string path in paths)
@@ -203,9 +202,7 @@ namespace Claro_Shader_Core
                 outfile.Write("Keep Grays: " + keepGrays.ToString() + Environment.NewLine);
                 outfile.Write("Gray Tolerance: " + grayTolerance.ToString() + Environment.NewLine);
             }
-            Log(pathToLess + " has been updated.");
-            if (buildClaro)
-                BuildClaro();
+            Log(pathToVariables + " has been updated.");
         }
 
         /// <summary>
@@ -263,7 +260,7 @@ namespace Claro_Shader_Core
             string newData = "";
             try
             {
-                using (StreamReader sr = new StreamReader(Path.Combine(claroPath, pathToLess)))
+                using (StreamReader sr = new StreamReader(Path.Combine(claroPath, pathToVariables)))
                 {
                     String line;
                     while ((line = sr.ReadLine()) != null)
@@ -292,7 +289,7 @@ namespace Claro_Shader_Core
                         newData += line + "\n";
                     }
                 }
-                using (StreamWriter outfile = new StreamWriter(Path.Combine(claroPath, pathToLess)))
+                using (StreamWriter outfile = new StreamWriter(Path.Combine(claroPath, pathToVariables)))
                 {
                     outfile.Write(newData);
                 }

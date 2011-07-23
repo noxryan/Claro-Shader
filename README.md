@@ -22,13 +22,16 @@ Everything else is included and configured.
 
 ## Running With Mono
 
-There are separate Command Line (Claro Shader CLI) and WinForms (Claro Shader) projects included. All processing is handled by Claro Shader Core. The CLI exe will run with Mono.
+There are separate Command Line (Claro Shader CLI) and WinForms (Claro Shader) projects included. 
+All processing is handled by Claro Shader Core. The CLI exe will run with Mono.
 
 The CLI version is not pre-packaged with nodeJS or the lessJS module. You will need to have these configured.
 
 CLI Arguments:
 
 **-p**  Path to the Claro directory. (Required)
+
+**-pl** Path to the lessJS module. If specified, this path will be added to compile.js for scanning.
 
 **-h**  Hue adjustment. (Default: 0)
 
@@ -42,7 +45,7 @@ CLI Arguments:
 
 **-gt** Gray tolerance. Setting this above 0 will also ignore off shades of gray. For Claro generally keep this at 0. (Default: 0)
 
-Example: **mono "Claro Shader CLI.exe" -p "/dijit/themes/claro" -h 149 -l=-10 -kg true**      #This will create a light red Claro theme.
+Example: **mono "Claro Shader CLI.exe" -p "/dijit/themes/claro" -h 149 -l=-10 -kg true**	#This will create a light red Claro theme.
 
 ## License
 
