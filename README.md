@@ -23,7 +23,7 @@ Everything else is included and configured.
 ## Running With Mono
 
 There are separate Command Line (Claro Shader CLI) and WinForms (Claro Shader) projects included. 
-All processing is handled by Claro Shader Core. The CLI exe will run with Mono.
+All processing is handled by Claro Shader Core. The CLI exe will run with mono-runtime and libgdiplus.
 
 The CLI version is not pre-packaged with nodeJS or the lessJS module. You will need to have these configured.
 

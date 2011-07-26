@@ -85,6 +85,7 @@ namespace Claro_Shader
         {
             dirDialog.ShowDialog();
             txtFolder.Text = dirDialog.SelectedPath;
+            Shader.ClaroPath = dirDialog.SelectedPath;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -126,35 +127,40 @@ namespace Claro_Shader
 
         private void txtFolder_TextChanged(object sender, EventArgs e)
         {
-            Shader.ClaroPath = dirDialog.SelectedPath;
-            if (File.Exists(Path.Combine(txtFolder.Text, demoImage)))
+            try
             {
-                trkH.Enabled = true;
-                trkS.Enabled = true;
-                trkL.Enabled = true;
-                numH.Enabled = true;
-                numS.Enabled = true;
-                numL.Enabled = true;
-                chkInvert.Enabled = true;
-                chkBW.Enabled = true;
-                chkGray.Enabled = true;
-                btnStart.Enabled = true;
-                resetSliders();
+                if (File.Exists(Path.Combine(txtFolder.Text, demoImage)))
+                {
+                    dirDialog.SelectedPath = txtFolder.Text;
+                    Shader.ClaroPath = dirDialog.SelectedPath;
+                    trkH.Enabled = true;
+                    trkS.Enabled = true;
+                    trkL.Enabled = true;
+                    numH.Enabled = true;
+                    numS.Enabled = true;
+                    numL.Enabled = true;
+                    chkInvert.Enabled = true;
+                    chkBW.Enabled = true;
+                    chkGray.Enabled = true;
+                    btnStart.Enabled = true;
+                    resetSliders();
+                }
+                else
+                {
+                    pictureBox1.Image = null;
+                    trkH.Enabled = false;
+                    trkS.Enabled = false;
+                    trkL.Enabled = false;
+                    numH.Enabled = false;
+                    numS.Enabled = false;
+                    numL.Enabled = false;
+                    chkInvert.Enabled = false;
+                    chkBW.Enabled = false;
+                    chkGray.Enabled = false;
+                    btnStart.Enabled = false;
+                }
             }
-            else
-            {
-                pictureBox1.Image = null;
-                trkH.Enabled = false;
-                trkS.Enabled = false;
-                trkL.Enabled = false;
-                numH.Enabled = false;
-                numS.Enabled = false;
-                numL.Enabled = false;
-                chkInvert.Enabled = false;
-                chkBW.Enabled = false;
-                chkGray.Enabled = false;
-                btnStart.Enabled = false;
-            }
+            catch (ArgumentException ae) { }
         }
 
         private void chkInvert_CheckedChanged(object sender, EventArgs e)

@@ -167,6 +167,7 @@ namespace Claro_Shader_Core
                 string fullPath = Path.Combine(claroPath, path);
                 Log(Environment.NewLine + "Path: " + fullPath);
                 string[] files = Directory.GetFiles(fullPath);
+                
                 foreach (string file in files)
                 {
                     bool excluded = false;
@@ -185,7 +186,7 @@ namespace Claro_Shader_Core
                         Image imgPhoto = Image.FromStream(fs);
                         Bitmap bmp = new Bitmap(fs);
                         fs.Close();
-                        bmp = ProcessBitmap(bmp);
+                        bmp = ProcessBitmap(AForge.Imaging.Image.Clone(bmp, System.Drawing.Imaging.PixelFormat.Format32bppArgb));
                         bmp.Save(file);
                     }
                 }
