@@ -43,6 +43,7 @@ namespace Claro_Shader_Core
         private static List<string> imgExcludes = new List<string>();
         private static List<string> cssExcludes = new List<string>();
         private static string claroPath = "";
+        private static string outputPath = "";
         private static int h = 0;
         private static int s = 0;
         private static int l = 0;
@@ -78,6 +79,15 @@ namespace Claro_Shader_Core
         {
             set { claroPath = value; }
             get { return claroPath; }
+        }
+
+        /// <summary>
+        /// Output path. Leave blank to overwrite the Claro folder.
+        /// </summary>
+        public static string OutputPath
+        {
+            set { outputPath = value; }
+            get { return outputPath; }
         }
 
         /// <summary>
@@ -165,6 +175,11 @@ namespace Claro_Shader_Core
             foreach (string path in paths)
             {
                 string fullPath = Path.Combine(claroPath, path);
+                string outPath = Path.Combine(claroPath, path);
+                if (outputPath != "")
+                    outPath = Path.Combine(outputPath, path);
+                if (!Directory.Exists(outPath))
+                    Directory.CreateDirectory(outPath);
                 Log(Environment.NewLine + "Path: " + fullPath);
                 string[] files = Directory.GetFiles(fullPath);
                 
@@ -187,12 +202,15 @@ namespace Claro_Shader_Core
                         Bitmap bmp = new Bitmap(fs);
                         fs.Close();
                         bmp = ProcessBitmap(AForge.Imaging.Image.Clone(bmp, System.Drawing.Imaging.PixelFormat.Format32bppArgb));
-                        bmp.Save(file);
+                        bmp.Save(Path.Combine(outPath, Path.GetFileName(file)));
                     }
                 }
             }
             editLess();
-            using (StreamWriter outfile = new StreamWriter(Path.Combine(claroPath, "Claro-Shader_Colors.txt"), true))
+            string outFile = Path.Combine(claroPath, "Claro-Shader_Colors.txt");
+            if(outputPath != "")
+                outFile = Path.Combine(outputPath, "Claro-Shader_Colors.txt");
+            using (StreamWriter outfile = new StreamWriter(outFile, true))
             {
                 outfile.Write("Date: " + DateTime.Now + Environment.NewLine);
                 outfile.Write("Hue: " + h.ToString() + Environment.NewLine);
@@ -279,6 +297,18 @@ namespace Claro_Shader_Core
                                 if (oldRGB != "")
                                 {
                                     Bitmap tmp = new Bitmap(1, 1);
+                                    #if MONO
+                                        if (oldRGB.Length == 4)
+                                        {
+                                            string oldRGBLong = "#";
+                                            for (int x = 1; x < 4; x++)
+                                            {
+                                                string addRGB = oldRGB.Substring(x, 1);
+                                                oldRGBLong += addRGB + addRGB;
+                                            }
+                                            oldRGB = oldRGBLong;
+                                        }
+                                    #endif
                                     tmp.SetPixel(0, 0, ColorTranslator.FromHtml(oldRGB));
                                     Color newColor = ProcessBitmap(tmp).GetPixel(0, 0);
                                     Log(oldRGB + " - " + ColorTranslator.ToHtml(newColor));
@@ -290,7 +320,10 @@ namespace Claro_Shader_Core
                         newData += line + "\n";
                     }
                 }
-                using (StreamWriter outfile = new StreamWriter(Path.Combine(claroPath, pathToVariables)))
+                string outFile = Path.Combine(claroPath, pathToVariables);
+                if (outputPath != "")
+                    outFile = Path.Combine(outputPath, pathToVariables);
+                using (StreamWriter outfile = new StreamWriter(outFile))
                 {
                     outfile.Write(newData);
                 }
@@ -325,6 +358,8 @@ namespace Claro_Shader_Core
             #endif
             nodeJS.RedirectStandardOutput = true;
             nodeJS.WorkingDirectory = claroPath;
+            if (outputPath != "")
+                nodeJS.WorkingDirectory = outputPath;
             nodeJS.RedirectStandardError = true;
 
             Process p = Process.Start(nodeJS);

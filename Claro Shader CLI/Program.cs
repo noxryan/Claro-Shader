@@ -85,6 +85,11 @@ namespace Claro_Shader_CLI
             else
                 Console.WriteLine("Invalid path to Claro.");
 
+
+            string outputPath;
+            if (cliArgs.TryGetValue("o", out outputPath))
+                Shader.OutputPath = outputPath;
+
             try { Shader.H = Int32.Parse(cliArgs["h"]); } catch (Exception e) { }
             try { Shader.S = Int32.Parse(cliArgs["s"]); } catch (Exception e) { }
             try { Shader.L = Int32.Parse(cliArgs["l"]); } catch (Exception e) { }
@@ -98,7 +103,10 @@ namespace Claro_Shader_CLI
             string pathToLess;
             if (cliArgs.TryGetValue("pl", out pathToLess))
             {
-                File.Copy(Path.Combine("Resources", "compile.js"), Path.Combine(Shader.ClaroPath, "compile.js"), true);
+                string outPath = Path.Combine(Shader.ClaroPath, "compile.js");
+                if (Shader.OutputPath != "")
+                    outPath = Path.Combine(Shader.OutputPath, "compile.js");
+                File.Copy(Path.Combine("Resources", "compile.js"), outPath, true);
                 ProcessStartInfo psi = new ProcessStartInfo("node", "compile.js \"" + pathToLess + "\"");
                 Shader.BuildClaro(psi);
             }
