@@ -1,5 +1,5 @@
-﻿error.png
-dnd.png
+﻿form\images\error.png
+images\dnd.png
 Thumbs.db
 loadingAnimation.gif
 progressBarAnim.gif

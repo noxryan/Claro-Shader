@@ -188,7 +188,15 @@ namespace Claro_Shader_Core
                     bool excluded = false;
                     foreach (string imgExclude in imgExcludes)
                     {
-                        if (Path.GetFileName(file) == imgExclude)
+                        if(imgExclude.Contains('\\') || imgExclude.Contains('/'))
+                        {
+                            if (Path.Combine(path, Path.GetFileName(file)).Replace('\\', '/') == imgExclude.Replace('\\', '/'))
+                            {
+                                Log("xxx " + Path.GetFileName(file) + " excluded.");
+                                excluded = true;
+                            }
+                        }
+                        else if (Path.GetFileName(file) == imgExclude)
                         {
                             Log("xxx " + Path.GetFileName(file) + " excluded.");
                             excluded = true;
