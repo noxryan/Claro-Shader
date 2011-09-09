@@ -39,6 +39,8 @@ CLI Arguments:
 
 **-l**  Luminosity adjustment. (Default: 0)
 
+**-i**  Invert all colors. This is useful for creating claro themes to be used on black backgrounds. (Default: false)
+
 **-kb** Keep blacks and whites from HSL adjustments. This should generally be used when adjusting luminosity. (Default: true)
 
 **-kg** Keep all shades of gray from HSL adjustments. This should generally be used when adjusting luminosity. (Default: false)
